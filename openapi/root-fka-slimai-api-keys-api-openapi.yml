@@ -1,0 +1,301 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts API Keys API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: API Keys
+paths:
+  /v3/api_keys:
+    get:
+      security:
+      - BasicAuth: []
+      description: List API keys with cursor-based pagination and filtering
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - API Keys
+      summary: List API keys
+      parameters:
+      - type: string
+        description: After cursor for next page
+        name: after
+        in: query
+      - type: string
+        description: Before cursor for previous page
+        name: before
+        in: query
+      - type: integer
+        default: 100
+        description: Page size (max 1000)
+        name: limit
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: multi
+        description: Ordering (e.g., 'created_at:desc')
+        name: order
+        in: query
+      - type: string
+        description: Filter by account ID
+        name: account_id
+        in: query
+      - type: boolean
+        description: Filter by active status
+        name: active
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ListAPIKeysPagedResponse'
+    post:
+      security:
+      - BasicAuth: []
+      description: Creates a new API key for the authenticated user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - API Keys
+      summary: Create API key
+      parameters:
+      - description: API key create request
+        name: api_key
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/CreateAPIKeyRequest'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/APIKeyResponse'
+  /v3/api_keys/{api_key_id}:
+    get:
+      security:
+      - BasicAuth: []
+      description: Retrieves a specific API key by ID
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - API Keys
+      summary: Get API key
+      parameters:
+      - type: string
+        description: API Key ID
+        name: api_key_id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/APIKeyResponse'
+    delete:
+      security:
+      - BasicAuth: []
+      description: Delete an API key
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - API Keys
+      summary: Delete API key
+      parameters:
+      - type: string
+        description: API Key ID
+        name: api_key_id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/APIKeyResponse'
+    patch:
+      security:
+      - BasicAuth: []
+      description: Partially update an API key
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - API Keys
+      summary: Patch API key
+      parameters:
+      - type: string
+        description: API Key ID
+        name: api_key_id
+        in: path
+        required: true
+      - description: API key patch request
+        name: api_key
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/PatchAPIKeyRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/APIKeyResponse'
+definitions:
+  OrganizationKind:
+    type: string
+    enum:
+    - public
+    - private
+    x-enum-varnames:
+    - OrganizationKindPublic
+    - OrganizationKindPrivate
+  OrganizationBrief:
+    type: object
+    properties:
+      id:
+        type: string
+      kind:
+        $ref: '#/definitions/OrganizationKind'
+      name:
+        type: string
+  AccountType:
+    type: string
+    enum:
+    - user
+    - service
+    x-enum-varnames:
+    - AccountTypeUser
+    - AccountTypeService
+  Cursor:
+    type: object
+    properties:
+      after:
+        type: string
+      before:
+        type: string
+      limit:
+        type: integer
+      total_count:
+        description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+        type: integer
+  CreateAPIKeyRequest:
+    type: object
+    properties:
+      expires_at:
+        type: string
+      name:
+        type: string
+        maxLength: 100
+      role:
+        enum:
+        - admin
+        - member
+        - readonly
+        allOf:
+        - $ref: '#/definitions/Role'
+      type:
+        enum:
+        - user
+        - service
+        allOf:
+        - $ref: '#/definitions/AccountType'
+  AccountBrief:
+    type: object
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      role:
+        $ref: '#/definitions/Role'
+  APIKeyResponse:
+    type: object
+    properties:
+      account:
+        $ref: '#/definitions/AccountBrief'
+      account_id:
+        type: string
+      active:
+        type: boolean
+      created_at:
+        type: string
+      created_by:
+        $ref: '#/definitions/APIKeyCreatedBy'
+      expires_at:
+        type: string
+      id:
+        type: string
+      key:
+        type: string
+      last_used_at:
+        type: string
+      name:
+        type: string
+      organization:
+        $ref: '#/definitions/OrganizationBrief'
+      organization_id:
+        type: string
+      role:
+        $ref: '#/definitions/Role'
+      type:
+        $ref: '#/definitions/AccountType'
+      updated_at:
+        type: string
+  Role:
+    type: string
+    enum:
+    - admin
+    - member
+    - readonly
+    x-enum-varnames:
+    - RoleAdmin
+    - RoleMember
+    - RoleReadonly
+  PatchAPIKeyRequest:
+    type: object
+    required:
+    - name
+    properties:
+      name:
+        type: string
+        maxLength: 100
+        minLength: 1
+  ListAPIKeysPagedResponse:
+    type: object
+    properties:
+      cursor:
+        $ref: '#/definitions/Cursor'
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/APIKeyResponse'
+  APIKeyCreatedBy:
+    type: object
+    properties:
+      account_id:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      role:
+        $ref: '#/definitions/Role'
+securityDefinitions:
+  BasicAuth:
+    type: basic

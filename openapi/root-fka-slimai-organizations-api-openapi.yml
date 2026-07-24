@@ -1,0 +1,113 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts Organizations API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: Organizations
+paths:
+  /v3/orgs:
+    get:
+      security:
+      - BasicAuth: []
+      description: Get current user's organization with accounts (excluding superadmins) and billing preloaded
+      produces:
+      - application/json
+      tags:
+      - Organizations
+      summary: Get own organization
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OrganizationResponse'
+    post:
+      security:
+      - BasicAuth: []
+      description: 'Creates a new organization and assigns the creator to it with admin role.
+
+        The creator account must not already belong to an organization.'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Organizations
+      summary: Create organization
+      parameters:
+      - description: Organization create request
+        name: organization
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/CreateOrganizationRequest'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/OrganizationResponse'
+definitions:
+  OrganizationKind:
+    type: string
+    enum:
+    - public
+    - private
+    x-enum-varnames:
+    - OrganizationKindPublic
+    - OrganizationKindPrivate
+  CreateOrganizationRequest:
+    type: object
+    required:
+    - name
+    properties:
+      name:
+        type: string
+  OrganizationResponse:
+    type: object
+    properties:
+      accounts:
+        type: array
+        items:
+          $ref: '#/definitions/AccountBrief'
+      billing_id:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      kind:
+        $ref: '#/definitions/OrganizationKind'
+      name:
+        type: string
+      updated_at:
+        type: string
+  AccountBrief:
+    type: object
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      role:
+        $ref: '#/definitions/Role'
+  Role:
+    type: string
+    enum:
+    - admin
+    - member
+    - readonly
+    x-enum-varnames:
+    - RoleAdmin
+    - RoleMember
+    - RoleReadonly
+securityDefinitions:
+  BasicAuth:
+    type: basic

@@ -1,0 +1,197 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts Notifications API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: Notifications
+paths:
+  /v3/notifications:
+    get:
+      security:
+      - BasicAuth: []
+      description: List the caller-org's notifications, cursor-paged, default sort created_at:desc.
+      produces:
+      - application/json
+      tags:
+      - Notifications
+      summary: List notifications
+      parameters:
+      - type: string
+        description: Cursor for next page
+        name: after
+        in: query
+      - type: string
+        description: Cursor for previous page
+        name: before
+        in: query
+      - type: integer
+        description: Page size (default 100, max 1000)
+        name: limit
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: multi
+        description: Ordering (e.g., 'created_at:desc')
+        name: order
+        in: query
+      - type: boolean
+        description: Filter by seen state
+        name: seen
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ListNotificationsResponse'
+  /v3/notifications/read_all:
+    post:
+      security:
+      - BasicAuth: []
+      description: Flip every unseen notification in the caller's org to seen=true. Idempotent.
+      tags:
+      - Notifications
+      summary: Mark all notifications as seen
+      responses:
+        '204':
+          description: No Content
+  /v3/notifications/unread-count:
+    get:
+      security:
+      - BasicAuth: []
+      description: Returns the number of unseen notifications for the caller's org.
+      produces:
+      - application/json
+      tags:
+      - Notifications
+      summary: Count unread notifications
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UnreadCountResponse'
+  /v3/notifications/{notificationID}:
+    patch:
+      security:
+      - BasicAuth: []
+      description: Update the `seen` state of a notification. Only `seen` is mutable.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Notifications
+      summary: Patch a notification (mark seen/unseen)
+      parameters:
+      - type: string
+        description: Notification ID
+        name: notificationID
+        in: path
+        required: true
+      - description: Patch payload
+        name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/PatchNotificationRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/NotificationResponse'
+definitions:
+  UnreadCountResponse:
+    type: object
+    properties:
+      count:
+        type: integer
+  Cursor:
+    type: object
+    properties:
+      after:
+        type: string
+      before:
+        type: string
+      limit:
+        type: integer
+      total_count:
+        description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+        type: integer
+  NotificationResponse:
+    type: object
+    properties:
+      created_at:
+        type: string
+      data:
+        $ref: '#/definitions/NotificationData'
+      id:
+        type: string
+      seen:
+        type: boolean
+      type:
+        type: string
+  ListNotificationsResponse:
+    type: object
+    properties:
+      cursor:
+        $ref: '#/definitions/Cursor'
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/NotificationResponse'
+  FixedCVE:
+    type: object
+    properties:
+      cve_id:
+        type: string
+      severity:
+        $ref: '#/definitions/v3.CVESeverity'
+  NotificationData:
+    type: object
+    properties:
+      entity_arch:
+        type: string
+      entity_id:
+        type: string
+      entity_name:
+        type: string
+      entity_version:
+        type: string
+      fixed_cves:
+        type: array
+        items:
+          $ref: '#/definitions/FixedCVE'
+      rrt_id:
+        description: root_registry_tags.id for image notifications; NULL for packages.
+        type: string
+  v3.CVESeverity:
+    type: string
+    enum:
+    - critical
+    - high
+    - medium
+    - low
+    - unknown
+    x-enum-varnames:
+    - CveSeverityCritical
+    - CveSeverityHigh
+    - CveSeverityMedium
+    - CveSeverityLow
+    - CveSeverityUnknown
+  PatchNotificationRequest:
+    type: object
+    required:
+    - seen
+    properties:
+      seen:
+        type: boolean
+securityDefinitions:
+  BasicAuth:
+    type: basic

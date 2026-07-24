@@ -1,0 +1,185 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts OSVFeed API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: OSVFeed
+paths:
+  /external/osv/all.json:
+    get:
+      description: Returns a lightweight index of all vulnerabilities with only id and modified timestamp. Industry standard format for OSV feeds. Clients should use this to check for updates and fetch individual records as needed.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - OSVFeed
+      summary: Get OSV feed index
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/osvfeed.IndexEntry'
+    head:
+      description: Returns HTTP headers with metadata (Last-Modified, ETag, Content-Length) about the index file without downloading the content. Useful for checking if the index has been updated.
+      produces:
+      - application/json
+      tags:
+      - OSVFeed
+      summary: Get OSV feed index metadata
+      responses:
+        '200':
+          description: 'Headers: Last-Modified, ETag, Content-Length, Content-Type'
+  /external/osv/all.zip:
+    get:
+      description: Returns a zip archive containing every individual OSV advisory as a flat {id}.json file. Mirrors the format used by osv.dev bulk downloads.
+      produces:
+      - application/zip
+      tags:
+      - OSVFeed
+      summary: Get all OSV records as zip archive
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: file
+  /external/osv/{id}.json:
+    get:
+      description: Returns the full vulnerability record for a specific OSV ID
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - OSVFeed
+      summary: Get individual OSV record
+      parameters:
+      - type: string
+        description: OSV ID (e.g., ROOT-OS-ALPINE-318-CVE-2023-1234)
+        name: id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/osvfeed.OSVVulnerability'
+    head:
+      description: Returns HTTP headers with metadata (Last-Modified, ETag, Content-Length) about a specific OSV record without downloading the content. Useful for checking if a record has been updated.
+      produces:
+      - application/json
+      tags:
+      - OSVFeed
+      summary: Get individual OSV record metadata
+      parameters:
+      - type: string
+        description: OSV ID (e.g., ROOT-OS-ALPINE-318-CVE-2023-1234)
+        name: id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: 'Headers: Last-Modified, ETag, Content-Length, Content-Type'
+definitions:
+  osvfeed.OSVEvent:
+    type: object
+    properties:
+      fixed:
+        type: string
+        example: 3.0.8-r10071
+      introduced:
+        type: string
+        example: '0'
+  osvfeed.OSVAffected:
+    type: object
+    properties:
+      package:
+        $ref: '#/definitions/osvfeed.OSVPackage'
+      ranges:
+        type: array
+        items:
+          $ref: '#/definitions/osvfeed.OSVRange'
+  osvfeed.OSVReference:
+    type: object
+    properties:
+      type:
+        type: string
+        example: WEB
+      url:
+        type: string
+        example: https://root.io/security/ROOT-OS-ALPINE-318-CVE-2023-1234
+  osvfeed.IndexEntry:
+    type: object
+    properties:
+      id:
+        type: string
+      modified:
+        type: string
+  osvfeed.OSVPackage:
+    type: object
+    properties:
+      ecosystem:
+        type: string
+        example: Alpine:3.18
+      name:
+        type: string
+        example: root-openssl
+      purl:
+        type: string
+        example: pkg:apk/alpine/root-openssl@3.0.8-r10071?arch=source&distro=alpine-3.18
+  osvfeed.OSVVulnerability:
+    type: object
+    properties:
+      affected:
+        type: array
+        items:
+          $ref: '#/definitions/osvfeed.OSVAffected'
+      aliases:
+        type: array
+        items:
+          type: string
+        example:
+        - CVE-2023-1234
+      details:
+        type: string
+      id:
+        type: string
+        example: ROOT-OS-ALPINE-318-CVE-2023-1234
+      modified:
+        type: string
+        example: '2024-11-24T00:00:00Z'
+      published:
+        type: string
+        example: '2024-01-15T00:00:00Z'
+      references:
+        type: array
+        items:
+          $ref: '#/definitions/osvfeed.OSVReference'
+      schema_version:
+        type: string
+        example: 1.6.0
+      summary:
+        type: string
+        example: CVE-2023-1234 in root-openssl - Patched by Root
+  osvfeed.OSVRange:
+    type: object
+    properties:
+      events:
+        type: array
+        items:
+          $ref: '#/definitions/osvfeed.OSVEvent'
+      type:
+        type: string
+        example: ECOSYSTEM
+securityDefinitions:
+  BasicAuth:
+    type: basic

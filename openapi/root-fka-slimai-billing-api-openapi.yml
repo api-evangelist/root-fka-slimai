@@ -1,0 +1,50 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts Billing API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: Billing
+paths:
+  /v3/billing:
+    get:
+      security:
+      - BasicAuth: []
+      description: Retrieves the billing record for the authenticated user's organization
+      produces:
+      - application/json
+      tags:
+      - Billing
+      summary: Get billing for current organization
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/BillingResponseV3'
+definitions:
+  BillingResponseV3:
+    type: object
+    properties:
+      created_at:
+        type: string
+      entitlements:
+        type: array
+        items:
+          type: string
+      id:
+        type: string
+      organization_id:
+        type: string
+      sla_activated_at:
+        type: string
+      updated_at:
+        type: string
+securityDefinitions:
+  BasicAuth:
+    type: basic

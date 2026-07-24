@@ -1,0 +1,83 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts PatchFeed API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: PatchFeed
+paths:
+  /external/patch_feed:
+    get:
+      description: Retrieves CVE tickets with status "done" for public patch feed consumption. No authentication required.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - PatchFeed
+      summary: Get patch feed data
+      parameters:
+      - type: string
+        description: Ecosystem (e.g., alpine, debian, ubuntu)
+        name: ecosystem
+        in: query
+      - type: string
+        description: OS distribution major version (e.g., 3.15, 12, 22.04)
+        name: os_distro_major
+        in: query
+      - type: string
+        description: Package Source Name
+        name: package_src_name
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PatchFeedResponse'
+definitions:
+  PatchFeedResponse:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        $ref: '#/definitions/v3.SingleDistroFeedResponse'
+  v3.SingleDistroFeedResponse:
+    type: object
+    properties:
+      archs:
+        type: array
+        items:
+          type: string
+      distroversion:
+        type: string
+      packages:
+        type: array
+        items:
+          $ref: '#/definitions/v3.PatchFeedPackageWrapper'
+  v3.PatchFeedPackage:
+    type: object
+    properties:
+      name:
+        type: string
+      secfixes:
+        $ref: '#/definitions/v3.PatchFeedPackageSecFixes'
+  v3.PatchFeedPackageSecFixes:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        type: string
+  v3.PatchFeedPackageWrapper:
+    type: object
+    properties:
+      pkg:
+        $ref: '#/definitions/v3.PatchFeedPackage'
+securityDefinitions:
+  BasicAuth:
+    type: basic

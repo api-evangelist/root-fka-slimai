@@ -1,0 +1,191 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts Invitations API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: Invitations
+paths:
+  /v3/invites:
+    get:
+      security:
+      - BasicAuth: []
+      description: Lists all invitations for the organization with pagination support
+      produces:
+      - application/json
+      tags:
+      - Invitations
+      summary: List organization invitations
+      parameters:
+      - type: string
+        description: Cursor for next page
+        name: after
+        in: query
+      - type: string
+        description: Cursor for previous page
+        name: before
+        in: query
+      - type: integer
+        description: Page size (default 100, max 1000)
+        name: limit
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: multi
+        description: Ordering (e.g., 'created_at:desc')
+        name: order
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ListInvitesResponse'
+    post:
+      security:
+      - BasicAuth: []
+      description: Creates an organization invite in the database. Email is validated if provided.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Invitations
+      summary: Create organization invite
+      parameters:
+      - description: Invite request
+        name: invite
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/CreateInviteRequest'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/InviteResponse'
+  /v3/invites/{inviteID}/accept:
+    post:
+      security:
+      - BasicAuth: []
+      description: Accepts an organization invite and adds the account to the organization with the specified role.
+      produces:
+      - application/json
+      tags:
+      - Invitations
+      summary: Accept organization invite
+      parameters:
+      - type: string
+        description: Invite ID
+        name: inviteID
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/InviteAcceptAccountResponse'
+  /v3/invites/{inviteID}/email:
+    post:
+      security:
+      - BasicAuth: []
+      description: Sends an invitation email for an existing invite
+      produces:
+      - application/json
+      tags:
+      - Invitations
+      summary: Send invite email
+      parameters:
+      - type: string
+        description: Invite ID
+        name: inviteID
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/InviteEmailResponse'
+definitions:
+  ListInvitesResponse:
+    type: object
+    properties:
+      cursor:
+        $ref: '#/definitions/Cursor'
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/InviteResponse'
+  InviteResponse:
+    type: object
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      issuer_id:
+        type: string
+      organization_id:
+        type: string
+      role:
+        $ref: '#/definitions/Role'
+  InviteEmailResponse:
+    type: object
+    properties:
+      email_status:
+        type: string
+      invite:
+        $ref: '#/definitions/InviteResponse'
+  Cursor:
+    type: object
+    properties:
+      after:
+        type: string
+      before:
+        type: string
+      limit:
+        type: integer
+      total_count:
+        description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+        type: integer
+  CreateInviteRequest:
+    type: object
+    required:
+    - role
+    properties:
+      email:
+        type: string
+      role:
+        $ref: '#/definitions/Role'
+  InviteAcceptAccountResponse:
+    type: object
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      organization_id:
+        type: string
+      role:
+        $ref: '#/definitions/Role'
+  Role:
+    type: string
+    enum:
+    - admin
+    - member
+    - readonly
+    x-enum-varnames:
+    - RoleAdmin
+    - RoleMember
+    - RoleReadonly
+securityDefinitions:
+  BasicAuth:
+    type: basic

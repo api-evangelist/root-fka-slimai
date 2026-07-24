@@ -1,0 +1,229 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts Core - Discovered Packages V3 API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: Core - Discovered Packages V3
+paths:
+  /v3/discovered-packages:
+    get:
+      security:
+      - BasicAuth: []
+      description: Retrieves discovered packages with vulnerability tracking and Root.io upgrade availability
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Core - Discovered Packages V3
+      summary: List discovered packages from artifact repositories
+      parameters:
+      - type: string
+        description: After cursor for pagination
+        name: after
+        in: query
+      - type: string
+        description: Before cursor for pagination
+        name: before
+        in: query
+      - type: integer
+        description: Page size (default 100, max 1000)
+        name: limit
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: multi
+        description: Order by (e.g., 'created_at:desc')
+        name: order
+        in: query
+      - enum:
+        - pypi
+        - npm
+        - maven
+        - nuget
+        type: string
+        description: Filter by ecosystem
+        name: ecosystem
+        in: query
+      - type: string
+        description: Filter by package name (source name)
+        name: package_name
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/discovered_packages.ListDiscoveredPackagesPagedResponse'
+definitions:
+  discovered_packages.ListDiscoveredPackagesPagedResponse:
+    type: object
+    properties:
+      cursor:
+        $ref: '#/definitions/Cursor'
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/discovered_packages.DiscoveredPackageResponse'
+  discovered_packages.DiscoveredPackageResponse:
+    type: object
+    properties:
+      available_root_fixable_cve_ids:
+        description: 'CVE IDs newly fixed by upgrading to AvailableRootVersion. Empty when no
+
+          upgrade applies.'
+        type: array
+        items:
+          type: string
+      available_root_version:
+        description: Highest applicable Root.io patch version; empty when no upgrade applies.
+        type: string
+      cves:
+        description: Current CVEs with full details
+        type: array
+        items:
+          $ref: '#/definitions/v3.CVE'
+      ecosystem:
+        description: pypi, npm, maven, etc.
+        type: string
+      fixed_cves:
+        description: CVEs fixed by root version
+        type: array
+        items:
+          type: string
+      last_pulled_at:
+        description: Last detected timestamp
+        type: string
+      open_cves:
+        description: CVEs not fixed by root version
+        type: array
+        items:
+          type: string
+      package_name:
+        description: Source package name (canonical)
+        type: string
+      resolved_cves:
+        description: CVEs resolved by user's updates
+        type: array
+        items:
+          $ref: '#/definitions/v3.CVE'
+      root_available:
+        description: Has Root.io upgrade available
+        type: boolean
+      root_used:
+        description: Currently using Root.io version
+        type: boolean
+      version:
+        description: Current version
+        type: string
+  Cursor:
+    type: object
+    properties:
+      after:
+        type: string
+      before:
+        type: string
+      limit:
+        type: integer
+      total_count:
+        description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+        type: integer
+  v3.CVE:
+    type: object
+    properties:
+      avr_scan_id:
+        type: string
+      created_at:
+        type: string
+      cve_id:
+        description: CVE identity (duplicated per scan)
+        type: string
+      cve_ticket_id:
+        description: Denormalized for fast SLA joins
+        type: string
+      cvss_score:
+        type: number
+      cvss_vector:
+        type: string
+      description:
+        type: string
+      discovered_at:
+        type: string
+      fixed_in_version:
+        description: Fix information (duplicated - fast queries)
+        type: string
+      id:
+        type: string
+      nvd_link:
+        type: string
+      organization_id:
+        type: string
+      package_id:
+        type: string
+      published_at:
+        type: string
+      severity:
+        $ref: '#/definitions/v3.CVESeverity'
+      sla:
+        description: SLA relationship (from materialized view, filtered by requesting org)
+        allOf:
+        - $ref: '#/definitions/v3.SLAInfo'
+      title:
+        type: string
+      updated_at:
+        type: string
+  v3.SLAStatus:
+    type: string
+    enum:
+    - met
+    - active
+    - breached
+    - not_applicable
+    x-enum-varnames:
+    - SLAStatusMet
+    - SLAStatusActive
+    - SLAStatusBreached
+    - SLAStatusNotApplicable
+  v3.CVESeverity:
+    type: string
+    enum:
+    - critical
+    - high
+    - medium
+    - low
+    - unknown
+    x-enum-varnames:
+    - CveSeverityCritical
+    - CveSeverityHigh
+    - CveSeverityMedium
+    - CveSeverityLow
+    - CveSeverityUnknown
+  v3.SLAInfo:
+    type: object
+    properties:
+      cve_id:
+        type: string
+      organization_id:
+        type: string
+      patch_found_at:
+        type: string
+      root_patch_provided_at:
+        type: string
+      severity:
+        $ref: '#/definitions/v3.CVESeverity'
+      sla_deadline_at:
+        type: string
+      sla_started_at:
+        type: string
+      sla_status:
+        $ref: '#/definitions/v3.SLAStatus'
+securityDefinitions:
+  BasicAuth:
+    type: basic

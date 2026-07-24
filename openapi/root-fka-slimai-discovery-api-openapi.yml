@@ -1,0 +1,236 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts Discovery API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: Discovery
+paths:
+  /v3/discovery:
+    post:
+      security:
+      - BasicAuth: []
+      description: 'Creates complete CVE record chain: scan_packages, cves, cve_tickets, unpatched_cve_metadata'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Discovery
+      summary: Create discovered package with CVE
+      parameters:
+      - description: Package and CVE data
+        name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/discovery.CreateDiscoveredPackageRequest'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/discovery.CreateDiscoveredPackageResponse'
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '401':
+          description: Account not found in context
+          schema:
+            type: string
+        '409':
+          description: CVE already exists
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+  /v3/discovery/bulk:
+    post:
+      security:
+      - BasicAuth: []
+      description: 'Persists the array to bulk_discovery_jobs, atomically XADDs each item
+
+        to the cve_discovery_events Redis stream, and best-effort deletes the
+
+        row on success. Items are then processed asynchronously by
+
+        packages-events-consumer (same write path as the single endpoint).'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Discovery
+      summary: Bulk discover packages with CVEs (async)
+      parameters:
+      - description: Array of items
+        name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/discovery.CreateDiscoveredPackagesBulkRequest'
+      responses:
+        '202':
+          description: Accepted
+          schema:
+            $ref: '#/definitions/discovery.CreateDiscoveredPackagesBulkResponse'
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '401':
+          description: Account not found in context
+          schema:
+            type: string
+        '413':
+          description: Request body exceeds 32MB
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+definitions:
+  discovery.CreateDiscoveredPackageResponse:
+    type: object
+    properties:
+      cve_ids:
+        type: array
+        items:
+          type: string
+      cve_ticket_id:
+        type: string
+      jira_ticket_id:
+        type: string
+      metadata_id:
+        type: string
+      scan_package_id:
+        type: string
+  discovery.CreateDiscoveredPackagesBulkRequest:
+    type: object
+    required:
+    - items
+    properties:
+      items:
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/discovery.CreateDiscoveredPackageRequest'
+  discovery.CreateDiscoveredPackagesBulkResponse:
+    type: object
+    properties:
+      bulk_job_id:
+        type: string
+      item_count:
+        type: integer
+  EmbeddedRef:
+    type: object
+    properties:
+      name:
+        description: parent name, e.g. "setuptools"
+        type: string
+      path:
+        description: Path locates the inner *.dist-info; absolute on scans, relative on audit rows.
+        type: string
+      version:
+        description: parent version, e.g. "65.5.0"
+        type: string
+  v3.CVESeverity:
+    type: string
+    enum:
+    - critical
+    - high
+    - medium
+    - low
+    - unknown
+    x-enum-varnames:
+    - CveSeverityCritical
+    - CveSeverityHigh
+    - CveSeverityMedium
+    - CveSeverityLow
+    - CveSeverityUnknown
+  Arch:
+    type: string
+    enum:
+    - arm64
+    - amd64
+    - x86
+    - aarch64
+    - arm
+    - ppc64
+    - ppc64le
+    - mips
+    - mips64
+    - mips64le
+    - mipsle
+    x-enum-varnames:
+    - ArchARM64
+    - ArchAmd64
+    - ArchX86
+    - ArchAARCH64
+    - ArchARM
+    - ArchPPC64
+    - ArchPPC
+    - ArchMIPS
+    - ArchMIPS64
+    - ArchMIPS64LE
+    - ArchMIPSLE
+  discovery.CreateDiscoveredPackageRequest:
+    type: object
+    required:
+    - cve_id
+    - ecosystem
+    - package_src_name
+    - severity
+    properties:
+      arch:
+        $ref: '#/definitions/Arch'
+      cve_id:
+        type: string
+      cvss_score:
+        description: CVE metadata — written to cves and dual-written to patcher.cve_metadata
+        type: number
+      cvss_vector:
+        type: string
+      description:
+        type: string
+      ecosystem:
+        type: string
+      embedded_in:
+        $ref: '#/definitions/EmbeddedRef'
+      fixed_in_version:
+        type: string
+      installation_path:
+        type: string
+      licenses:
+        description: Package metadata — written to scan_packages
+        type: array
+        items:
+          type: string
+      nvd_link:
+        type: string
+      os_distro_major:
+        type: string
+      package_purl:
+        type: string
+      package_src_name:
+        type: string
+      package_version:
+        type: string
+      published_at:
+        type: string
+      severity:
+        $ref: '#/definitions/v3.CVESeverity'
+      title:
+        type: string
+securityDefinitions:
+  BasicAuth:
+    type: basic

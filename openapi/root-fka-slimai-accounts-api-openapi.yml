@@ -1,0 +1,224 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: Accounts
+paths:
+  /v3/accounts:
+    get:
+      security:
+      - BasicAuth: []
+      description: List accounts in an organization with cursor-based pagination
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Accounts
+      summary: List accounts
+      parameters:
+      - type: string
+        description: After cursor for next page
+        name: after
+        in: query
+      - type: string
+        description: Before cursor for previous page
+        name: before
+        in: query
+      - type: integer
+        default: 100
+        description: Page size (max 1000)
+        name: limit
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: multi
+        description: Ordering (e.g., 'created_at:desc')
+        name: order
+        in: query
+      - type: string
+        description: Filter by email
+        name: email
+        in: query
+      - enum:
+        - admin
+        - member
+        - readonly
+        type: string
+        description: Filter by role (admin, member, readonly)
+        name: role
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ListAccountsPagedResponse'
+  /v3/accounts/{account_id}:
+    delete:
+      security:
+      - BasicAuth: []
+      description: Delete an account from the organization
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Accounts
+      summary: Delete account
+      parameters:
+      - type: string
+        description: Account ID
+        name: account_id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AccountResponse'
+    patch:
+      security:
+      - BasicAuth: []
+      description: Update account role (org-scoped)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Accounts
+      summary: Update account
+      parameters:
+      - type: string
+        description: Account ID
+        name: account_id
+        in: path
+        required: true
+      - description: Account update request
+        name: account
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateAccountRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AccountResponse'
+  /v3/me:
+    get:
+      security:
+      - BasicAuth: []
+      description: Returns the authenticated user's account with organization details
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Accounts
+      summary: Get current user's account
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AccountResponse'
+definitions:
+  OrganizationKind:
+    type: string
+    enum:
+    - public
+    - private
+    x-enum-varnames:
+    - OrganizationKindPublic
+    - OrganizationKindPrivate
+  AccountResponse:
+    type: object
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      external_id:
+        type: string
+      id:
+        type: string
+      impersonated_by:
+        $ref: '#/definitions/AccountResponse'
+      impersonation_expiry:
+        type: string
+      impersonation_issuer_id:
+        type: string
+      is_super_admin:
+        type: boolean
+      last_login_at:
+        type: string
+      name:
+        type: string
+      organization:
+        $ref: '#/definitions/OrganizationBrief'
+      organization_id:
+        type: string
+      provider:
+        type: string
+      role:
+        $ref: '#/definitions/Role'
+      updated_at:
+        type: string
+  ListAccountsPagedResponse:
+    type: object
+    properties:
+      cursor:
+        $ref: '#/definitions/Cursor'
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/AccountResponse'
+  OrganizationBrief:
+    type: object
+    properties:
+      id:
+        type: string
+      kind:
+        $ref: '#/definitions/OrganizationKind'
+      name:
+        type: string
+  Cursor:
+    type: object
+    properties:
+      after:
+        type: string
+      before:
+        type: string
+      limit:
+        type: integer
+      total_count:
+        description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+        type: integer
+  UpdateAccountRequest:
+    type: object
+    required:
+    - role
+    properties:
+      role:
+        $ref: '#/definitions/Role'
+  Role:
+    type: string
+    enum:
+    - admin
+    - member
+    - readonly
+    x-enum-varnames:
+    - RoleAdmin
+    - RoleMember
+    - RoleReadonly
+securityDefinitions:
+  BasicAuth:
+    type: basic

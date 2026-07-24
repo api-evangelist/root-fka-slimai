@@ -1,0 +1,83 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts System Matrix API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: System Matrix
+paths:
+  /external/globals/sys_matrix:
+    get:
+      description: Retrieve the supported operating systems, distro versions and ecosystems by root remediation process
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - System Matrix
+      summary: Retrieve The Supported System Matrix
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SysMatrix'
+  /v3/sys_matrix:
+    get:
+      description: Retrieve the supported operating systems, distro versions and ecosystems by root remediation process
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - System Matrix
+      summary: Retrieve The Supported System Matrix
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SysMatrix'
+definitions:
+  SysMatrix:
+    type: object
+    properties:
+      ecosystems:
+        $ref: '#/definitions/Ecosystems'
+      package_ecosystems:
+        type: array
+        items:
+          type: string
+      platforms:
+        type: array
+        items:
+          $ref: '#/definitions/Platform'
+  Ecosystems:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        $ref: '#/definitions/DistroVersionSupport'
+  DistroVersionSupport:
+    type: object
+    properties:
+      dev_code_name:
+        type: string
+      major_version:
+        type: string
+      support_scope:
+        type: string
+  Platform:
+    type: object
+    properties:
+      architecture:
+        type: string
+      os:
+        type: string
+securityDefinitions:
+  BasicAuth:
+    type: basic

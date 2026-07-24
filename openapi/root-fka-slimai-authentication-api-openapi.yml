@@ -1,0 +1,65 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts Authentication API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: Authentication
+paths:
+  /v3/auth/direct:
+    post:
+      description: Authenticate user with provider credentials and SSO groups
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Authentication
+      summary: Direct authentication
+      parameters:
+      - description: Authentication request
+        name: auth
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/DirectAuthRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/DirectAuthResponse'
+definitions:
+  DirectAuthResponse:
+    type: object
+    properties:
+      token:
+        type: string
+  DirectAuthRequest:
+    type: object
+    required:
+    - email
+    - external_id
+    - name
+    - provider
+    properties:
+      email:
+        type: string
+      external_group_names:
+        type: array
+        items:
+          type: string
+      external_id:
+        type: string
+      name:
+        type: string
+      provider:
+        type: string
+securityDefinitions:
+  BasicAuth:
+    type: basic

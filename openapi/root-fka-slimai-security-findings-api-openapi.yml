@@ -1,0 +1,541 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts Security Findings API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: Security Findings
+paths:
+  /v3/security_findings:
+    get:
+      security:
+      - BasicAuth: []
+      description: Retrieves security findings for the authenticated org with cursor-based pagination and filtering
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Security Findings
+      summary: List security findings with pagination
+      parameters:
+      - type: string
+        description: After cursor for next page
+        name: after
+        in: query
+      - type: string
+        description: Before cursor for previous page
+        name: before
+        in: query
+      - type: integer
+        default: 100
+        description: Page size (max 1000)
+        name: limit
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: multi
+        description: Ordering (e.g., 'created_at:desc', 'status_changed_at:desc')
+        name: order
+        in: query
+      - type: string
+        description: Filter by root registry tag ID (Image Report)
+        name: rrt_id
+        in: query
+      - type: string
+        description: Filter by AVR ID (Image Report)
+        name: avr_id
+        in: query
+      - type: string
+        description: Filter by package ID (Library Report)
+        name: package_id
+        in: query
+      - type: string
+        description: Filter by CVE identifier
+        name: cve_id
+        in: query
+      - type: string
+        description: Filter by package source name
+        name: src_name
+        in: query
+      - type: string
+        description: Filter by package ecosystem
+        name: ecosystem
+        in: query
+      - type: string
+        description: Filter by OS distro release
+        name: os_distro_release
+        in: query
+      - type: string
+        description: Filter by package version
+        name: version
+        in: query
+      - enum:
+        - image
+        - library
+        type: string
+        description: Filter by finding type ('image' or 'library')
+        name: finding_type
+        in: query
+      - enum:
+        - researching
+        - creating_a_patch
+        - patch_available
+        - fixed
+        type: string
+        description: Filter by remediation status
+        name: status
+        in: query
+      - type: array
+        items:
+          enum:
+          - critical
+          - high
+          - medium
+          - low
+          - unknown
+          type: string
+        collectionFormat: multi
+        description: Filter by severity; repeat for multiple
+        name: severity
+        in: query
+      - type: array
+        items:
+          enum:
+          - os
+          - app
+          type: string
+        collectionFormat: multi
+        description: os/app layer; repeat both to clear filter
+        name: level
+        in: query
+      - type: boolean
+        description: Filter by supported ecosystem status (true = supported ecosystem, false = non-supported ecosystem)
+        name: supported_ecosystem
+        in: query
+      - type: string
+        description: 'Filter: created_at >= (RFC3339 timestamp)'
+        name: created_at_gte
+        in: query
+      - type: string
+        description: 'Filter: created_at < (RFC3339 timestamp)'
+        name: created_at_lt
+        in: query
+      - type: string
+        description: 'Filter: fixed_at >= (RFC3339 timestamp)'
+        name: fixed_at_gte
+        in: query
+      - type: string
+        description: 'Filter: fixed_at < (RFC3339 timestamp)'
+        name: fixed_at_lt
+        in: query
+      - type: string
+        description: 'Filter: status_changed_at >= (RFC3339 timestamp)'
+        name: status_changed_at_gte
+        in: query
+      - type: string
+        description: 'Filter: status_changed_at < (RFC3339 timestamp)'
+        name: status_changed_at_lt
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ListSecurityFindingsPagedResponse'
+  /v3/security_findings/remediation_counts:
+    post:
+      security:
+      - BasicAuth: []
+      description: 'Returns before/after vulnerability counts per image tag for remediation workflows (deduplicated per vulnerability).
+
+        Before = fixed + patch_available + creating_a_patch + researching; after = researching + creating_a_patch + patch_available only.
+
+        OS vs app layer follows the same rules as list/summary (non–app ecosystems vs app ecosystems). Request order preserved; duplicate IDs may repeat; missing tags are zeros.
+
+        POST body fits long rrt_ids lists; levels includes os, app, or both (both → top-level + app_level).'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Security Findings
+      summary: Remediation vulnerability counts by tag
+      parameters:
+      - description: rrt_ids + levels
+        name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/RemediationVulnerabilityCountsRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/RemediationVulnerabilityCountsResponse'
+  /v3/security_findings/summary:
+    get:
+      security:
+      - BasicAuth: []
+      produces:
+      - application/json
+      tags:
+      - Security Findings
+      summary: Get security findings summary (counts by status and severity)
+      parameters:
+      - type: string
+        description: Filter by root registry tag ID
+        name: rrt_id
+        in: query
+      - type: string
+        description: Filter by AVR ID
+        name: avr_id
+        in: query
+      - type: string
+        description: Filter by CVE identifier
+        name: cve_id
+        in: query
+      - type: string
+        description: Filter by package source name
+        name: src_name
+        in: query
+      - type: string
+        description: Filter by package ecosystem
+        name: ecosystem
+        in: query
+      - type: string
+        description: Filter by OS distro release
+        name: os_distro_release
+        in: query
+      - type: string
+        description: Filter by package version
+        name: version
+        in: query
+      - enum:
+        - image
+        - library
+        type: string
+        description: Filter by finding type ('image' or 'library')
+        name: finding_type
+        in: query
+      - enum:
+        - researching
+        - creating_a_patch
+        - patch_available
+        - fixed
+        type: string
+        description: Filter by remediation status
+        name: status
+        in: query
+      - type: array
+        items:
+          enum:
+          - critical
+          - high
+          - medium
+          - low
+          - unknown
+          type: string
+        collectionFormat: multi
+        description: Filter by severity; repeat for multiple
+        name: severity
+        in: query
+      - type: array
+        items:
+          enum:
+          - os
+          - app
+          type: string
+        collectionFormat: multi
+        description: os/app layer; repeat both to clear filter
+        name: level
+        in: query
+      - type: boolean
+        description: Filter by supported ecosystem status (true = supported ecosystem, false = non-supported ecosystem)
+        name: supported_ecosystem
+        in: query
+      - type: string
+        description: 'Filter: created_at >= (RFC3339 timestamp)'
+        name: created_at_gte
+        in: query
+      - type: string
+        description: 'Filter: created_at < (RFC3339 timestamp)'
+        name: created_at_lt
+        in: query
+      - type: string
+        description: 'Filter: fixed_at >= (RFC3339 timestamp)'
+        name: fixed_at_gte
+        in: query
+      - type: string
+        description: 'Filter: fixed_at < (RFC3339 timestamp)'
+        name: fixed_at_lt
+        in: query
+      - type: string
+        description: 'Filter: status_changed_at >= (RFC3339 timestamp)'
+        name: status_changed_at_gte
+        in: query
+      - type: string
+        description: 'Filter: status_changed_at < (RFC3339 timestamp)'
+        name: status_changed_at_lt
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SecurityFindingsSummaryResponse'
+  /v3/security_findings/summary/daily:
+    get:
+      security:
+      - BasicAuth: []
+      description: Returns finding counts grouped by day, status, and severity. Use created_at_gte/created_at_lt for an explicit date range, or limit for the most recent N days (mutually exclusive; date range takes precedence).
+      produces:
+      - application/json
+      tags:
+      - Security Findings
+      summary: Get security findings daily summary (counts by day, status, and severity)
+      parameters:
+      - type: integer
+        description: Number of most recent days to include (default 84 / 12 weeks, max 365). Ignored when created_at_gte or created_at_lt is set.
+        name: limit
+        in: query
+      - type: string
+        description: 'Filter: created_at >= (RFC3339 timestamp)'
+        name: created_at_gte
+        in: query
+      - type: string
+        description: 'Filter: created_at < (RFC3339 timestamp)'
+        name: created_at_lt
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: multi
+        description: Ordering (e.g., 'created_at:desc')
+        name: order
+        in: query
+      - type: boolean
+        description: Filter by supported ecosystem status (true = supported ecosystem, false = non-supported ecosystem)
+        name: supported_ecosystem
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SecurityFindingsDailySummaryResponse'
+definitions:
+  SecurityFindingsDailySummaryRow:
+    type: object
+    properties:
+      count:
+        type: integer
+      severity:
+        $ref: '#/definitions/v3.CVESeverity'
+      status:
+        $ref: '#/definitions/v3.FindingStatus'
+  v3.FindingStatus:
+    type: string
+    enum:
+    - researching
+    - creating_a_patch
+    - patch_available
+    - fixed
+    x-enum-varnames:
+    - FindingStatusResearching
+    - FindingStatusCreatingAPatch
+    - FindingStatusPatchAvailable
+    - FindingStatusFixed
+  v3.FindingType:
+    type: string
+    enum:
+    - library
+    - image
+    x-enum-varnames:
+    - FindingTypeLibrary
+    - FindingTypeImage
+  RemediationVulnerabilityCountsRequest:
+    type: object
+    required:
+    - levels
+    - rrt_ids
+    properties:
+      levels:
+        type: array
+        minItems: 1
+        items:
+          type: string
+      rrt_ids:
+        type: array
+        minItems: 1
+        items:
+          type: string
+  ListSecurityFindingsPagedResponse:
+    type: object
+    properties:
+      cursor:
+        $ref: '#/definitions/Cursor'
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/SecurityFindingResponse'
+  Cursor:
+    type: object
+    properties:
+      after:
+        type: string
+      before:
+        type: string
+      limit:
+        type: integer
+      total_count:
+        description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+        type: integer
+  SecurityFindingsDailySummaryResponse:
+    type: object
+    properties:
+      data:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            $ref: '#/definitions/SecurityFindingsDailySummaryRow'
+  SecurityFindingsSummaryRow:
+    type: object
+    properties:
+      count:
+        type: integer
+      severity:
+        $ref: '#/definitions/v3.CVESeverity'
+      status:
+        $ref: '#/definitions/v3.FindingStatus'
+  SecurityFindingsSummaryResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/SecurityFindingsSummaryRow'
+  v3.VulnerabilityCounts:
+    type: object
+    properties:
+      app_level:
+        description: App-level vulnerability counts (nil/omitted for old records)
+        allOf:
+        - $ref: '#/definitions/v3.VulnerabilityCountsBreakdown'
+      critical:
+        description: OS-level vulnerability counts (top-level for backward compatibility)
+        type: integer
+      high:
+        type: integer
+      low:
+        type: integer
+      medium:
+        type: integer
+      unknown:
+        type: integer
+  v3.CVESeverity:
+    type: string
+    enum:
+    - critical
+    - high
+    - medium
+    - low
+    - unknown
+    x-enum-varnames:
+    - CveSeverityCritical
+    - CveSeverityHigh
+    - CveSeverityMedium
+    - CveSeverityLow
+    - CveSeverityUnknown
+  RemediationVulnerabilityCountsItem:
+    type: object
+    properties:
+      after:
+        $ref: '#/definitions/v3.VulnerabilityCounts'
+      before:
+        $ref: '#/definitions/v3.VulnerabilityCounts'
+      root_registry_tag_id:
+        type: string
+  v3.VulnerabilityCountsBreakdown:
+    type: object
+    properties:
+      critical:
+        type: integer
+      high:
+        type: integer
+      low:
+        type: integer
+      medium:
+        type: integer
+      unknown:
+        type: integer
+  SecurityFindingResponse:
+    type: object
+    properties:
+      asset:
+        type: string
+      avr_id:
+        type: string
+      created_at:
+        type: string
+      cve_id:
+        type: string
+      cvss_score:
+        type: number
+      cvss_vector:
+        type: string
+      description:
+        type: string
+      finding_type:
+        $ref: '#/definitions/v3.FindingType'
+      fixed_at:
+        type: string
+      fixed_in_version:
+        type: string
+      has_artifacts:
+        type: boolean
+      id:
+        type: string
+      nvd_link:
+        type: string
+      os_distro_release:
+        type: string
+      package_arch:
+        type: string
+      package_ecosystem:
+        type: string
+      package_id:
+        type: string
+      package_licenses:
+        type: array
+        items:
+          type: string
+      package_name:
+        type: string
+      package_src_name:
+        type: string
+      package_version:
+        type: string
+      severity:
+        $ref: '#/definitions/v3.CVESeverity'
+      status:
+        $ref: '#/definitions/v3.FindingStatus'
+      status_changed_at:
+        type: string
+      title:
+        type: string
+  RemediationVulnerabilityCountsResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/RemediationVulnerabilityCountsItem'
+securityDefinitions:
+  BasicAuth:
+    type: basic

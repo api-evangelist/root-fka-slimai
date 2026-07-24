@@ -1,0 +1,440 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts Subscriptions API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: Subscriptions
+paths:
+  /v3/subscriptions:
+    get:
+      security:
+      - BasicAuth: []
+      description: Lists all subscriptions for the organization with pagination and preloaded tag/image data
+      produces:
+      - application/json
+      tags:
+      - Subscriptions
+      summary: List subscriptions
+      parameters:
+      - type: string
+        description: Cursor for next page
+        name: after
+        in: query
+      - type: string
+        description: Cursor for previous page
+        name: before
+        in: query
+      - type: integer
+        description: Page size (default 100, max 1000)
+        name: limit
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: multi
+        description: Ordering (e.g., 'created_at:desc')
+        name: order
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: multi
+        description: Filter by root registry tag IDs
+        name: tag_id
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ListSubscriptionsResponse'
+    post:
+      security:
+      - BasicAuth: []
+      description: Creates multiple subscriptions from a list of tag IDs. The infrastructure supports bulk operations out of the box.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Subscriptions
+      summary: Create subscriptions (bulk)
+      parameters:
+      - description: Subscriptions to create
+        name: subscriptions
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/CreateSubscriptionsRequest'
+      responses:
+        '201':
+          description: Created
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SubscriptionResponse'
+    delete:
+      security:
+      - BasicAuth: []
+      description: Deletes multiple subscriptions by their IDs. The infrastructure supports bulk operations out of the box.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Subscriptions
+      summary: Delete subscriptions (bulk)
+      parameters:
+      - description: Subscriptions to delete
+        name: subscriptions
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/DeleteSubscriptionsRequest'
+      responses:
+        '200':
+          description: Deleted subscriptions
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SubscriptionResponse'
+  /v3/subscriptions/{subscriptionID}:
+    get:
+      security:
+      - BasicAuth: []
+      description: Gets a specific subscription by ID with preloaded tag and image data
+      produces:
+      - application/json
+      tags:
+      - Subscriptions
+      summary: Get subscription
+      parameters:
+      - type: string
+        description: Subscription ID
+        name: subscriptionID
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SubscriptionResponse'
+definitions:
+  ListSubscriptionsResponse:
+    type: object
+    properties:
+      cursor:
+        $ref: '#/definitions/Cursor'
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/SubscriptionResponse'
+  DeleteSubscriptionsRequest:
+    type: object
+    required:
+    - subscription_ids
+    properties:
+      subscription_ids:
+        type: array
+        minItems: 1
+        items:
+          type: string
+  AccessTier:
+    type: string
+    enum:
+    - none
+    - free
+    - pro
+    - fips
+    x-enum-varnames:
+    - AccessTierNone
+    - AccessTierFree
+    - AccessTierPro
+    - AccessTierFIPS
+  OriginalScanResponse:
+    type: object
+    properties:
+      id:
+        type: string
+      scanned_at:
+        type: string
+      status:
+        $ref: '#/definitions/v3.AVRScanStatus'
+      target_image:
+        type: string
+      vulnerability_counts:
+        $ref: '#/definitions/v3.VulnerabilityCounts'
+  Cursor:
+    type: object
+    properties:
+      after:
+        type: string
+      before:
+        type: string
+      limit:
+        type: integer
+      total_count:
+        description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+        type: integer
+  v3.AVRStatus:
+    type: string
+    enum:
+    - pulling_image
+    - scanning
+    - building
+    - rescanning
+    - auditing
+    - completed
+    - failed
+    x-enum-varnames:
+    - AVRStatusPullingImage
+    - AVRStatusScanning
+    - AVRStatusBuilding
+    - AVRStatusRescanning
+    - AVRStatusAuditing
+    - AVRStatusCompleted
+    - AVRStatusFailed
+  v3.RemediationDetails:
+    type: object
+    properties:
+      deleted_packages:
+        type: object
+        additionalProperties:
+          type: string
+      is_truncated:
+        type: boolean
+      new_packages:
+        type: object
+        additionalProperties:
+          type: string
+      root_patched_packages:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/v3.PackageChange'
+      upgraded_packages:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/v3.PackageChange'
+  AVRWithScansResponse:
+    type: object
+    properties:
+      created_at:
+        type: string
+      dockerfile_digest:
+        type: string
+      dockerfile_key:
+        type: string
+      id:
+        type: string
+      post_remediation_scan:
+        $ref: '#/definitions/AVRScanResponse'
+      pre_remediation_scan:
+        $ref: '#/definitions/AVRScanResponse'
+      provenance_key:
+        type: string
+      remediation_details:
+        $ref: '#/definitions/v3.RemediationDetails'
+      status:
+        $ref: '#/definitions/v3.AVRStatus'
+      target_image:
+        type: string
+      updated_at:
+        type: string
+      vex_key:
+        type: string
+  v3.PackageChange:
+    type: object
+    properties:
+      new_version:
+        type: string
+      old_version:
+        type: string
+  v3.AVRScanStatus:
+    type: string
+    enum:
+    - scanning
+    - completed
+    - failed
+    x-enum-varnames:
+    - AVRScanStatusScanning
+    - AVRScanStatusCompleted
+    - AVRScanStatusFailed
+  constants.EcosystemName:
+    type: string
+    enum:
+    - debian
+    - ubuntu
+    - alpine
+    - amazon
+    - redhat
+    - rocky
+    - distroless
+    - fedora
+    - opensuse-leap
+    - pypi
+    - npm
+    - maven
+    - gobinary
+    - nuget
+    - composer
+    - binary
+    x-enum-varnames:
+    - EcosystemNameDebian
+    - EcosystemNameUbuntu
+    - EcosystemNameAlpine
+    - EcosystemNameAmazon
+    - EcosystemNameRedhat
+    - EcosystemNameRocky
+    - EcosystemNameDistroless
+    - EcosystemNameFedora
+    - EcosystemNameOpenSUSELeap
+    - EcosystemNamePypi
+    - EcosystemNameNpm
+    - EcosystemNameMaven
+    - EcosystemNameGoBinary
+    - EcosystemNameNuget
+    - EcosystemNameComposer
+    - EcosystemNameBinary
+  AVRScanResponse:
+    type: object
+    properties:
+      arch:
+        $ref: '#/definitions/Arch'
+      created_at:
+        type: string
+      ecosystem:
+        $ref: '#/definitions/constants.EcosystemName'
+      id:
+        type: string
+      image_digest:
+        type: string
+      os_distro_release:
+        type: string
+      sbom_key:
+        type: string
+      status:
+        $ref: '#/definitions/v3.AVRScanStatus'
+      target_image:
+        type: string
+      updated_at:
+        type: string
+      vulnerability_counts:
+        $ref: '#/definitions/v3.VulnerabilityCounts'
+  CreateSubscriptionsRequest:
+    type: object
+    properties:
+      image_tags:
+        type: array
+        items:
+          type: string
+      tag_ids:
+        type: array
+        items:
+          type: string
+  v3.VulnerabilityCounts:
+    type: object
+    properties:
+      app_level:
+        description: App-level vulnerability counts (nil/omitted for old records)
+        allOf:
+        - $ref: '#/definitions/v3.VulnerabilityCountsBreakdown'
+      critical:
+        description: OS-level vulnerability counts (top-level for backward compatibility)
+        type: integer
+      high:
+        type: integer
+      low:
+        type: integer
+      medium:
+        type: integer
+      unknown:
+        type: integer
+  Arch:
+    type: string
+    enum:
+    - arm64
+    - amd64
+    - x86
+    - aarch64
+    - arm
+    - ppc64
+    - ppc64le
+    - mips
+    - mips64
+    - mips64le
+    - mipsle
+    x-enum-varnames:
+    - ArchARM64
+    - ArchAmd64
+    - ArchX86
+    - ArchAARCH64
+    - ArchARM
+    - ArchPPC64
+    - ArchPPC
+    - ArchMIPS
+    - ArchMIPS64
+    - ArchMIPS64LE
+    - ArchMIPSLE
+  v3.VulnerabilityCountsBreakdown:
+    type: object
+    properties:
+      critical:
+        type: integer
+      high:
+        type: integer
+      low:
+        type: integer
+      medium:
+        type: integer
+      unknown:
+        type: integer
+  SubscriptionResponse:
+    type: object
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      organization_id:
+        type: string
+      root_registry_tag_id:
+        description: Which tag subscribed to
+        type: string
+      tag:
+        $ref: '#/definitions/TagResponse'
+      updated_at:
+        type: string
+  TagResponse:
+    type: object
+    properties:
+      access_tier:
+        $ref: '#/definitions/AccessTier'
+      arch:
+        $ref: '#/definitions/Arch'
+      artifacts_available:
+        type: boolean
+      avr:
+        $ref: '#/definitions/AVRWithScansResponse'
+      created_at:
+        type: string
+      id:
+        type: string
+      last_avr_id:
+        type: string
+      original_scan:
+        $ref: '#/definitions/OriginalScanResponse'
+      root_image_tag:
+        type: string
+      root_registry_image_repo:
+        type: string
+      updated_at:
+        type: string
+securityDefinitions:
+  BasicAuth:
+    type: basic

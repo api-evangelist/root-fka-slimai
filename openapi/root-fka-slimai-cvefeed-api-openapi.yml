@@ -1,0 +1,34 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts CveFeed API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: CveFeed
+paths:
+  /external/cve_feed:
+    get:
+      description: Downloads and returns JSON data from S3 for CVE feed consumption. No authentication required.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - CveFeed
+      summary: Get CVE feed data
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              type: integer
+securityDefinitions:
+  BasicAuth:
+    type: basic

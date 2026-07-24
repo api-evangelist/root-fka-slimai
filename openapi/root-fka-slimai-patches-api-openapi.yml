@@ -1,0 +1,254 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts Patches API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: Patches
+paths:
+  /v3/patches:
+    get:
+      security:
+      - BasicAuth: []
+      description: List and search CVE tickets with filters, org-scoped for non-superadmins. Returns patch status (found, not_found, running) by checking Argo workflows.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Patches
+      summary: List CVE tickets (patches)
+      parameters:
+      - type: string
+        description: Filter by CVE ID
+        name: cve_id
+        in: query
+      - type: string
+        description: Filter by package source name
+        name: package_src_name
+        in: query
+      - type: string
+        description: Filter by ecosystem
+        name: ecosystem
+        in: query
+      - type: string
+        description: Filter by package version (for app tickets)
+        name: version
+        in: query
+      - type: string
+        description: Filter by OS distro major version (for OS tickets)
+        name: os_distro_major
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: csv
+        description: Filter by severities (critical, high, medium, low)
+        name: severities
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: csv
+        description: Filter by ticket statuses (open, in_progress, done, deferred)
+        name: ticket_statuses
+        in: query
+      - type: string
+        description: Filter by patch status (found, not_found, running)
+        name: patch_status
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: csv
+        description: Ordering (e.g., 'created_at:desc')
+        name: order
+        in: query
+      - type: string
+        description: Cursor for pagination
+        name: after
+        in: query
+      - type: integer
+        description: Page size (default 100, max 1000)
+        name: limit
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/patches.SearchResult'
+  /v3/patches/{ticketID}/artifacts:
+    get:
+      security:
+      - BasicAuth: []
+      description: Returns the list of artifact files from the latest research run. Each entry contains a relative file path (name) and a download_key (the full S3 object key). Use the download_key to fetch individual artifacts.
+      produces:
+      - application/json
+      tags:
+      - Patches
+      summary: List research artifacts for a CVE ticket
+      parameters:
+      - type: string
+        description: CVE Ticket ID
+        name: ticketID
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/patches.ArtifactsResult'
+        '400':
+          description: Invalid ticket ID
+          schema:
+            type: string
+        '401':
+          description: Unauthorized
+          schema:
+            type: string
+        '403':
+          description: Forbidden
+          schema:
+            type: string
+        '404':
+          description: No research found
+          schema:
+            type: string
+  /v3/patches/{ticketID}/artifacts/{downloadKey}:
+    get:
+      security:
+      - BasicAuth: []
+      description: Downloads and streams a specific artifact file identified by its download_key (relative path from the list endpoint). URL-encode slashes as %2F.
+      produces:
+      - application/octet-stream
+      tags:
+      - Patches
+      summary: Download a specific research artifact
+      parameters:
+      - type: string
+        description: CVE Ticket ID
+        name: ticketID
+        in: path
+        required: true
+      - type: string
+        description: Artifact download key (relative path). URL-encode slashes as %2F
+        name: downloadKey
+        in: path
+        required: true
+      responses:
+        '200':
+          description: The artifact file
+          schema:
+            type: file
+        '400':
+          description: Invalid request
+          schema:
+            type: string
+        '401':
+          description: Unauthorized
+          schema:
+            type: string
+        '403':
+          description: Forbidden
+          schema:
+            type: string
+        '404':
+          description: Artifact not found
+          schema:
+            type: string
+definitions:
+  patches.ArtifactsResult:
+    type: object
+    properties:
+      created_at:
+        type: string
+      files:
+        type: array
+        items:
+          $ref: '#/definitions/patches.ArtifactFile'
+      research_id:
+        type: string
+      ticket_id:
+        type: string
+  patches.SearchResult:
+    type: object
+    properties:
+      cursor:
+        $ref: '#/definitions/Cursor'
+      tickets:
+        type: array
+        items:
+          $ref: '#/definitions/patches.TicketWithStatus'
+  patches.PatchStatus:
+    type: string
+    enum:
+    - found
+    - not_found
+    - running
+    x-enum-varnames:
+    - PatchStatusFound
+    - PatchStatusNotFound
+    - PatchStatusRunning
+  patches.TicketWithStatus:
+    type: object
+    properties:
+      created_at:
+        type: string
+      cve_id:
+        type: string
+      ecosystem:
+        type: string
+      os_distro_major:
+        type: string
+      package_src_name:
+        type: string
+      patch_found:
+        type: boolean
+      patch_found_at:
+        type: string
+      patch_status:
+        $ref: '#/definitions/patches.PatchStatus'
+      root_patch_provided:
+        type: boolean
+      severity:
+        type: string
+      ticket_id:
+        type: string
+      ticket_status:
+        type: string
+      updated_at:
+        type: string
+      version:
+        type: string
+      workflow_name:
+        type: string
+      workflow_running:
+        type: boolean
+  Cursor:
+    type: object
+    properties:
+      after:
+        type: string
+      before:
+        type: string
+      limit:
+        type: integer
+      total_count:
+        description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+        type: integer
+  patches.ArtifactFile:
+    type: object
+    properties:
+      download_key:
+        type: string
+      name:
+        type: string
+securityDefinitions:
+  BasicAuth:
+    type: basic

@@ -1,0 +1,603 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts Remediation API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: Remediation
+paths:
+  /v3/analyze/apk:
+    post:
+      description: Accepts a list of installed APK/Alpine packages with explicit ecosystem and distro version, returns Root.io patched versions with aliased names and official repo upgrades
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Remediation
+      summary: Get APK package remediation recommendations
+      parameters:
+      - description: Package list with OS ecosystem and distro version
+        name: request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/analyze.AnalyzeOsPackagesRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/analyze.AnalyzeOsPackagesResponse'
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+  /v3/analyze/apt:
+    post:
+      description: Accepts a list of installed APT/Debian/Ubuntu packages with explicit ecosystem and distro version, returns Root.io patched versions with aliased names and official repo upgrades
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Remediation
+      summary: Get APT package remediation recommendations
+      parameters:
+      - description: Package list with OS ecosystem and distro version
+        name: request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/analyze.AnalyzeOsPackagesRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/analyze.AnalyzeOsPackagesResponse'
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+  /v3/analyze/composer:
+    post:
+      description: Accepts a list of installed Composer packages and returns Root.io patched versions with aliased names
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Remediation
+      summary: Get Composer package remediation recommendations
+      parameters:
+      - description: Package list
+        name: request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ComposerAnalyzePackagesRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ComposerAnalyzePackagesResponse'
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+  /v3/analyze/golang:
+    post:
+      description: Accepts a list of installed Go modules and returns Root.io patched versions with aliased module paths
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Remediation
+      summary: Get Go module remediation recommendations
+      parameters:
+      - description: Module list
+        name: request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/GolangAnalyzePackagesRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GolangAnalyzePackagesResponse'
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+  /v3/analyze/maven:
+    post:
+      description: Accepts a list of installed Maven packages and returns Root.io patched versions with aliased names
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Remediation
+      summary: Get Maven package remediation recommendations
+      parameters:
+      - description: Package list
+        name: request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/MavenAnalyzePackagesRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MavenAnalyzePackagesResponse'
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+  /v3/analyze/npm:
+    post:
+      description: Accepts a list of installed NPM packages and returns Root.io patched versions with aliased names
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Remediation
+      summary: Get NPM package remediation recommendations
+      parameters:
+      - description: Package list
+        name: request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/NpmAnalyzePackagesRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/NpmAnalyzePackagesResponse'
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+  /v3/analyze/nuget:
+    post:
+      description: Accepts a list of installed NuGet packages and returns Root.io patched versions with aliased names
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Remediation
+      summary: Get NuGet package remediation recommendations
+      parameters:
+      - description: Package list
+        name: request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/NugetAnalyzePackagesRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/NugetAnalyzePackagesResponse'
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+  /v3/analyze/pypi:
+    post:
+      description: Accepts a list of installed packages and returns Root.io patched versions with aliased names
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Remediation
+      summary: Get PyPI package remediation recommendations
+      deprecated: true
+      parameters:
+      - description: Package list
+        name: request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/PyPiAnalyzePackagesRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PyPiAnalyzePackagesResponse'
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+  /v3/analyze/yum:
+    post:
+      description: Accepts a list of installed YUM/DNF packages (Amazon Linux, RHEL, Rocky, Fedora) with explicit ecosystem and distro version, returns Root.io patched versions with aliased names and official repo upgrades
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Remediation
+      summary: Get YUM/DNF package remediation recommendations
+      parameters:
+      - description: Package list with OS ecosystem and distro version
+        name: request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/analyze.AnalyzeOsPackagesRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/analyze.AnalyzeOsPackagesResponse'
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+  /v3/remediate/pypi:
+    post:
+      description: Accepts a list of installed packages and returns Root.io patched versions with aliased names
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Remediation
+      summary: Get PyPI package remediation recommendations
+      deprecated: true
+      parameters:
+      - description: Package list
+        name: request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/PyPiAnalyzePackagesRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PyPiAnalyzePackagesResponse'
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: string
+definitions:
+  analyze.PackagePatch:
+    type: object
+    properties:
+      cve_ids:
+        type: array
+        items:
+          type: string
+      embedded_via:
+        description: EmbeddedVia is non-nil when the fix ships via a parent vendor bump.
+        allOf:
+        - $ref: '#/definitions/EmbeddedRef'
+      package_name:
+        type: string
+      patch:
+        $ref: '#/definitions/analyze.PatchInfo'
+      patch_alias:
+        $ref: '#/definitions/analyze.PatchInfo'
+      version:
+        type: string
+  analyze.PackageInfo:
+    type: object
+    required:
+    - name
+    - version
+    properties:
+      embedded_in:
+        description: EmbeddedIn is non-nil when this package is vendored inside another (PyPI).
+        allOf:
+        - $ref: '#/definitions/EmbeddedRef'
+      name:
+        type: string
+      version:
+        type: string
+  ComposerAnalyzePackagesResponse:
+    type: object
+    properties:
+      patches:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.PackagePatch'
+      skipped:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.SkippedPackage'
+  GolangAnalyzePackagesRequest:
+    type: object
+    required:
+    - packages
+    properties:
+      ignore:
+        description: 'Ignore is an optional list of packages to exclude from patch recommendations
+
+          (e.g. packages already on a Root.io build). Ignored packages only appear in
+
+          the result if a strictly newer build is available.'
+        type: array
+        items:
+          $ref: '#/definitions/analyze.PackageInfo'
+      packages:
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/analyze.PackageInfo'
+  analyze.AnalyzeOsPackagesResponse:
+    type: object
+    properties:
+      patches:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.PackagePatch'
+      skipped:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.SkippedPackage'
+      upgradeable:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.UpgradeableOsPackage'
+  PyPiAnalyzePackagesResponse:
+    type: object
+    properties:
+      patches:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.PackagePatch'
+      skipped:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.SkippedPackage'
+  MavenAnalyzePackagesRequest:
+    type: object
+    required:
+    - packages
+    properties:
+      ignore:
+        description: 'Ignore is an optional list of packages to exclude from patch recommendations
+
+          (e.g. packages already on a Root.io build). Ignored packages only appear in
+
+          the result if a strictly newer build is available.'
+        type: array
+        items:
+          $ref: '#/definitions/analyze.PackageInfo'
+      packages:
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/analyze.PackageInfo'
+  EmbeddedRef:
+    type: object
+    properties:
+      name:
+        description: parent name, e.g. "setuptools"
+        type: string
+      path:
+        description: Path locates the inner *.dist-info; absolute on scans, relative on audit rows.
+        type: string
+      version:
+        description: parent version, e.g. "65.5.0"
+        type: string
+  PyPiAnalyzePackagesRequest:
+    type: object
+    required:
+    - packages
+    properties:
+      ignore:
+        description: 'Ignore is an optional list of packages to exclude from patch recommendations
+
+          (e.g. packages already on a Root.io build). Ignored packages only appear in
+
+          the result if a strictly newer build is available.'
+        type: array
+        items:
+          $ref: '#/definitions/analyze.PackageInfo'
+      packages:
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/analyze.PackageInfo'
+  analyze.UpgradeableOsPackage:
+    type: object
+    properties:
+      current_version:
+        type: string
+      cve_ids:
+        type: array
+        items:
+          type: string
+      package_name:
+        type: string
+      upgrade_version:
+        type: string
+  NugetAnalyzePackagesRequest:
+    type: object
+    required:
+    - packages
+    properties:
+      ignore:
+        description: 'Ignore is an optional list of packages to exclude from patch recommendations
+
+          (e.g. packages already on a Root.io build). Ignored packages only appear in
+
+          the result if a strictly newer build is available.'
+        type: array
+        items:
+          $ref: '#/definitions/analyze.PackageInfo'
+      packages:
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/analyze.PackageInfo'
+  NpmAnalyzePackagesRequest:
+    type: object
+    required:
+    - packages
+    properties:
+      ignore:
+        description: 'Ignore is an optional list of packages to exclude from patch recommendations
+
+          (e.g. packages already on a Root.io build). Ignored packages only appear in
+
+          the result if a strictly newer build is available.'
+        type: array
+        items:
+          $ref: '#/definitions/analyze.PackageInfo'
+      packages:
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/analyze.PackageInfo'
+  GolangAnalyzePackagesResponse:
+    type: object
+    properties:
+      patches:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.PackagePatch'
+      skipped:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.SkippedPackage'
+  MavenAnalyzePackagesResponse:
+    type: object
+    properties:
+      patches:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.PackagePatch'
+      skipped:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.SkippedPackage'
+  analyze.PatchInfo:
+    type: object
+    properties:
+      name:
+        type: string
+      version:
+        type: string
+  ComposerAnalyzePackagesRequest:
+    type: object
+    required:
+    - packages
+    properties:
+      ignore:
+        description: 'Ignore is an optional list of packages to exclude from patch recommendations
+
+          (e.g. packages already on a Root.io build). Ignored packages only appear in
+
+          the result if a strictly newer build is available.'
+        type: array
+        items:
+          $ref: '#/definitions/analyze.PackageInfo'
+      packages:
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/analyze.PackageInfo'
+  NugetAnalyzePackagesResponse:
+    type: object
+    properties:
+      patches:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.PackagePatch'
+      skipped:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.SkippedPackage'
+  analyze.AnalyzeOsPackagesRequest:
+    type: object
+    required:
+    - ecosystem
+    - os_distro_version
+    - packages
+    properties:
+      ecosystem:
+        type: string
+      os_distro_version:
+        type: string
+      packages:
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/analyze.PackageInfo'
+  NpmAnalyzePackagesResponse:
+    type: object
+    properties:
+      patches:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.PackagePatch'
+      skipped:
+        type: array
+        items:
+          $ref: '#/definitions/analyze.SkippedPackage'
+  analyze.SkippedPackage:
+    type: object
+    properties:
+      package_name:
+        type: string
+      version:
+        type: string
+securityDefinitions:
+  BasicAuth:
+    type: basic

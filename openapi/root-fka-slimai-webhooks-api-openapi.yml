@@ -1,0 +1,307 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts Webhooks API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: Webhooks
+paths:
+  /v3/settings/webhooks:
+    get:
+      security:
+      - BearerAuth: []
+      description: Lists webhook subscriptions for the organization (signing secret not included)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Webhooks
+      summary: List webhook subscriptions
+      parameters:
+      - type: string
+        description: After cursor for next page
+        name: after
+        in: query
+      - type: string
+        description: Before cursor for previous page
+        name: before
+        in: query
+      - type: integer
+        default: 100
+        description: Page size (max 1000)
+        name: limit
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ListWebhookSubscriptionsResponse'
+        '400':
+          description: Invalid query parameters
+          schema:
+            type: string
+        '401':
+          description: Unauthorized
+          schema:
+            type: string
+        '403':
+          description: Not allowed to list webhook subscriptions
+          schema:
+            type: string
+        '500':
+          description: Internal server error
+          schema:
+            type: string
+    post:
+      security:
+      - BearerAuth: []
+      description: Creates a new webhook subscription for the organization. Returns the signing secret once — store it securely.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Webhooks
+      summary: Create webhook subscription
+      parameters:
+      - description: Webhook subscription create request
+        name: subscription
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/CreateWebhookSubscriptionRequest'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/CreateWebhookSubscriptionResponse'
+        '400':
+          description: Malformed request body
+          schema:
+            type: string
+        '401':
+          description: Unauthorized
+          schema:
+            type: string
+        '403':
+          description: Not allowed to create webhook subscription
+          schema:
+            type: string
+        '422':
+          description: Invalid webhook URL or event type
+          schema:
+            type: string
+        '500':
+          description: Internal server error
+          schema:
+            type: string
+  /v3/settings/webhooks/{webhookSubscriptionID}:
+    delete:
+      security:
+      - BearerAuth: []
+      description: Deletes a webhook subscription by ID
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Webhooks
+      summary: Delete webhook subscription
+      parameters:
+      - type: string
+        description: Webhook Subscription ID
+        name: webhookSubscriptionID
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/WebhookSubscriptionResponse'
+        '400':
+          description: Invalid webhook subscription ID
+          schema:
+            type: string
+        '401':
+          description: Unauthorized
+          schema:
+            type: string
+        '403':
+          description: Not allowed to delete webhook subscription
+          schema:
+            type: string
+        '500':
+          description: Internal server error
+          schema:
+            type: string
+  /v3/settings/webhooks/{webhookSubscriptionID}/test-tag-created:
+    post:
+      security:
+      - BearerAuth: []
+      description: Performs a test webhook delivery for a specific webhook subscription using a specific RootRegistryTag. Returns 422 if the subscription does not subscribe to the image.created event type.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - Webhooks
+      summary: Test tag-created webhook delivery
+      parameters:
+      - type: string
+        description: Webhook Subscription ID
+        name: webhookSubscriptionID
+        in: path
+        required: true
+      - description: Test webhook request
+        name: request
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/TestWebhookRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/TestWebhookResponse'
+        '400':
+          description: Malformed request body
+          schema:
+            type: string
+        '401':
+          description: Unauthorized
+          schema:
+            type: string
+        '404':
+          description: No webhook subscription or RRT found
+          schema:
+            type: string
+        '422':
+          description: Subscription does not subscribe to image.created event type
+          schema:
+            type: string
+        '500':
+          description: Internal server error
+          schema:
+            type: string
+definitions:
+  ListWebhookSubscriptionsResponse:
+    type: object
+    properties:
+      cursor:
+        $ref: '#/definitions/Cursor'
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/WebhookSubscriptionResponse'
+  CreateWebhookSubscriptionRequest:
+    type: object
+    required:
+    - url
+    properties:
+      description:
+        type: string
+      event_types:
+        description: EventTypes lists the event types to deliver. Empty means all event types.
+        type: array
+        items:
+          type: string
+      url:
+        type: string
+  TestWebhookResponse:
+    type: object
+    properties:
+      error_reason:
+        type: string
+      event_id:
+        type: string
+      http_status:
+        type: integer
+      id:
+        type: string
+      sent_at:
+        type: string
+      status:
+        $ref: '#/definitions/v3.WebhookDeliveryAttemptStatus'
+      subscription_id:
+        type: string
+      type:
+        type: string
+  WebhookSubscriptionResponse:
+    type: object
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      event_types:
+        description: EventTypes lists the event types being delivered. Empty means all event types.
+        type: array
+        items:
+          type: string
+      id:
+        type: string
+      organization_id:
+        type: string
+      updated_at:
+        type: string
+      url:
+        type: string
+  v3.WebhookDeliveryAttemptStatus:
+    type: string
+    enum:
+    - pending
+    - delivered
+    - failed
+    x-enum-varnames:
+    - WebhookDeliveryAttemptStatusPending
+    - WebhookDeliveryAttemptStatusDelivered
+    - WebhookDeliveryAttemptStatusFailed
+  Cursor:
+    type: object
+    properties:
+      after:
+        type: string
+      before:
+        type: string
+      limit:
+        type: integer
+      total_count:
+        description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+        type: integer
+  TestWebhookRequest:
+    type: object
+    properties:
+      root_registry_tag_id:
+        type: string
+  CreateWebhookSubscriptionResponse:
+    type: object
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      event_types:
+        description: EventTypes lists the event types being delivered. Empty means all event types.
+        type: array
+        items:
+          type: string
+      id:
+        type: string
+      organization_id:
+        type: string
+      secret:
+        type: string
+      updated_at:
+        type: string
+      url:
+        type: string
+securityDefinitions:
+  BasicAuth:
+    type: basic

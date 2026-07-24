@@ -1,0 +1,648 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for Root.io.
+  title: Root.io Accounts AVR API
+  termsOfService: https://www.root.io/terms-of-service
+  contact: {}
+  version: '1.0'
+host: api.root.io
+basePath: ''
+schemes:
+- https
+tags:
+- name: AVR
+paths:
+  /v3/avrs:
+    get:
+      security:
+      - BasicAuth: []
+      description: Retrieves AVRs with cursor-based pagination and comprehensive filtering
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - AVR
+      summary: List AVRs with pagination and filtering
+      parameters:
+      - type: string
+        description: After cursor for next page
+        name: after
+        in: query
+      - type: string
+        description: Before cursor for previous page
+        name: before
+        in: query
+      - type: integer
+        default: 100
+        description: Page size (max 1000)
+        name: limit
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: multi
+        description: Ordering (e.g., 'created_at:desc')
+        name: order
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: multi
+        description: Filter by architectures
+        name: arch
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: multi
+        description: Filter by ecosystems
+        name: ecosystem
+        in: query
+      - type: array
+        items:
+          type: string
+        collectionFormat: multi
+        description: Filter by OS distro major versions
+        name: os_distro_major
+        in: query
+      - type: string
+        description: Fuzzy filter on target image
+        name: target_image
+        in: query
+      - type: boolean
+        description: Return unique combinations by (target_image, ecosystem, os_distro_major, arch)
+        name: unique
+        in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ListAVRsPagedResponse'
+    post:
+      security:
+      - BasicAuth: []
+      description: Creates a new AVR and triggers the remediation workflow
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - AVR
+      summary: Create an AVR
+      parameters:
+      - description: AVR create request
+        name: avr
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/CreateAVRRequest'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/AVRResponse'
+  /v3/avrs/{avr_id}:
+    get:
+      security:
+      - BasicAuth: []
+      description: Retrieves the AVR of the organization with the given avr_id.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - AVR
+      summary: Get an AVR
+      parameters:
+      - type: string
+        description: AVR ID
+        name: avr_id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AVRResponse'
+  /v3/avrs/{avr_id}/artifacts/dockerfile:
+    get:
+      security:
+      - BasicAuth: []
+      description: Retrieves a presigned URL for the Dockerfile used in remediation
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - AVR
+      summary: Get dockerfile for an AVR
+      parameters:
+      - type: string
+        description: AVR ID
+        name: avr_id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/DockerfileResponse'
+  /v3/avrs/{avr_id}/artifacts/provenance:
+    get:
+      security:
+      - BasicAuth: []
+      description: Retrieves a presigned URL for the SLSA provenance file
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - AVR
+      summary: Get provenance file for an AVR
+      parameters:
+      - type: string
+        description: AVR ID
+        name: avr_id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AVRProvenanceFileResponse'
+  /v3/avrs/{avr_id}/artifacts/sbom:
+    get:
+      security:
+      - BasicAuth: []
+      description: Retrieves a presigned URL for the SBOM file from the post-remediation scan
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - AVR
+      summary: Get SBOM file for an AVR
+      parameters:
+      - type: string
+        description: AVR ID
+        name: avr_id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SBOMFileResponse'
+  /v3/avrs/{avr_id}/artifacts/vex:
+    get:
+      security:
+      - BasicAuth: []
+      description: Retrieves a presigned URL for the VEX (Vulnerability Exploitability eXchange) file
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      tags:
+      - AVR
+      summary: Get VEX file for an AVR
+      parameters:
+      - type: string
+        description: AVR ID
+        name: avr_id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/VEXFileResponse'
+definitions:
+  v3.RemediationStrategy:
+    type: object
+    properties:
+      alias_patching:
+        type: boolean
+      python_patching:
+        type: boolean
+      user_id:
+        type: string
+  ListAVRsPagedResponse:
+    type: object
+    properties:
+      cursor:
+        $ref: '#/definitions/Cursor'
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/v3.AVR'
+  v3.VulnerabilityCountsBreakdown:
+    type: object
+    properties:
+      critical:
+        type: integer
+      high:
+        type: integer
+      low:
+        type: integer
+      medium:
+        type: integer
+      unknown:
+        type: integer
+  VEXFileResponse:
+    type: object
+    properties:
+      vex_file_url:
+        type: string
+  AVRResponse:
+    type: object
+    properties:
+      arch:
+        $ref: '#/definitions/Arch'
+      completed_at:
+        description: Timestamps (completed_at in addition to base created_at/updated_at)
+        type: string
+      created_at:
+        type: string
+      dockerfile_digest:
+        type: string
+      dockerfile_key:
+        description: Build Artifacts (S3 keys to stored files)
+        type: string
+      ecosystem:
+        $ref: '#/definitions/constants.EcosystemName'
+      error:
+        type: string
+      id:
+        type: string
+      organization_id:
+        type: string
+      os_distro_release_major:
+        type: string
+      post_remediation_avr_scan_id:
+        type: string
+      post_remediation_scan:
+        $ref: '#/definitions/v3.AVRScan'
+      pre_remediation_avr_scan_id:
+        description: Scan references (the heart of AVR)
+        type: string
+      pre_remediation_scan:
+        description: Preloaded relationships
+        allOf:
+        - $ref: '#/definitions/v3.AVRScan'
+      provenance_key:
+        description: SLSA Provenance (S3 key to stored JSON document)
+        type: string
+      registry_credentials_id:
+        type: string
+      remediation_decision:
+        $ref: '#/definitions/ImageRemediationDecision'
+      remediation_details:
+        description: Remediation Results (single JSONB column for all details)
+        allOf:
+        - $ref: '#/definitions/v3.RemediationDetails'
+      remediation_strategy:
+        description: Business logic
+        allOf:
+        - $ref: '#/definitions/v3.RemediationStrategy'
+      risk_score:
+        type: number
+      root_registry_tag_id:
+        description: Back-reference to the root registry tag (nullable — not all AVRs are linked to a tag)
+        type: string
+      source:
+        description: Originator of this AVR
+        allOf:
+        - $ref: '#/definitions/v3.AVRSource'
+      status:
+        description: Workflow state
+        allOf:
+        - $ref: '#/definitions/v3.AVRStatus'
+      target_image:
+        description: What we're remediating
+        type: string
+      updated_at:
+        type: string
+      vex_key:
+        type: string
+  v3.AVRSource:
+    type: string
+    enum:
+    - generated
+    - image_rebuilder
+    x-enum-varnames:
+    - AVRSourceGenerated
+    - AVRSourceImageRebuilder
+  AVRProvenanceFileResponse:
+    type: object
+    properties:
+      cosign_public_key_url:
+        type: string
+      provenance_file_url:
+        type: string
+  SBOMFileResponse:
+    type: object
+    properties:
+      sbom_file_url:
+        type: string
+  v3.AVRStatus:
+    type: string
+    enum:
+    - pulling_image
+    - scanning
+    - building
+    - rescanning
+    - auditing
+    - completed
+    - failed
+    x-enum-varnames:
+    - AVRStatusPullingImage
+    - AVRStatusScanning
+    - AVRStatusBuilding
+    - AVRStatusRescanning
+    - AVRStatusAuditing
+    - AVRStatusCompleted
+    - AVRStatusFailed
+  DockerfileResponse:
+    type: object
+    properties:
+      dockerfile_url:
+        type: string
+  Cursor:
+    type: object
+    properties:
+      after:
+        type: string
+      before:
+        type: string
+      limit:
+        type: integer
+      total_count:
+        description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+        type: integer
+  v3.RemediationDetails:
+    type: object
+    properties:
+      deleted_packages:
+        type: object
+        additionalProperties:
+          type: string
+      is_truncated:
+        type: boolean
+      new_packages:
+        type: object
+        additionalProperties:
+          type: string
+      root_patched_packages:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/v3.PackageChange'
+      upgraded_packages:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/v3.PackageChange'
+  ImageRemediationDecision:
+    type: string
+    enum:
+    - image_remediation_decision_patch
+    - image_remediation_decision_unsupported_arch
+    - image_remediation_decision_unsupported_ecosystem
+    - image_remediation_decision_unsupported_os_distro
+    - image_remediation_decision_no_remediation_available
+    - image_remediation_decision_no_remediation_required
+    - image_remediation_decision_distroless
+    x-enum-comments:
+      ImageRemediationDecisionArchNotSupported: nolint:lll
+      ImageRemediationDecisionDistroless: nolint:lll
+      ImageRemediationDecisionEcosystemNotSupported: nolint:lll
+      ImageRemediationDecisionNoRemediationAvailable: nolint:lll
+      ImageRemediationDecisionNoRemediationRequired: nolint:lll
+      ImageRemediationDecisionOSDistroNotSupported: nolint:lll
+    x-enum-varnames:
+    - ImageRemediationDecisionPatch
+    - ImageRemediationDecisionArchNotSupported
+    - ImageRemediationDecisionEcosystemNotSupported
+    - ImageRemediationDecisionOSDistroNotSupported
+    - ImageRemediationDecisionNoRemediationAvailable
+    - ImageRemediationDecisionNoRemediationRequired
+    - ImageRemediationDecisionDistroless
+  v3.AVRScan:
+    type: object
+    properties:
+      arch:
+        $ref: '#/definitions/Arch'
+      created_at:
+        type: string
+      ecosystem:
+        $ref: '#/definitions/constants.EcosystemName'
+      id:
+        type: string
+      image_digest:
+        type: string
+      organization_id:
+        type: string
+      os_distro_release:
+        type: string
+      registry_credentials_id:
+        type: string
+      sbom_key:
+        type: string
+      status:
+        $ref: '#/definitions/v3.AVRScanStatus'
+      target_image:
+        type: string
+      updated_at:
+        type: string
+      vulnerability_counts:
+        description: Vulnerability counts by severity
+        allOf:
+        - $ref: '#/definitions/v3.VulnerabilityCounts'
+  v3.AVRScanStatus:
+    type: string
+    enum:
+    - scanning
+    - completed
+    - failed
+    x-enum-varnames:
+    - AVRScanStatusScanning
+    - AVRScanStatusCompleted
+    - AVRScanStatusFailed
+  constants.EcosystemName:
+    type: string
+    enum:
+    - debian
+    - ubuntu
+    - alpine
+    - amazon
+    - redhat
+    - rocky
+    - distroless
+    - fedora
+    - opensuse-leap
+    - pypi
+    - npm
+    - maven
+    - gobinary
+    - nuget
+    - composer
+    - binary
+    x-enum-varnames:
+    - EcosystemNameDebian
+    - EcosystemNameUbuntu
+    - EcosystemNameAlpine
+    - EcosystemNameAmazon
+    - EcosystemNameRedhat
+    - EcosystemNameRocky
+    - EcosystemNameDistroless
+    - EcosystemNameFedora
+    - EcosystemNameOpenSUSELeap
+    - EcosystemNamePypi
+    - EcosystemNameNpm
+    - EcosystemNameMaven
+    - EcosystemNameGoBinary
+    - EcosystemNameNuget
+    - EcosystemNameComposer
+    - EcosystemNameBinary
+  v3.PackageChange:
+    type: object
+    properties:
+      new_version:
+        type: string
+      old_version:
+        type: string
+  v3.AVR:
+    type: object
+    properties:
+      arch:
+        $ref: '#/definitions/Arch'
+      completed_at:
+        description: Timestamps (completed_at in addition to base created_at/updated_at)
+        type: string
+      created_at:
+        type: string
+      dockerfile_digest:
+        type: string
+      dockerfile_key:
+        description: Build Artifacts (S3 keys to stored files)
+        type: string
+      ecosystem:
+        $ref: '#/definitions/constants.EcosystemName'
+      error:
+        type: string
+      id:
+        type: string
+      organization_id:
+        type: string
+      os_distro_release_major:
+        type: string
+      post_remediation_avr_scan_id:
+        type: string
+      post_remediation_scan:
+        $ref: '#/definitions/v3.AVRScan'
+      pre_remediation_avr_scan_id:
+        description: Scan references (the heart of AVR)
+        type: string
+      pre_remediation_scan:
+        description: Preloaded relationships
+        allOf:
+        - $ref: '#/definitions/v3.AVRScan'
+      provenance_key:
+        description: SLSA Provenance (S3 key to stored JSON document)
+        type: string
+      registry_credentials_id:
+        type: string
+      remediation_decision:
+        $ref: '#/definitions/ImageRemediationDecision'
+      remediation_details:
+        description: Remediation Results (single JSONB column for all details)
+        allOf:
+        - $ref: '#/definitions/v3.RemediationDetails'
+      remediation_strategy:
+        description: Business logic
+        allOf:
+        - $ref: '#/definitions/v3.RemediationStrategy'
+      risk_score:
+        type: number
+      root_registry_tag_id:
+        description: Back-reference to the root registry tag (nullable — not all AVRs are linked to a tag)
+        type: string
+      source:
+        description: Originator of this AVR
+        allOf:
+        - $ref: '#/definitions/v3.AVRSource'
+      status:
+        description: Workflow state
+        allOf:
+        - $ref: '#/definitions/v3.AVRStatus'
+      target_image:
+        description: What we're remediating
+        type: string
+      updated_at:
+        type: string
+      vex_key:
+        type: string
+  CreateAVRRequest:
+    type: object
+    required:
+    - arch
+    - target_image
+    properties:
+      alias_patching:
+        type: boolean
+      arch:
+        type: string
+      python_patching:
+        type: boolean
+      registry_credentials_id:
+        type: string
+      root_registry_tag_id:
+        type: string
+      target_image:
+        type: string
+  v3.VulnerabilityCounts:
+    type: object
+    properties:
+      app_level:
+        description: App-level vulnerability counts (nil/omitted for old records)
+        allOf:
+        - $ref: '#/definitions/v3.VulnerabilityCountsBreakdown'
+      critical:
+        description: OS-level vulnerability counts (top-level for backward compatibility)
+        type: integer
+      high:
+        type: integer
+      low:
+        type: integer
+      medium:
+        type: integer
+      unknown:
+        type: integer
+  Arch:
+    type: string
+    enum:
+    - arm64
+    - amd64
+    - x86
+    - aarch64
+    - arm
+    - ppc64
+    - ppc64le
+    - mips
+    - mips64
+    - mips64le
+    - mipsle
+    x-enum-varnames:
+    - ArchARM64
+    - ArchAmd64
+    - ArchX86
+    - ArchAARCH64
+    - ArchARM
+    - ArchPPC64
+    - ArchPPC
+    - ArchMIPS
+    - ArchMIPS64
+    - ArchMIPS64LE
+    - ArchMIPSLE
+securityDefinitions:
+  BasicAuth:
+    type: basic
