@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/root-fka-slimai-openapi-original.json
+format: json
+note: Error responses are JSON with a message/detail body (not RFC 9457 application/problem+json). Titles/descriptions
+  derived from OpenAPI 4xx/5xx response descriptions across all operations.
+problems:
+- status: 400
+  title: Bad Request
+  meaning: Invalid query parameters, malformed body, invalid ticket ID, or invalid webhook subscription
+    ID.
+- status: 401
+  title: Unauthorized
+  meaning: Missing/invalid credentials or account not found in context.
+- status: 403
+  title: Forbidden
+  meaning: Authenticated but not allowed to perform the action (e.g. create/delete/list webhook subscriptions).
+- status: 404
+  title: Not Found
+  meaning: Resource not found - artifact, research, webhook subscription, or Root Remediated Tag (RRT).
+- status: 409
+  title: Conflict
+  meaning: Resource already exists (e.g. CVE already exists on discovery).
+- status: 413
+  title: Payload Too Large
+  meaning: Request body exceeds the 32MB limit (bulk discovery / analyze endpoints).
+- status: 422
+  title: Unprocessable Entity
+  meaning: Semantic validation failure - invalid webhook URL or event type, or subscription does not subscribe
+    to the image.created event.
+- status: 500
+  title: Internal Server Error
+  meaning: Unexpected server-side error.

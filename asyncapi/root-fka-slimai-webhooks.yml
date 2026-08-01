@@ -1,0 +1,19 @@
+generated: '2026-07-21'
+method: searched
+type: Webhooks
+source: https://docs.root.io/ric/notifications; openapi/root-fka-slimai-openapi-original.json
+delivery:
+  spec: Standard Webhooks
+  signing: HMAC-SHA256
+  signature_header: webhook-signature
+  replay_protection: Reject deliveries with timestamps older than 5 minutes.
+  subscribe_endpoint: POST /v3/settings/webhooks
+  test_endpoint: POST /v3/settings/webhooks/{id}/test-tag-created
+events:
+- type: io.root.cr.image.created.v1
+  naming: CloudEvents reverse-DNS
+  trigger: A new Root Remediated Tag (RRT) has been created in the Root Image Catalog (cr.root.io).
+  payload_hint: Includes root_registry_tag_id and delivery metadata (id, subscription id, event id, http
+    status, timestamp).
+slack: Root can post to Slack when remediated images are available (one-time setup by the Root team).
+reference_impl: github.com/rootio-avr/ecr-mirror-lambda (AWS Lambda with signature verification).

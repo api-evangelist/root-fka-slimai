@@ -1,0 +1,213 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/root-fka-slimai-openapi-original.json
+note: No official hosted MCP server is published by Root.io (Claude Code/Codex integrations are plugin+hook+CLI
+  wrappers around rootio_patcher, not an MCP server for the REST API). This is a candidate tool list derived
+  one-per-operation from the Swagger 2.0 spec.
+server:
+  name: root-fka-slimai
+  transport: http
+  url: null
+tools:
+- name: get_external_cve_feed
+  description: Get CVE feed data
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /external/cve_feed
+- name: get_external_globals_sys_matrix
+  description: Retrieve The Supported System Matrix
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /external/globals/sys_matrix
+- name: get_external_osv_all_json
+  description: Get OSV feed index
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /external/osv/all.json
+- name: get_external_osv_all_zip
+  description: Get all OSV records as zip archive
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /external/osv/all.zip
+- name: get_external_osv_id_json
+  description: Get individual OSV record
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /external/osv/{id}.json
+- name: get_external_patch_feed
+  description: Get patch feed data
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /external/patch_feed
+- name: get_v3_accounts
+  description: List accounts
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/accounts
+- name: delete_v3_accounts_account_id
+  description: Delete account
+  source_operation: openapi/root-fka-slimai-openapi-original.json#delete /v3/accounts/{account_id}
+- name: patch_v3_accounts_account_id
+  description: Update account
+  source_operation: openapi/root-fka-slimai-openapi-original.json#patch /v3/accounts/{account_id}
+- name: post_v3_analyze_apk
+  description: Get APK package remediation recommendations
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/analyze/apk
+- name: post_v3_analyze_apt
+  description: Get APT package remediation recommendations
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/analyze/apt
+- name: post_v3_analyze_composer
+  description: Get Composer package remediation recommendations
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/analyze/composer
+- name: post_v3_analyze_golang
+  description: Get Go module remediation recommendations
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/analyze/golang
+- name: post_v3_analyze_maven
+  description: Get Maven package remediation recommendations
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/analyze/maven
+- name: post_v3_analyze_npm
+  description: Get NPM package remediation recommendations
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/analyze/npm
+- name: post_v3_analyze_nuget
+  description: Get NuGet package remediation recommendations
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/analyze/nuget
+- name: post_v3_analyze_pypi
+  description: Get PyPI package remediation recommendations
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/analyze/pypi
+- name: post_v3_analyze_yum
+  description: Get YUM/DNF package remediation recommendations
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/analyze/yum
+- name: get_v3_api_keys
+  description: List API keys
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/api_keys
+- name: post_v3_api_keys
+  description: Create API key
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/api_keys
+- name: get_v3_api_keys_api_key_id
+  description: Get API key
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/api_keys/{api_key_id}
+- name: delete_v3_api_keys_api_key_id
+  description: Delete API key
+  source_operation: openapi/root-fka-slimai-openapi-original.json#delete /v3/api_keys/{api_key_id}
+- name: patch_v3_api_keys_api_key_id
+  description: Patch API key
+  source_operation: openapi/root-fka-slimai-openapi-original.json#patch /v3/api_keys/{api_key_id}
+- name: post_v3_auth_direct
+  description: Direct authentication
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/auth/direct
+- name: get_v3_avrs
+  description: List AVRs with pagination and filtering
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/avrs
+- name: post_v3_avrs
+  description: Create an AVR
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/avrs
+- name: get_v3_avrs_avr_id
+  description: Get an AVR
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/avrs/{avr_id}
+- name: get_v3_avrs_avr_id_artifacts_dockerfile
+  description: Get dockerfile for an AVR
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/avrs/{avr_id}/artifacts/dockerfile
+- name: get_v3_avrs_avr_id_artifacts_provenance
+  description: Get provenance file for an AVR
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/avrs/{avr_id}/artifacts/provenance
+- name: get_v3_avrs_avr_id_artifacts_sbom
+  description: Get SBOM file for an AVR
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/avrs/{avr_id}/artifacts/sbom
+- name: get_v3_avrs_avr_id_artifacts_vex
+  description: Get VEX file for an AVR
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/avrs/{avr_id}/artifacts/vex
+- name: get_v3_billing
+  description: Get billing for current organization
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/billing
+- name: get_v3_discovered_packages
+  description: List discovered packages from artifact repositories
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/discovered-packages
+- name: post_v3_discovery
+  description: Create discovered package with CVE
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/discovery
+- name: post_v3_discovery_bulk
+  description: Bulk discover packages with CVEs (async)
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/discovery/bulk
+- name: get_v3_invites
+  description: List organization invitations
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/invites
+- name: post_v3_invites
+  description: Create organization invite
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/invites
+- name: post_v3_invites_inviteID_accept
+  description: Accept organization invite
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/invites/{inviteID}/accept
+- name: post_v3_invites_inviteID_email
+  description: Send invite email
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/invites/{inviteID}/email
+- name: get_v3_me
+  description: Get current user's account
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/me
+- name: get_v3_notifications
+  description: List notifications
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/notifications
+- name: post_v3_notifications_read_all
+  description: Mark all notifications as seen
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/notifications/read_all
+- name: get_v3_notifications_unread_count
+  description: Count unread notifications
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/notifications/unread-count
+- name: patch_v3_notifications_notificationID
+  description: Patch a notification (mark seen/unseen)
+  source_operation: openapi/root-fka-slimai-openapi-original.json#patch /v3/notifications/{notificationID}
+- name: get_v3_orgs
+  description: Get own organization
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/orgs
+- name: post_v3_orgs
+  description: Create organization
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/orgs
+- name: get_v3_packages
+  description: List packages with pagination and filtering
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/packages
+- name: get_v3_packages_pkg_id
+  description: Get a package by its ID
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/packages/{pkg_id}
+- name: get_v3_packages_pkg_id_artifacts_patches
+  description: Get patch files for a package
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/packages/{pkg_id}/artifacts/patches
+- name: get_v3_packages_pkg_id_artifacts_provenance
+  description: Get provenance file for a package
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/packages/{pkg_id}/artifacts/provenance
+- name: get_v3_patches
+  description: List CVE tickets (patches)
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/patches
+- name: get_v3_patches_ticketID_artifacts
+  description: List research artifacts for a CVE ticket
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/patches/{ticketID}/artifacts
+- name: get_v3_patches_ticketID_artifacts_downloadKey
+  description: Download a specific research artifact
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/patches/{ticketID}/artifacts/{downloadKey}
+- name: post_v3_remediate_pypi
+  description: Get PyPI package remediation recommendations
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/remediate/pypi
+- name: get_v3_security_findings
+  description: List security findings with pagination
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/security_findings
+- name: post_v3_security_findings_remediation_counts
+  description: Remediation vulnerability counts by tag
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/security_findings/remediation_counts
+- name: get_v3_security_findings_summary
+  description: Get security findings summary (counts by status and severity)
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/security_findings/summary
+- name: get_v3_security_findings_summary_daily
+  description: Get security findings daily summary (counts by day, status, and severity)
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/security_findings/summary/daily
+- name: get_v3_settings_webhooks
+  description: List webhook subscriptions
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/settings/webhooks
+- name: post_v3_settings_webhooks
+  description: Create webhook subscription
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/settings/webhooks
+- name: delete_v3_settings_webhooks_webhookSubscriptionID
+  description: Delete webhook subscription
+  source_operation: openapi/root-fka-slimai-openapi-original.json#delete /v3/settings/webhooks/{webhookSubscriptionID}
+- name: post_v3_settings_webhooks_webhookSubscriptionID_test_tag_cre
+  description: Test tag-created webhook delivery
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/settings/webhooks/{webhookSubscriptionID}/test-tag-created
+- name: get_v3_subscriptions
+  description: List subscriptions
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/subscriptions
+- name: post_v3_subscriptions
+  description: Create subscriptions (bulk)
+  source_operation: openapi/root-fka-slimai-openapi-original.json#post /v3/subscriptions
+- name: delete_v3_subscriptions
+  description: Delete subscriptions (bulk)
+  source_operation: openapi/root-fka-slimai-openapi-original.json#delete /v3/subscriptions
+- name: get_v3_subscriptions_subscriptionID
+  description: Get subscription
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/subscriptions/{subscriptionID}
+- name: get_v3_sys_matrix
+  description: Retrieve The Supported System Matrix
+  source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/sys_matrix

@@ -1,0 +1,109 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/root-fka-slimai-openapi-original.json
+note: Entity graph derived from Swagger 2.0 definitions (133) and /v3 resource paths. The spec omits operationIds
+  and inline id-prefix documentation; relationships inferred from path nesting and response schemas.
+entities:
+- name: Organization
+  paths:
+  - /v3/orgs
+  desc: Top-level tenant.
+- name: Account
+  paths:
+  - /v3/accounts
+  - /v3/me
+  desc: User account within an organization.
+- name: APIKey
+  paths:
+  - /v3/api_keys
+  desc: API credential scoped to an account/org.
+- name: Invite
+  paths:
+  - /v3/invites
+  desc: Organization membership invitation.
+- name: Subscription
+  paths:
+  - /v3/subscriptions
+  desc: Subscription to an image or package for continuous remediation.
+- name: Package
+  paths:
+  - /v3/packages
+  desc: A Root-secured application/OS package with patch + provenance artifacts.
+- name: AVR
+  paths:
+  - /v3/avrs
+  desc: Agentic Vulnerability Remediation record; produces dockerfile/provenance/SBOM/VEX artifacts.
+- name: Patch
+  paths:
+  - /v3/patches
+  desc: CVE ticket / patch with research artifacts.
+- name: SecurityFinding
+  paths:
+  - /v3/security_findings
+  desc: A CVE finding against a subscribed image/library.
+- name: DiscoveredPackage
+  paths:
+  - /v3/discovered-packages
+  - /v3/discovery
+  desc: Package discovered in a customer artifact repository.
+- name: WebhookSubscription
+  paths:
+  - /v3/settings/webhooks
+  desc: Endpoint subscription for image.created events.
+- name: Notification
+  paths:
+  - /v3/notifications
+  desc: In-app notification.
+- name: CVE
+  paths:
+  - /external/cve_feed
+  desc: Vulnerability record; feeds patches and findings.
+relationships:
+- from: Account
+  type: belongs_to
+  to: Organization
+  via: org
+- from: APIKey
+  type: belongs_to
+  to: Account
+  via: created_by
+- from: Invite
+  type: belongs_to
+  to: Organization
+  via: org
+- from: Subscription
+  type: has_many
+  to: SecurityFinding
+  via: subscription
+- from: AVR
+  type: has_many
+  to: AVRScan
+  via: avr_id
+- from: AVR
+  type: has_one
+  to: SBOM
+  via: avr_id
+- from: AVR
+  type: has_one
+  to: VEX
+  via: avr_id
+- from: AVR
+  type: has_one
+  to: Provenance
+  via: avr_id
+- from: Package
+  type: has_many
+  to: Patch
+  via: pkg_id
+- from: Patch
+  type: belongs_to
+  to: CVE
+  via: cve_id
+- from: SecurityFinding
+  type: belongs_to
+  to: CVE
+  via: cve_id
+- from: DiscoveredPackage
+  type: belongs_to
+  to: CVE
+  via: cve

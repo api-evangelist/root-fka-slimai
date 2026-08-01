@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.root.io/reference/cli; https://github.com/rootio-avr/rootio_patcher
+name: rootio_patcher
+official: true
+open_source: true
+license: Apache-2.0
+language: go
+install:
+- method: github-release
+  detail: Prebuilt binaries for Linux x86_64, macOS Intel/Apple Silicon, Windows x86_64 from GitHub releases.
+- method: source
+  detail: git clone github.com/rootio-avr/rootio_patcher && go build
+auth: Requires a Root API key (from the platform token/API-keys settings).
+commands:
+- group: pip
+  example: rootio_patcher pip remediate
+  desc: Remediate Python/pip dependencies (edits requirements.txt).
+- group: npm
+  example: rootio_patcher npm remediate
+  desc: Remediate JavaScript/npm dependencies (edits package.json).
+- group: maven
+  example: rootio_patcher maven remediate
+  desc: Remediate Java/Maven dependencies (edits pom.xml).
+flows:
+- Dry-run preview by default; apply with --dry-run=false, then reinstall dependencies.
+- 'CI gating via exit codes: 0 = no patches needed, 2 = patches available, 1 = error.'

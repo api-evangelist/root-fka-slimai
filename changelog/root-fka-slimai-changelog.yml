@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.root.io/reference/changelog
+scheme: date-based (organized by month/year; no semantic version numbers)
+current: v3 API
+entries:
+- date: 2026-03
+  breaking: true
+  highlights:
+  - Added a severities filter to the package API for direct CVE severity scoping.
+  - Image rebuilder now publishes SBOM/VEX to S3.
+  - 'Breaking: removed legacy v2 API-key authorization paths (all auth routes through v3).'
+  - Fixed Debian/Ubuntu CVE enrichment and artifact-list error handling.
+- date: 2026-02
+  breaking: false
+  highlights:
+  - CVE metadata now backfills immediately on subscription.
+  - Fixed a Jira webhook crash.
+  - Added Debian package support to the registry.
+- date: '2025'
+  breaking: false
+  highlights:
+  - Added Alpine/Ubuntu OS-package support; expanded to 500+ Docker Hub images.
+  - Added JFrog Artifactory and Amazon ECR integrations.
+  - Added Python/JavaScript/Maven package support.

@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Root.io API
+  version: 1.0.0
+extends: openapi/root-fka-slimai-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-21'
+    x-apievangelist-notes: Swagger 2.0 spec harvested verbatim from https://api.root.io/rapidoc/data.json.
+      Operations lack operationIds and the spec omits servers[]; production host is api.root.io over https.
+      Auth is HTTP Basic (API key as username) or Bearer token per docs.
+    x-servers:
+    - url: https://api.root.io
+      description: Production
+- target: $.info
+  update:
+    x-agentic-access: agentic-access/root-fka-slimai-agentic-access.yml
+    x-conventions: conventions/root-fka-slimai-conventions.yml
+    x-error-catalog: errors/root-fka-slimai-problem-types.yml

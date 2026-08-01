@@ -1,0 +1,19 @@
+generated: '2026-07-21'
+method: generated
+skills:
+- file: root-fka-slimai-remediate-dependencies.md
+  name: Remediate application dependencies with Root
+  api: openapi/root-fka-slimai-openapi-original.json
+  operations:
+  - POST /v3/analyze/pypi
+  - POST /v3/analyze/npm
+  - POST /v3/analyze/maven
+  - GET /v3/patches
+  - GET /v3/packages
+- file: root-fka-slimai-monitor-and-subscribe.md
+  name: Monitor security findings and subscribe to remediated images
+  api: openapi/root-fka-slimai-openapi-original.json
+  operations:
+  - GET /v3/security_findings
+  - POST /v3/subscriptions
+  - POST /v3/settings/webhooks

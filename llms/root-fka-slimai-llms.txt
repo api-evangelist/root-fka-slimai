@@ -1,0 +1,76 @@
+# Root
+
+## Docs
+
+- [Claude Code](https://docs.root.io/ai-integrations/claude-code.md): Automatically detect and patch vulnerabilities in Claude Code
+- [Codex](https://docs.root.io/ai-integrations/codex.md): Automatically detect and patch vulnerabilities in Codex
+- [AI Integrations](https://docs.root.io/ai-integrations/overview.md): Integrate Root.io with AI coding assistants for automatic vulnerability detection
+- [Backported Patch Conformance](https://docs.root.io/compliance/backport-conformance.md): How Root evaluates, validates, and delivers backported security patches.
+- [Certifications & Attestations](https://docs.root.io/compliance/certifications.md): Root's compliance certifications and how to access audit reports.
+- [Trust & Compliance Overview](https://docs.root.io/compliance/overview.md): Root's security posture, certifications, and resources for compliance and procurement teams.
+- [Security Posture](https://docs.root.io/compliance/security-posture.md): How Root secures its own platform, development practices, and infrastructure.
+- [Trust Center](https://docs.root.io/compliance/trust-center.md): Sub-processors, data residency, and security FAQ for procurement and legal reviews.
+- [Agentic Vulnerability Remediation (AVR)](https://docs.root.io/concepts/avr.md): How Root's fleet of AI agents researches, patches, tests, and delivers fixes for vulnerable open source packages - automatically.
+- [Root Patches & Patch Stream](https://docs.root.io/concepts/patch-stream.md): Enterprise capability for receiving standalone patch artifacts as reproducible build streams - for organizations that need to validate and implement patches themselves.
+- [Provenance](https://docs.root.io/concepts/provenance.md): Cryptographic attestations that prove how and when Root built every secured artifact.
+- [Root Patches](https://docs.root.io/concepts/root-patches.md): What a Root Patch is, how it's applied, and how it differs from a forced version upgrade.
+- [SBOMs](https://docs.root.io/concepts/sbom.md): How Root generates and maintains Software Bills of Materials for every image and package it delivers.
+- [VEX Statements](https://docs.root.io/concepts/vex.md): How Root uses Vulnerability Exploitability eXchange (VEX) to document the fix status of every CVE in its artifacts.
+- [Vulnerability Lifecycle](https://docs.root.io/concepts/vulnerability-lifecycle.md): From CVE publication to Root Patch delivery - how Root closes the exposure window.
+- [Vulnerability Statuses](https://docs.root.io/concepts/vulnerability-statuses.md): How Root tracks and communicates the remediation status of every CVE across your subscribed images and packages.
+- [Registry Credentials](https://docs.root.io/getting-started/authentication.md): How to authenticate to Root's registries for container images and application packages.
+- [Free Trial](https://docs.root.io/getting-started/free-trial.md): Get full access to Root's secure supply platform — container images and application libraries — free for 2 months.
+- [How Root Works](https://docs.root.io/getting-started/how-it-works.md): The Root adoption journey - from discovering what you use to continuously consuming secured artifacts.
+- [SSO with Okta](https://docs.root.io/getting-started/okta-saml-sso.md): Configure single sign-on between your Okta Workforce Identity tenant and Root using SAML 2.0.
+- [Docker](https://docs.root.io/integrations/docker.md): Integrate Root Image Catalog with Docker - authentication, Dockerfile changes, Compose, and registry mirroring.
+- [Amazon ECR Pull-Through Cache](https://docs.root.io/integrations/ecr.md): Mirror Root Image Catalog images into your AWS ECR account for faster pulls, local caching, and private subnet access.
+- [JFrog Artifactory](https://docs.root.io/integrations/jfrog-artifactory.md): Configure JFrog Artifactory as a pull-through cache for Root Image Catalog, consolidating container image access through your existing Artifactory instance.
+- [Scanner Compatibility](https://docs.root.io/integrations/scanner-compatibility.md): Vulnerability scanners that recognize Root-patched packages and report accurate CVE counts.
+- [Wiz](https://docs.root.io/integrations/wiz.md): Scan Root with wizcli and verify the reduction in vulnerabilities compared to upstream Docker Hub images.
+- [Welcome to Root](https://docs.root.io/introduction.md): A secure supply platform that delivers end-to-end vulnerability remediation for container images and application packages.
+- [Alpine Linux](https://docs.root.io/os-packages/alpine.md): Configure pkg.root.io in your Dockerfile to install Root-patched OS packages on Alpine Linux.
+- [Debian](https://docs.root.io/os-packages/debian.md): Configure pkg.root.io in your Dockerfile to install Root-patched OS packages on Debian.
+- [Getting Started with the OS Package Registry](https://docs.root.io/os-packages/getting-started.md): Configure pkg.root.io in your Dockerfile to install Root-patched OS packages for Debian, Ubuntu, and Alpine.
+- [OS Package Registry Overview](https://docs.root.io/os-packages/overview.md): Continuously patched OS packages for Debian, Ubuntu, and Alpine Linux - delivered via pkg.root.io.
+- [Ubuntu](https://docs.root.io/os-packages/ubuntu.md): Configure pkg.root.io in your Dockerfile to install Root-patched OS packages on Ubuntu.
+- [Agentic Patching](https://docs.root.io/platform/agentic-patching.md): See how Root's AI agents research, analyze, and patch vulnerabilities in real time.
+- [CVE Details](https://docs.root.io/platform/cve-details.md): Deep-dive into any CVE to see affected assets, patch status, and Root's remediation timeline.
+- [Dashboard & Metrics](https://docs.root.io/platform/dashboard.md): A live view of Root's agentic work across your environment - factory activity, protection metrics, and security findings trends.
+- [Image Catalog & My Images](https://docs.root.io/platform/image-catalog.md): Browse Root's catalog of secure container images and manage your subscribed images.
+- [Library Catalog](https://docs.root.io/platform/library-catalog.md): Browse and install Root-secured application packages across Python, JavaScript, Java, and Go ecosystems.
+- [My Library](https://docs.root.io/platform/my-library.md): Track discovered packages across your organization and see which have Root-secured versions available.
+- [Platform Overview](https://docs.root.io/platform/overview.md): Navigate the Root platform at app.root.io - catalogs, subscriptions, vulnerability tracking, and patching visibility.
+- [Security Findings](https://docs.root.io/platform/security-findings.md): View and filter all CVEs across your subscribed images and libraries in one central table.
+- [Quick Start](https://docs.root.io/quickstart.md): Get secure open source into your pipeline in minutes.
+- [API Reference](https://docs.root.io/reference/api.md): Root's REST API for querying patch status, accessing SBOMs and VEX statements, and managing registry configuration.
+- [Changelog](https://docs.root.io/reference/changelog.md): Release notes for Root platform updates, new image and package support, and API changes.
+- [CLI Reference](https://docs.root.io/reference/cli.md): The Root CLI tools for applying patches and managing registry configuration.
+- [Configuration Reference](https://docs.root.io/reference/configuration.md): All configuration options for Root registry authentication, proxy settings, and CI/CD environment variables.
+- [FAQ](https://docs.root.io/reference/faq.md): Frequently asked questions about Root, Root Image Catalog, Root Library Catalog, and the AVR pipeline.
+- [Glossary](https://docs.root.io/reference/glossary.md): Definitions for key terms used throughout Root's documentation.
+- [Reports & Insights Overview](https://docs.root.io/reports/overview.md): Visibility into vulnerability coverage, patch status, SBOMs, and VEX statements across your Root-managed supply chain.
+- [SBOM Reports](https://docs.root.io/reports/sbom-reports.md): Accessing and exporting SBOMs for every image and package managed by Root.
+- [VEX Reports](https://docs.root.io/reports/vex-reports.md): Accessing and using Root's VEX statements to suppress patched findings in vulnerability scanners.
+- [Vulnerability Reports](https://docs.root.io/reports/vulnerability-reports.md): Per-artifact and fleet-wide reports on CVE coverage and Root Patch status.
+- [FIPS Images](https://docs.root.io/ric/fips-images.md): FIPS 140-3 validated container images for regulated environments, with wolfSSL and supply chain attestations.
+- [Getting Started with RIC](https://docs.root.io/ric/getting-started.md): Subscribe, authenticate, pull your first secure image, and verify CVE remediation with Trivy.
+- [Notifications](https://docs.root.io/ric/notifications.md): Get notified when Root creates a new remediated image tag - via webhook or Slack.
+- [Root Image Catalog Overview](https://docs.root.io/ric/overview.md): Secure container images at cr.root.io - drop-in replacements for Docker Hub with zero Critical/High CVEs, continuously maintained by AVR.
+- [Pulling Images](https://docs.root.io/ric/pulling-images.md): How to pull secure images from cr.root.io using Docker, containerd, and Kubernetes.
+- [Root Patches for Images](https://docs.root.io/ric/root-patches.md): How Root Patches are applied to container images - patch types, validation, and accessing patch history.
+- [Supported Images](https://docs.root.io/ric/supported-images.md): All container image families available in Root Image Catalog, with tag conventions and coverage status.
+- [PHP - Composer (Beta)](https://docs.root.io/rlc/composer.md): Configure Composer to use Root Library Catalog for secure PHP packages.
+- [Getting Started with RLC](https://docs.root.io/rlc/getting-started.md): Configure your package manager to use pkg.root.io and start consuming secure, patched packages.
+- [Go - Go modules](https://docs.root.io/rlc/go.md): Configure Go to use Root Library Catalog for secure Go modules.
+- [Java - Maven, Gradle](https://docs.root.io/rlc/java.md): Configure Maven or Gradle to use Root Library Catalog for secure Java dependencies.
+- [JavaScript - npm, pnpm, yarn](https://docs.root.io/rlc/javascript.md): Configure npm, pnpm, and yarn to use Root Library Catalog for secure JavaScript packages.
+- [Notifications](https://docs.root.io/rlc/notifications.md): Get notified when new patched packages are available in Root Library Catalog.
+- [.NET - NuGet](https://docs.root.io/rlc/nuget.md): Configure NuGet to use Root Library Catalog for secure .NET packages.
+- [Root Library Catalog Overview](https://docs.root.io/rlc/overview.md): Secure application packages at pkg.root.io - patched by AVR for Python, JavaScript, Java, Go, .NET, and PHP ecosystems.
+- [Root Patcher CLI](https://docs.root.io/rlc/patcher.md): Automatically identify and patch vulnerable dependencies across Python, JavaScript, Java, and Go projects using the rootio_patcher CLI.
+- [Python - pip, uv, Poetry](https://docs.root.io/rlc/python.md): Configure pip, uv, and Poetry to use Root Library Catalog for secure Python packages.
+- [Root Patches for Packages](https://docs.root.io/rlc/root-patches.md): How Root Patches are applied to application packages - patch types, validation, and accessing patch metadata.
+
+## OpenAPI Specs
+
+- [openapi](https://docs.root.io/api-reference/openapi.json)

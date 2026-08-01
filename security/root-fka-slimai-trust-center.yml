@@ -1,0 +1,37 @@
+generated: '2026-07-21'
+method: searched
+probe: true
+url: https://docs.root.io/compliance/trust-center
+source: https://docs.root.io/compliance/trust-center; https://docs.root.io/compliance/certifications;
+  https://docs.root.io/compliance/overview
+certifications:
+- SOC 2 Type II
+- Cyber Essentials
+- SLSA
+- FIPS 140-3
+- STIG
+sub_processors:
+- name: Amazon Web Services (AWS)
+  use: Cloud infrastructure, compute, storage (S3, RDS, ECR), networking
+  region: United States
+- name: SendGrid (Twilio)
+  use: Transactional email (invitations, notifications)
+  region: United States
+data_residency: Default AWS us-east-1; EU/regional options for enterprise via account rep.
+contacts:
+  security: security@root.io
+  legal: legal@root.io
+evidence:
+- source: https://docs.root.io/compliance/trust-center
+  keywords:
+  - sub-processors
+  - data residency
+  - security faq
+  - trust center
+- source: https://docs.root.io/compliance/certifications
+  keywords:
+  - soc 2 type ii
+  - cyber essentials
+  - slsa
+  - fips
+  - stig

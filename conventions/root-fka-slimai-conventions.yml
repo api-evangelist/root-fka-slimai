@@ -1,0 +1,46 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.root.io/reference/api; openapi/root-fka-slimai-openapi-original.json
+authentication:
+  styles:
+  - http-basic
+  - http-bearer
+  detail: API key used as HTTP Basic username with empty password, or as a Bearer token in the Authorization
+    header. Some feed endpoints (/external/*, patch/OSV feeds) require no auth. See authentication/.
+  ref: authentication/root-fka-slimai-authentication.yml
+idempotency:
+  supported: false
+  note: No Idempotency-Key header/parameter is documented or present in the spec. Webhook delivery uses
+    Standard Webhooks (HMAC-SHA256) with replay protection (reject timestamps older than 5 minutes).
+pagination:
+  style: cursor
+  params:
+  - after
+  - limit
+  detail: Cursor-based pagination. limit default 100, max 1000; after is an opaque cursor. Response envelopes
+    carry a Cursor object.
+  response_fields:
+  - cursor
+versioning:
+  style: uri-path
+  current: v3
+  ref: lifecycle/root-fka-slimai-lifecycle.yml
+rate_limiting:
+  signaled: true
+  headers:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - Retry-After
+  status: 429
+  detail: Throttled requests return 429 Too Many Requests with X-RateLimit-* headers and Retry-After.
+errors:
+  format: json-message
+  ref: errors/root-fka-slimai-problem-types.yml
+  note: Not RFC 9457.
+request_limits:
+  max_body_bytes: 33554432
+  note: Request bodies over 32MB return 413 (bulk discovery/analyze).
+webhooks:
+  spec: Standard Webhooks
+  signing: HMAC-SHA256 via webhook-signature header
+  ref: asyncapi/root-fka-slimai-webhooks.yml

@@ -1,0 +1,45 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.root.io/compliance/certifications; openapi/root-fka-slimai-openapi-original.json
+standards:
+- id: soc2-type-ii
+  conforms: true
+  evidence: Root maintains a SOC 2 Type II report (security, availability, confidentiality); report available
+    via security@root.io. https://docs.root.io/compliance/certifications
+- id: cyber-essentials
+  conforms: true
+  evidence: Cyber Essentials certification listed on the certifications page.
+- id: slsa
+  conforms: true
+  evidence: SLSA provenance attestations generated for all artifacts; served via /v3/avrs/{avr_id}/artifacts/provenance.
+- id: fips-140-3
+  conforms: true
+  evidence: FIPS 140-3 validated container images (wolfSSL); FIPS/STIG attestations at github.com/rootio-avr/fips-attestations.
+    https://docs.root.io/ric/fips-images
+- id: stig
+  conforms: true
+  evidence: STIG attestation materials published at github.com/rootio-avr/fips-attestations.
+- id: cyclonedx-spdx-sbom
+  conforms: true
+  evidence: SBOMs generated for every image and package; served via /v3/avrs/{avr_id}/artifacts/sbom and
+    package artifacts.
+- id: openvex
+  conforms: true
+  evidence: VEX statements (Vulnerability Exploitability eXchange) served via /v3/avrs/{avr_id}/artifacts/vex.
+- id: osv
+  conforms: true
+  evidence: Publishes an OSV feed (/external/osv/all.json, /external/osv/{id}.json) following the OSV
+    schema.
+- id: standard-webhooks
+  conforms: true
+  evidence: Webhook deliveries follow the Standard Webhooks spec (HMAC-SHA256, webhook-signature header).
+    https://docs.root.io/ric/notifications
+- id: cloudevents
+  conforms: true
+  evidence: Webhook event type io.root.cr.image.created.v1 follows CloudEvents reverse-DNS naming.
+- id: oauth2
+  conforms: false
+  evidence: No OAuth2 scheme; API uses HTTP Basic (API key) / Bearer token auth.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Error responses are plain string-described JSON, not application/problem+json.

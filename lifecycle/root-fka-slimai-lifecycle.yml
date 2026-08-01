@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.root.io/reference/api; https://docs.root.io/reference/changelog; https://www.root.io/service-level-agreement
+versioning:
+  scheme: uri-path
+  current: v3
+  docs: https://docs.root.io/reference/api
+  note: Current REST surface is /v3. Legacy /v2 API-key authorization paths were removed (see changelog
+    Mar 2026). Unauthenticated feeds live under /external.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal RFC 8594 Sunset/Deprecation header policy documented; deprecations are communicated
+    via the changelog (e.g. removal of legacy v2 auth paths).
+sla:
+  url: https://www.root.io/service-level-agreement
+  uptime_target: null
+status_page: null
+changelog: https://docs.root.io/reference/changelog
+deprecated_operations: []

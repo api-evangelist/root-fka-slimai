@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.root.io/reference/api; https://docs.root.io/getting-started/authentication; openapi/root-fka-slimai-openapi-original.json
+docs: https://docs.root.io/getting-started/authentication
+summary:
+  types:
+  - http
+  http_schemes:
+  - basic
+  - bearer
+  api_key_in:
+  - header (Authorization)
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  detail: API key used as the Basic-auth username with an empty password. Declared as the BasicAuth securityDefinition
+    in the OpenAPI.
+  sources:
+  - openapi/root-fka-slimai-openapi-original.json
+- name: BearerToken
+  type: http
+  scheme: bearer
+  detail: API key sent as a Bearer token in the Authorization header (documented in the API reference;
+    not declared in the Swagger securityDefinitions).
+  sources:
+  - https://docs.root.io/reference/api
+api_keys:
+  management: Create/rotate API keys in the Root platform Settings -> API Keys; managed via /v3/api_keys.
+  registry_tokens: Separate long-lived registry tokens (username rootio / org id) authenticate to cr.root.io
+    and pkg.root.io; rotatable from the platform.
+unauthenticated: Feed endpoints under /external/* (CVE feed, patch feed, OSV feed) and OSV records require
+  no auth.

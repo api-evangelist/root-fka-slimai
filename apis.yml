@@ -1,26 +1,360 @@
 aid: root-fka-slimai
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/root-fka-slimai.png
 name: Root (fka Slim.ai)
-description: Root (fka Slim.ai) is a company surfaced as a portfolio company of insight-partners and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Root (formerly Slim.ai) is a container and dependency security company backed by Insight Partners.
+  Its "secure supply" platform delivers end-to-end, autonomous vulnerability remediation for container
+  images and application packages: a fleet of AI agents (Agentic Vulnerability Remediation, AVR)
+  researches, patches, tests, and ships Root Patches within minutes of CVE publication, without base-image
+  changes or forced version upgrades. Root operates the Root Image Catalog (cr.root.io), Library Catalog,
+  and OS-package registry (pkg.root.io), and exposes a REST API (api.root.io) for querying patch status,
+  security findings, subscriptions, and pulling SBOM, VEX, and provenance artifacts, plus Standard-Webhooks
+  notifications and a first-party CLI (rootio_patcher).
 url: https://raw.githubusercontent.com/api-evangelist/root-fka-slimai/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - insight-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profile
+x-tier-reason: enriched
 specificationVersion: '0.20'
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v1
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Security
+- Vulnerability Management
+- Container Security
+- DevSecOps
+- Software Supply Chain
+- CVE
+- SBOM
+- Open Source
+- Patching
+apis:
+- aid: root-fka-slimai:root-fka-slimai-accounts-api
+  name: Root (fka Slim.ai) Accounts API
+  description: The Accounts API from Root (fka Slim.ai) — 3 operation(s) for accounts.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-accounts-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-api-keys-api
+  name: Root (fka Slim.ai) API Keys API
+  description: The API Keys API from Root (fka Slim.ai) — 2 operation(s) for api keys.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-api-keys-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-authentication-api
+  name: Root (fka Slim.ai) Authentication API
+  description: The Authentication API from Root (fka Slim.ai) — 1 operation(s) for authentication.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-authentication-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-avr-api
+  name: Root (fka Slim.ai) AVR API
+  description: The AVR API from Root (fka Slim.ai) — 6 operation(s) for avr.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - AVR
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-avr-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-billing-api
+  name: Root (fka Slim.ai) Billing API
+  description: The Billing API from Root (fka Slim.ai) — 1 operation(s) for billing.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-billing-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-core-discovered-packages-v3-api
+  name: Root (fka Slim.ai) Core - Discovered Packages V3 API
+  description: >-
+    The Core - Discovered Packages V3 API from Root (fka Slim.ai) — 1 operation(s) for core - discovered
+    packages v3.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Core - Discovered Packages V3
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-core-discovered-packages-v3-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-cvefeed-api
+  name: Root (fka Slim.ai) CveFeed API
+  description: The CveFeed API from Root (fka Slim.ai) — 1 operation(s) for cvefeed.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - CveFeed
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-cvefeed-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-discovery-api
+  name: Root (fka Slim.ai) Discovery API
+  description: The Discovery API from Root (fka Slim.ai) — 2 operation(s) for discovery.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-discovery-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-invitations-api
+  name: Root (fka Slim.ai) Invitations API
+  description: The Invitations API from Root (fka Slim.ai) — 3 operation(s) for invitations.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Invitations
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-invitations-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-notifications-api
+  name: Root (fka Slim.ai) Notifications API
+  description: The Notifications API from Root (fka Slim.ai) — 4 operation(s) for notifications.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-notifications-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-organizations-api
+  name: Root (fka Slim.ai) Organizations API
+  description: The Organizations API from Root (fka Slim.ai) — 1 operation(s) for organizations.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-organizations-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-osvfeed-api
+  name: Root (fka Slim.ai) OSVFeed API
+  description: The OSVFeed API from Root (fka Slim.ai) — 3 operation(s) for osvfeed.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - OSVFeed
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-osvfeed-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-package-api
+  name: Root (fka Slim.ai) Package API
+  description: The Package API from Root (fka Slim.ai) — 4 operation(s) for package.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Package
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-package-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-patches-api
+  name: Root (fka Slim.ai) Patches API
+  description: The Patches API from Root (fka Slim.ai) — 3 operation(s) for patches.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Patches
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-patches-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-patchfeed-api
+  name: Root (fka Slim.ai) PatchFeed API
+  description: The PatchFeed API from Root (fka Slim.ai) — 1 operation(s) for patchfeed.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - PatchFeed
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-patchfeed-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-remediation-api
+  name: Root (fka Slim.ai) Remediation API
+  description: The Remediation API from Root (fka Slim.ai) — 10 operation(s) for remediation.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Remediation
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-remediation-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-security-findings-api
+  name: Root (fka Slim.ai) Security Findings API
+  description: >-
+    The Security Findings API from Root (fka Slim.ai) — 4 operation(s) for security findings.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Security Findings
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-security-findings-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-subscriptions-api
+  name: Root (fka Slim.ai) Subscriptions API
+  description: The Subscriptions API from Root (fka Slim.ai) — 2 operation(s) for subscriptions.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-subscriptions-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-system-matrix-api
+  name: Root (fka Slim.ai) System Matrix API
+  description: The System Matrix API from Root (fka Slim.ai) — 2 operation(s) for system matrix.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - System Matrix
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-system-matrix-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
+- aid: root-fka-slimai:root-fka-slimai-webhooks-api
+  name: Root (fka Slim.ai) Webhooks API
+  description: The Webhooks API from Root (fka Slim.ai) — 3 operation(s) for webhooks.
+  humanURL: https://docs.root.io/reference/api
+  baseURL: https://api.root.io
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/root-fka-slimai-webhooks-api-openapi.yml
+  - type: APIReference
+    url: https://api.root.io/rapidoc/index.html
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/root-fka-slimai-agentic-access.yml
+- type: DomainSecurity
+  url: security/root-fka-slimai-domain-security.yml
+- type: Authentication
+  url: authentication/root-fka-slimai-authentication.yml
+- type: Packages
+  url: packages/root-fka-slimai-packages.yml
+- type: MCPServer
+  url: mcp/root-fka-slimai-mcp.yml
+- type: LLMsTxt
+  url: llms/root-fka-slimai-llms.txt
+- type: Conformance
+  url: conformance/root-fka-slimai-conformance.yml
+- type: Compliance
+  url: https://docs.root.io/compliance/certifications
+- type: ErrorCatalog
+  url: errors/root-fka-slimai-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/root-fka-slimai-lifecycle.yml
+- type: Conventions
+  url: conventions/root-fka-slimai-conventions.yml
+- type: RateLimits
+  url: conventions/root-fka-slimai-conventions.yml
+- type: ChangeLog
+  url: changelog/root-fka-slimai-changelog.yml
+- type: CLI
+  url: cli/root-fka-slimai-cli.yml
+- type: DataModel
+  url: data-model/root-fka-slimai-data-model.yml
+- type: Webhooks
+  url: asyncapi/root-fka-slimai-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: VulnerabilityDisclosure
+  url: security/root-fka-slimai-vulnerability-disclosure.yml
+- type: Security
+  url: https://docs.root.io/compliance/security-posture
+- type: TrustCenter
+  url: security/root-fka-slimai-trust-center.yml
+- type: Documentation
+  url: https://docs.root.io/
+- type: DeveloperPortal
+  url: https://app.root.io/
+- type: GettingStarted
+  url: https://docs.root.io/quickstart
+- type: Support
+  url: https://start-chat.com/slack/Root/ghdO0t
+- type: Blog
+  url: https://www.root.io/blog
+- type: GitHubOrganization
+  url: https://github.com/rootio-avr
+- type: SignUp
+  url: https://app.root.io/
+- type: TermsOfService
+  url: https://www.root.io/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.root.io/privacy-policy
 - type: Website
   url: https://www.root.io/

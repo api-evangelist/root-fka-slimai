@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/rootio-avr
+packages:
+- language: go
+  registry: github-releases
+  name: rootio_patcher
+  url: https://github.com/rootio-avr/rootio_patcher
+  install: Download prebuilt binary from GitHub releases (Linux/macOS/Windows) or `go build`
+  official: true
+  description: First-party CLI that scans installed packages and applies Root patches for pip/npm/maven
+    ecosystems in CI or locally.
+- language: java
+  registry: github
+  name: rootio_gradle_plugin
+  url: https://github.com/rootio-avr/rootio_gradle_plugin
+  install: Apply the Gradle plugin per repo instructions
+  official: true
+  description: First-party Gradle plugin for applying Root-patched dependencies in Java builds.
+notes: A first-party Python SDK is referenced as 'in development' in the API reference but is not yet
+  published to PyPI. No registry-published client SDK found; the REST API is consumed via any HTTP client.
