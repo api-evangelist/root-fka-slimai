@@ -298,6 +298,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/root-fka-slimai-openapi-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/root-fka-slimai-agentic-access.yml
 - type: DomainSecurity
