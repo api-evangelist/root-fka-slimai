@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts System Matrix API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System Matrix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve The Supported System Matrix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/external/globals/sys_matrix"
+          },
+          "docs": "Retrieve the supported operating systems, distro versions and ecosystems by root remediation process"
+        },
+        {
+          "info": {
+            "name": "Retrieve The Supported System Matrix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/sys_matrix"
+          },
+          "docs": "Retrieve the supported operating systems, distro versions and ecosystems by root remediation process"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,532 @@
+{
+  "item": [
+    {
+      "id": "4e033cd6-a70d-450e-a073-25fd0f76b742",
+      "name": "Subscriptions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fa63e039-4f6f-4f17-adea-863120cacd32",
+          "name": "List subscriptions",
+          "request": {
+            "name": "List subscriptions",
+            "description": {
+              "content": "Lists all subscriptions for the organization with pagination and preloaded tag/image data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for next page"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "Cursor for previous page"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Page size (default 100, max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag_id",
+                  "value": "<string>",
+                  "description": "Filter by root registry tag IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag_id",
+                  "value": "<string>",
+                  "description": "Filter by root registry tag IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e72cb59b-4084-4e1c-8d47-29c3ddeef469",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cursor\": {\n    \"after\": \"string\",\n    \"before\": \"string\",\n    \"limit\": 3208,\n    \"total_count\": 2012\n  },\n  \"data\": [\n    {\n      \"created_at\": \"string\",\n      \"id\": \"string\",\n      \"organization_id\": \"string\",\n      \"root_registry_tag_id\": \"string\",\n      \"tag\": {\n        \"access_tier\": \"free\",\n        \"arch\": \"mips64\",\n        \"artifacts_available\": false,\n        \"avr\": {\n          \"created_at\": \"string\",\n          \"dockerfile_digest\": \"string\",\n          \"dockerfile_key\": \"string\",\n          \"id\": \"string\",\n          \"post_remediation_scan\": {\n            \"arch\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ecosystem\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image_digest\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"os_distro_release\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sbom_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"vulnerability_counts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"pre_remediation_scan\": {\n            \"arch\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ecosystem\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image_digest\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"os_distro_release\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sbom_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"vulnerability_counts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"provenance_key\": \"string\",\n          \"remediation_details\": {\n            \"deleted_packages\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_truncated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"new_packages\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_patched_packages\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"upgraded_packages\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": \"building\",\n          \"target_image\": \"string\",\n          \"updated_at\": \"string\",\n          \"vex_key\": \"string\"\n        },\n        \"created_at\": \"string\",\n        \"id\": \"string\",\n        \"last_avr_id\": \"string\",\n        \"original_scan\": {\n          \"id\": \"string\",\n          \"scanned_at\": \"string\",\n          \"status\": \"completed\",\n          \"target_image\": \"string\",\n          \"vulnerability_counts\": {\n            \"app_level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"critical\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"high\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"low\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unknown\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"root_image_tag\": \"string\",\n        \"root_registry_image_repo\": \"string\",\n        \"updated_at\": \"string\"\n      },\n      \"updated_at\": \"string\"\n    },\n    {\n      \"created_at\": \"string\",\n      \"id\": \"string\",\n      \"organization_id\": \"string\",\n      \"root_registry_tag_id\": \"string\",\n      \"tag\": {\n        \"access_tier\": \"fips\",\n        \"arch\": \"aarch64\",\n        \"artifacts_available\": true,\n        \"avr\": {\n          \"created_at\": \"string\",\n          \"dockerfile_digest\": \"string\",\n          \"dockerfile_key\": \"string\",\n          \"id\": \"string\",\n          \"post_remediation_scan\": {\n            \"arch\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ecosystem\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image_digest\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"os_distro_release\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sbom_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"vulnerability_counts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"pre_remediation_scan\": {\n            \"arch\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ecosystem\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image_digest\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"os_distro_release\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sbom_key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"vulnerability_counts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"provenance_key\": \"string\",\n          \"remediation_details\": {\n            \"deleted_packages\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_truncated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"new_packages\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_patched_packages\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"upgraded_packages\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": \"rescanning\",\n          \"target_image\": \"string\",\n          \"updated_at\": \"string\",\n          \"vex_key\": \"string\"\n        },\n        \"created_at\": \"string\",\n        \"id\": \"string\",\n        \"last_avr_id\": \"string\",\n        \"original_scan\": {\n          \"id\": \"string\",\n          \"scanned_at\": \"string\",\n          \"status\": \"completed\",\n          \"target_image\": \"string\",\n          \"vulnerability_counts\": {\n            \"app_level\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"critical\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"high\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"low\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unknown\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"root_image_tag\": \"string\",\n        \"root_registry_image_repo\": \"string\",\n        \"updated_at\": \"string\"\n      },\n      \"updated_at\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c954d725-5828-431a-86dc-d487d7d55883",
+          "name": "Create subscriptions (bulk)",
+          "request": {
+            "name": "Create subscriptions (bulk)",
+            "description": {
+              "content": "Creates multiple subscriptions from a list of tag IDs. The infrastructure supports bulk operations out of the box.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"image_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tag_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "685b861b-05ff-4467-8531-2241f8e53acb",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"image_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tag_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"created_at\": \"string\",\n    \"id\": \"string\",\n    \"organization_id\": \"string\",\n    \"root_registry_tag_id\": \"string\",\n    \"tag\": {\n      \"access_tier\": \"fips\",\n      \"arch\": \"mips\",\n      \"artifacts_available\": false,\n      \"avr\": {\n        \"created_at\": \"string\",\n        \"dockerfile_digest\": \"string\",\n        \"dockerfile_key\": \"string\",\n        \"id\": \"string\",\n        \"post_remediation_scan\": {\n          \"arch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": \"string\",\n          \"ecosystem\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": \"string\",\n          \"image_digest\": \"string\",\n          \"os_distro_release\": \"string\",\n          \"sbom_key\": \"string\",\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"target_image\": \"string\",\n          \"updated_at\": \"string\",\n          \"vulnerability_counts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"pre_remediation_scan\": {\n          \"arch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": \"string\",\n          \"ecosystem\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": \"string\",\n          \"image_digest\": \"string\",\n          \"os_distro_release\": \"string\",\n          \"sbom_key\": \"string\",\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"target_image\": \"string\",\n          \"updated_at\": \"string\",\n          \"vulnerability_counts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"provenance_key\": \"string\",\n        \"remediation_details\": {\n          \"deleted_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"is_truncated\": true,\n          \"new_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"root_patched_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"upgraded_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_3\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"status\": \"rescanning\",\n        \"target_image\": \"string\",\n        \"updated_at\": \"string\",\n        \"vex_key\": \"string\"\n      },\n      \"created_at\": \"string\",\n      \"id\": \"string\",\n      \"last_avr_id\": \"string\",\n      \"original_scan\": {\n        \"id\": \"string\",\n        \"scanned_at\": \"string\",\n        \"status\": \"scanning\",\n        \"target_image\": \"string\",\n        \"vulnerability_counts\": {\n          \"app_level\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"critical\": 1404,\n          \"high\": 4703,\n          \"low\": 7615,\n          \"medium\": 4568,\n          \"unknown\": 588\n        }\n      },\n      \"root_image_tag\": \"string\",\n      \"root_registry_image_repo\": \"string\",\n      \"updated_at\": \"string\"\n    },\n    \"updated_at\": \"string\"\n  },\n  {\n    \"created_at\": \"string\",\n    \"id\": \"string\",\n    \"organization_id\": \"string\",\n    \"root_registry_tag_id\": \"string\",\n    \"tag\": {\n      \"access_tier\": \"free\",\n      \"arch\": \"arm\",\n      \"artifacts_available\": true,\n      \"avr\": {\n        \"created_at\": \"string\",\n        \"dockerfile_digest\": \"string\",\n        \"dockerfile_key\": \"string\",\n        \"id\": \"string\",\n        \"post_remediation_scan\": {\n          \"arch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": \"string\",\n          \"ecosystem\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": \"string\",\n          \"image_digest\": \"string\",\n          \"os_distro_release\": \"string\",\n          \"sbom_key\": \"string\",\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"target_image\": \"string\",\n          \"updated_at\": \"string\",\n          \"vulnerability_counts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"pre_remediation_scan\": {\n          \"arch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": \"string\",\n          \"ecosystem\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": \"string\",\n          \"image_digest\": \"string\",\n          \"os_distro_release\": \"string\",\n          \"sbom_key\": \"string\",\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"target_image\": \"string\",\n          \"updated_at\": \"string\",\n          \"vulnerability_counts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"provenance_key\": \"string\",\n        \"remediation_details\": {\n          \"deleted_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"is_truncated\": false,\n          \"new_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"root_patched_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"upgraded_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"status\": \"building\",\n        \"target_image\": \"string\",\n        \"updated_at\": \"string\",\n        \"vex_key\": \"string\"\n      },\n      \"created_at\": \"string\",\n      \"id\": \"string\",\n      \"last_avr_id\": \"string\",\n      \"original_scan\": {\n        \"id\": \"string\",\n        \"scanned_at\": \"string\",\n        \"status\": \"scanning\",\n        \"target_image\": \"string\",\n        \"vulnerability_counts\": {\n          \"app_level\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"critical\": 6495,\n          \"high\": 2720,\n          \"low\": 3544,\n          \"medium\": 3479,\n          \"unknown\": 9096\n        }\n      },\n      \"root_image_tag\": \"string\",\n      \"root_registry_image_repo\": \"string\",\n      \"updated_at\": \"string\"\n    },\n    \"updated_at\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e405951-5535-49be-903f-440cb8f67fa2",
+          "name": "Delete subscriptions (bulk)",
+          "request": {
+            "name": "Delete subscriptions (bulk)",
+            "description": {
+              "content": "Deletes multiple subscriptions by their IDs. The infrastructure supports bulk operations out of the box.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subscription_ids\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f7c20b6-d65d-417c-8adc-6505f7a353f6",
+              "name": "Deleted subscriptions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subscription_ids\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"created_at\": \"string\",\n    \"id\": \"string\",\n    \"organization_id\": \"string\",\n    \"root_registry_tag_id\": \"string\",\n    \"tag\": {\n      \"access_tier\": \"fips\",\n      \"arch\": \"mips\",\n      \"artifacts_available\": false,\n      \"avr\": {\n        \"created_at\": \"string\",\n        \"dockerfile_digest\": \"string\",\n        \"dockerfile_key\": \"string\",\n        \"id\": \"string\",\n        \"post_remediation_scan\": {\n          \"arch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": \"string\",\n          \"ecosystem\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": \"string\",\n          \"image_digest\": \"string\",\n          \"os_distro_release\": \"string\",\n          \"sbom_key\": \"string\",\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"target_image\": \"string\",\n          \"updated_at\": \"string\",\n          \"vulnerability_counts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"pre_remediation_scan\": {\n          \"arch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": \"string\",\n          \"ecosystem\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": \"string\",\n          \"image_digest\": \"string\",\n          \"os_distro_release\": \"string\",\n          \"sbom_key\": \"string\",\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"target_image\": \"string\",\n          \"updated_at\": \"string\",\n          \"vulnerability_counts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"provenance_key\": \"string\",\n        \"remediation_details\": {\n          \"deleted_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"is_truncated\": true,\n          \"new_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"root_patched_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"upgraded_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_3\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"status\": \"rescanning\",\n        \"target_image\": \"string\",\n        \"updated_at\": \"string\",\n        \"vex_key\": \"string\"\n      },\n      \"created_at\": \"string\",\n      \"id\": \"string\",\n      \"last_avr_id\": \"string\",\n      \"original_scan\": {\n        \"id\": \"string\",\n        \"scanned_at\": \"string\",\n        \"status\": \"scanning\",\n        \"target_image\": \"string\",\n        \"vulnerability_counts\": {\n          \"app_level\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"critical\": 1404,\n          \"high\": 4703,\n          \"low\": 7615,\n          \"medium\": 4568,\n          \"unknown\": 588\n        }\n      },\n      \"root_image_tag\": \"string\",\n      \"root_registry_image_repo\": \"string\",\n      \"updated_at\": \"string\"\n    },\n    \"updated_at\": \"string\"\n  },\n  {\n    \"created_at\": \"string\",\n    \"id\": \"string\",\n    \"organization_id\": \"string\",\n    \"root_registry_tag_id\": \"string\",\n    \"tag\": {\n      \"access_tier\": \"free\",\n      \"arch\": \"arm\",\n      \"artifacts_available\": true,\n      \"avr\": {\n        \"created_at\": \"string\",\n        \"dockerfile_digest\": \"string\",\n        \"dockerfile_key\": \"string\",\n        \"id\": \"string\",\n        \"post_remediation_scan\": {\n          \"arch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": \"string\",\n          \"ecosystem\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": \"string\",\n          \"image_digest\": \"string\",\n          \"os_distro_release\": \"string\",\n          \"sbom_key\": \"string\",\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"target_image\": \"string\",\n          \"updated_at\": \"string\",\n          \"vulnerability_counts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"pre_remediation_scan\": {\n          \"arch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": \"string\",\n          \"ecosystem\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": \"string\",\n          \"image_digest\": \"string\",\n          \"os_distro_release\": \"string\",\n          \"sbom_key\": \"string\",\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"target_image\": \"string\",\n          \"updated_at\": \"string\",\n          \"vulnerability_counts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"provenance_key\": \"string\",\n        \"remediation_details\": {\n          \"deleted_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"is_truncated\": false,\n          \"new_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"root_patched_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"upgraded_packages\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"status\": \"building\",\n        \"target_image\": \"string\",\n        \"updated_at\": \"string\",\n        \"vex_key\": \"string\"\n      },\n      \"created_at\": \"string\",\n      \"id\": \"string\",\n      \"last_avr_id\": \"string\",\n      \"original_scan\": {\n        \"id\": \"string\",\n        \"scanned_at\": \"string\",\n        \"status\": \"scanning\",\n        \"target_image\": \"string\",\n        \"vulnerability_counts\": {\n          \"app_level\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"critical\": 6495,\n          \"high\": 2720,\n          \"low\": 3544,\n          \"medium\": 3479,\n          \"unknown\": 9096\n        }\n      },\n      \"root_image_tag\": \"string\",\n      \"root_registry_image_repo\": \"string\",\n      \"updated_at\": \"string\"\n    },\n    \"updated_at\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1cecd8ff-c611-48f5-8af8-9e64e0494c02",
+          "name": "Get subscription",
+          "request": {
+            "name": "Get subscription",
+            "description": {
+              "content": "Gets a specific subscription by ID with preloaded tag and image data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "subscriptions",
+                ":subscriptionID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionID",
+                  "description": "(Required) Subscription ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7f7b9ca1-a939-4b52-8a0e-7c4083421281",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "subscriptions",
+                    ":subscriptionID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionID",
+                      "description": "(Required) Subscription ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"string\",\n  \"id\": \"string\",\n  \"organization_id\": \"string\",\n  \"root_registry_tag_id\": \"string\",\n  \"tag\": {\n    \"access_tier\": \"fips\",\n    \"arch\": \"x86\",\n    \"artifacts_available\": false,\n    \"avr\": {\n      \"created_at\": \"string\",\n      \"dockerfile_digest\": \"string\",\n      \"dockerfile_key\": \"string\",\n      \"id\": \"string\",\n      \"post_remediation_scan\": {\n        \"arch\": \"mips64\",\n        \"created_at\": \"string\",\n        \"ecosystem\": \"alpine\",\n        \"id\": \"string\",\n        \"image_digest\": \"string\",\n        \"os_distro_release\": \"string\",\n        \"sbom_key\": \"string\",\n        \"status\": \"completed\",\n        \"target_image\": \"string\",\n        \"updated_at\": \"string\",\n        \"vulnerability_counts\": {\n          \"app_level\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"critical\": 6607,\n          \"high\": 5753,\n          \"low\": 4009,\n          \"medium\": 4836,\n          \"unknown\": 6111\n        }\n      },\n      \"pre_remediation_scan\": {\n        \"arch\": \"aarch64\",\n        \"created_at\": \"string\",\n        \"ecosystem\": \"binary\",\n        \"id\": \"string\",\n        \"image_digest\": \"string\",\n        \"os_distro_release\": \"string\",\n        \"sbom_key\": \"string\",\n        \"status\": \"scanning\",\n        \"target_image\": \"string\",\n        \"updated_at\": \"string\",\n        \"vulnerability_counts\": {\n          \"app_level\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"critical\": 3375,\n          \"high\": 7324,\n          \"low\": 6594,\n          \"medium\": 5569,\n          \"unknown\": 1257\n        }\n      },\n      \"provenance_key\": \"string\",\n      \"remediation_details\": {\n        \"deleted_packages\": {\n          \"key_0\": \"string\"\n        },\n        \"is_truncated\": true,\n        \"new_packages\": {\n          \"key_0\": \"string\"\n        },\n        \"root_patched_packages\": {\n          \"key_0\": {\n            \"new_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"old_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"upgraded_packages\": {\n          \"key_0\": {\n            \"new_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"old_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"new_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"old_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"status\": \"building\",\n      \"target_image\": \"string\",\n      \"updated_at\": \"string\",\n      \"vex_key\": \"string\"\n    },\n    \"created_at\": \"string\",\n    \"id\": \"string\",\n    \"last_avr_id\": \"string\",\n    \"original_scan\": {\n      \"id\": \"string\",\n      \"scanned_at\": \"string\",\n      \"status\": \"completed\",\n      \"target_image\": \"string\",\n      \"vulnerability_counts\": {\n        \"app_level\": {\n          \"critical\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"high\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"low\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"medium\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unknown\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"critical\": 6771,\n        \"high\": 2224,\n        \"low\": 1066,\n        \"medium\": 1433,\n        \"unknown\": 3134\n      }\n    },\n    \"root_image_tag\": \"string\",\n    \"root_registry_image_repo\": \"string\",\n    \"updated_at\": \"string\"\n  },\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.root.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f4b40efb-23a8-443c-8107-72325528933c",
+    "name": "Root.io Accounts Subscriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the API documentation for Root.io.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,529 @@
+{
+  "item": [
+    {
+      "id": "63d51a92-9988-4004-bd32-258443bd8c2f",
+      "name": "Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0894af17-dcc2-4f03-8cab-28af36d0d203",
+          "name": "List accounts",
+          "request": {
+            "name": "List accounts",
+            "description": {
+              "content": "List accounts in an organization with cursor-based pagination",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "After cursor for next page"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "Before cursor for previous page"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Page size (max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "Filter by email"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>",
+                  "description": "Filter by role (admin, member, readonly)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "03b45798-33e6-45fe-86fd-ebf77a0cef07",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "role",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cursor\": {\n    \"after\": \"string\",\n    \"before\": \"string\",\n    \"limit\": 9444,\n    \"total_count\": 111\n  },\n  \"data\": [\n    {\n      \"created_at\": \"string\",\n      \"email\": \"string\",\n      \"external_id\": \"string\",\n      \"id\": \"string\",\n      \"impersonated_by\": {\n        \"value\": \"<Circular reference to #/components/schemas/AccountResponse detected>\"\n      },\n      \"impersonation_expiry\": \"string\",\n      \"impersonation_issuer_id\": \"string\",\n      \"is_super_admin\": true,\n      \"last_login_at\": \"string\",\n      \"name\": \"string\",\n      \"organization\": {\n        \"id\": \"string\",\n        \"kind\": \"private\",\n        \"name\": \"string\"\n      },\n      \"organization_id\": \"string\",\n      \"provider\": \"string\",\n      \"role\": \"readonly\",\n      \"updated_at\": \"string\"\n    },\n    {\n      \"created_at\": \"string\",\n      \"email\": \"string\",\n      \"external_id\": \"string\",\n      \"id\": \"string\",\n      \"impersonated_by\": {\n        \"value\": \"<Circular reference to #/components/schemas/AccountResponse detected>\"\n      },\n      \"impersonation_expiry\": \"string\",\n      \"impersonation_issuer_id\": \"string\",\n      \"is_super_admin\": false,\n      \"last_login_at\": \"string\",\n      \"name\": \"string\",\n      \"organization\": {\n        \"id\": \"string\",\n        \"kind\": \"public\",\n        \"name\": \"string\"\n      },\n      \"organization_id\": \"string\",\n      \"provider\": \"string\",\n      \"role\": \"readonly\",\n      \"updated_at\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26a4fc9f-67c4-41fb-b4de-7daaf18ad6df",
+          "name": "Delete account",
+          "request": {
+            "name": "Delete account",
+            "description": {
+              "content": "Delete an account from the organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "accounts",
+                ":account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "be12e400-65be-4e34-949e-e76bc6b3af07",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"string\",\n  \"email\": \"string\",\n  \"external_id\": \"string\",\n  \"id\": \"string\",\n  \"impersonated_by\": {\n    \"created_at\": \"string\",\n    \"email\": \"string\",\n    \"external_id\": \"string\",\n    \"id\": \"string\",\n    \"impersonated_by\": {\n      \"value\": \"<Circular reference to #/components/schemas/AccountResponse detected>\"\n    },\n    \"impersonation_expiry\": \"string\",\n    \"impersonation_issuer_id\": \"string\",\n    \"is_super_admin\": false,\n    \"last_login_at\": \"string\",\n    \"name\": \"string\",\n    \"organization\": {\n      \"id\": \"string\",\n      \"kind\": \"public\",\n      \"name\": \"string\"\n    },\n    \"organization_id\": \"string\",\n    \"provider\": \"string\",\n    \"role\": \"admin\",\n    \"updated_at\": \"string\"\n  },\n  \"impersonation_expiry\": \"string\",\n  \"impersonation_issuer_id\": \"string\",\n  \"is_super_admin\": false,\n  \"last_login_at\": \"string\",\n  \"name\": \"string\",\n  \"organization\": {\n    \"id\": \"string\",\n    \"kind\": \"private\",\n    \"name\": \"string\"\n  },\n  \"organization_id\": \"string\",\n  \"provider\": \"string\",\n  \"role\": \"member\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e7ac0b5-64a7-48c2-b73d-e91810089fbb",
+          "name": "Update account",
+          "request": {
+            "name": "Update account",
+            "description": {
+              "content": "Update account role (org-scoped)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "accounts",
+                ":account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) Account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bf62b4cd-ec01-43dc-83ee-738f8ff1f3d1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"string\",\n  \"email\": \"string\",\n  \"external_id\": \"string\",\n  \"id\": \"string\",\n  \"impersonated_by\": {\n    \"created_at\": \"string\",\n    \"email\": \"string\",\n    \"external_id\": \"string\",\n    \"id\": \"string\",\n    \"impersonated_by\": {\n      \"value\": \"<Circular reference to #/components/schemas/AccountResponse detected>\"\n    },\n    \"impersonation_expiry\": \"string\",\n    \"impersonation_issuer_id\": \"string\",\n    \"is_super_admin\": false,\n    \"last_login_at\": \"string\",\n    \"name\": \"string\",\n    \"organization\": {\n      \"id\": \"string\",\n      \"kind\": \"private\",\n      \"name\": \"string\"\n    },\n    \"organization_id\": \"string\",\n    \"provider\": \"string\",\n    \"role\": \"<string>\",\n    \"updated_at\": \"string\"\n  },\n  \"impersonation_expiry\": \"string\",\n  \"impersonation_issuer_id\": \"string\",\n  \"is_super_admin\": true,\n  \"last_login_at\": \"string\",\n  \"name\": \"string\",\n  \"organization\": {\n    \"id\": \"string\",\n    \"kind\": \"private\",\n    \"name\": \"string\"\n  },\n  \"organization_id\": \"string\",\n  \"provider\": \"string\",\n  \"role\": \"<string>\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82fb3ae2-422c-461e-92c3-6bc4d5b8a6ff",
+          "name": "Get current user's account",
+          "request": {
+            "name": "Get current user's account",
+            "description": {
+              "content": "Returns the authenticated user's account with organization details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1b792118-ea10-4301-a255-b5e9e2692bd5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"string\",\n  \"email\": \"string\",\n  \"external_id\": \"string\",\n  \"id\": \"string\",\n  \"impersonated_by\": {\n    \"created_at\": \"string\",\n    \"email\": \"string\",\n    \"external_id\": \"string\",\n    \"id\": \"string\",\n    \"impersonated_by\": {\n      \"value\": \"<Circular reference to #/components/schemas/AccountResponse detected>\"\n    },\n    \"impersonation_expiry\": \"string\",\n    \"impersonation_issuer_id\": \"string\",\n    \"is_super_admin\": false,\n    \"last_login_at\": \"string\",\n    \"name\": \"string\",\n    \"organization\": {\n      \"id\": \"string\",\n      \"kind\": \"private\",\n      \"name\": \"string\"\n    },\n    \"organization_id\": \"string\",\n    \"provider\": \"string\",\n    \"role\": \"<string>\",\n    \"updated_at\": \"string\"\n  },\n  \"impersonation_expiry\": \"string\",\n  \"impersonation_issuer_id\": \"string\",\n  \"is_super_admin\": true,\n  \"last_login_at\": \"string\",\n  \"name\": \"string\",\n  \"organization\": {\n    \"id\": \"string\",\n    \"kind\": \"private\",\n    \"name\": \"string\"\n  },\n  \"organization_id\": \"string\",\n  \"provider\": \"string\",\n  \"role\": \"<string>\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.root.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6184188c-6da4-48c8-a3f5-3b0f91d25cb9",
+    "name": "Root.io Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the API documentation for Root.io.",
+      "type": "text/plain"
+    }
+  }
+}

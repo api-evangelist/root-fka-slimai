@@ -1,0 +1,1762 @@
+{
+  "item": [
+    {
+      "id": "e0a30954-d391-4a6b-9ab9-f3b5ccdc8846",
+      "name": "Remediation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1a5181d-8bcf-43e1-900a-5781f822c023",
+          "name": "Get APK package remediation recommendations",
+          "request": {
+            "name": "Get APK package remediation recommendations",
+            "description": {
+              "content": "Accepts a list of installed APK/Alpine packages with explicit ecosystem and distro version, returns Root.io patched versions with aliased names and official repo upgrades",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "analyze",
+                "apk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ecosystem\": \"<string>\",\n  \"os_distro_version\": \"<string>\",\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ac73aa2-340c-4e1f-b5f1-96e65fa8ad6b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "apk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patches\": [\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    },\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    }\n  ],\n  \"skipped\": [\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"upgradeable\": [\n    {\n      \"current_version\": \"string\",\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"package_name\": \"string\",\n      \"upgrade_version\": \"string\"\n    },\n    {\n      \"current_version\": \"string\",\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"package_name\": \"string\",\n      \"upgrade_version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5945c2c-607d-4a25-b434-9c233219d1aa",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "apk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d975d9a8-35d6-421a-a106-78ff78d23a4f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "apk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5c51424-cf5c-47a3-8745-bc594a53b875",
+          "name": "Get APT package remediation recommendations",
+          "request": {
+            "name": "Get APT package remediation recommendations",
+            "description": {
+              "content": "Accepts a list of installed APT/Debian/Ubuntu packages with explicit ecosystem and distro version, returns Root.io patched versions with aliased names and official repo upgrades",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "analyze",
+                "apt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ecosystem\": \"<string>\",\n  \"os_distro_version\": \"<string>\",\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6279181c-948d-4576-b03a-59f467be4ed8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "apt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patches\": [\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    },\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    }\n  ],\n  \"skipped\": [\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"upgradeable\": [\n    {\n      \"current_version\": \"string\",\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"package_name\": \"string\",\n      \"upgrade_version\": \"string\"\n    },\n    {\n      \"current_version\": \"string\",\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"package_name\": \"string\",\n      \"upgrade_version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b894610-9ce9-4d87-bc8d-f2aecc72906e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "apt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03e01de1-4ffe-4136-a61c-f4564ff58b13",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "apt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb886407-fff0-43a7-84f2-312157afcdbe",
+          "name": "Get Composer package remediation recommendations",
+          "request": {
+            "name": "Get Composer package remediation recommendations",
+            "description": {
+              "content": "Accepts a list of installed Composer packages and returns Root.io patched versions with aliased names",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "analyze",
+                "composer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "65baa05c-e281-4b28-8851-6413d0b65c57",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "composer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patches\": [\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    },\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    }\n  ],\n  \"skipped\": [\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e021909-355c-4c74-913c-cc7cbdfa1cb9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "composer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce9750f2-86ea-4704-983c-bbd88d38367a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "composer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "210ce3c7-a133-4f70-9bf2-6cc7ce324a51",
+          "name": "Get Go module remediation recommendations",
+          "request": {
+            "name": "Get Go module remediation recommendations",
+            "description": {
+              "content": "Accepts a list of installed Go modules and returns Root.io patched versions with aliased module paths",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "analyze",
+                "golang"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "390e3bf3-2e9f-4bbb-abce-a1a3f5d61147",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "golang"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patches\": [\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    },\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    }\n  ],\n  \"skipped\": [\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b55f199-b001-4170-ae05-aa6354e6cb0f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "golang"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1349c425-c9ba-44a8-a705-52362701f2b5",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "golang"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3de5195-10ff-489e-97fe-629f08848b18",
+          "name": "Get Maven package remediation recommendations",
+          "request": {
+            "name": "Get Maven package remediation recommendations",
+            "description": {
+              "content": "Accepts a list of installed Maven packages and returns Root.io patched versions with aliased names",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "analyze",
+                "maven"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "601b040b-2ae0-45c6-b28b-8ad75edcac0b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "maven"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patches\": [\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    },\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    }\n  ],\n  \"skipped\": [\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "695aaaa8-e28a-4e5b-8ee2-02dc84e8c3e4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "maven"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59bd3017-dd96-4a10-a5eb-4a879991922a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "maven"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c577cb42-3e6e-42d7-8b31-41197e904421",
+          "name": "Get NPM package remediation recommendations",
+          "request": {
+            "name": "Get NPM package remediation recommendations",
+            "description": {
+              "content": "Accepts a list of installed NPM packages and returns Root.io patched versions with aliased names",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "analyze",
+                "npm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d1f77ecf-7cb7-4b5c-9bcf-65ab23084f5c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "npm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patches\": [\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    },\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    }\n  ],\n  \"skipped\": [\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "582c78c4-bce0-45ac-bca0-eeb111050e7a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "npm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "203dc358-fd52-4e25-a59b-4a750b936aac",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "npm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8409675-f5da-404d-8b81-b8715f2e62b4",
+          "name": "Get NuGet package remediation recommendations",
+          "request": {
+            "name": "Get NuGet package remediation recommendations",
+            "description": {
+              "content": "Accepts a list of installed NuGet packages and returns Root.io patched versions with aliased names",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "analyze",
+                "nuget"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "31c63fa2-4eb4-4f03-a739-9aaf2a545b23",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "nuget"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patches\": [\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    },\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    }\n  ],\n  \"skipped\": [\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2177db1b-59d0-46a1-94b8-d9e258183fa5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "nuget"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c7e1b5c-4ead-4576-9158-c8d47ce2bbec",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "nuget"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79ab397b-e5f6-49c1-b0d1-68b4a49586cf",
+          "name": "Get PyPI package remediation recommendations",
+          "request": {
+            "name": "Get PyPI package remediation recommendations",
+            "description": {
+              "content": "Accepts a list of installed packages and returns Root.io patched versions with aliased names",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "analyze",
+                "pypi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3b717142-d390-41e8-af9c-59ccced06d9f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "pypi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patches\": [\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    },\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    }\n  ],\n  \"skipped\": [\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3abff091-5e2f-4177-b50b-2b08fbbc720c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "pypi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ca94f04-86aa-454a-9ba9-ca5bcdeb92c2",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "pypi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b81d74b8-d8a1-48e7-a05f-b2e6d04e3b34",
+          "name": "Get YUM/DNF package remediation recommendations",
+          "request": {
+            "name": "Get YUM/DNF package remediation recommendations",
+            "description": {
+              "content": "Accepts a list of installed YUM/DNF packages (Amazon Linux, RHEL, Rocky, Fedora) with explicit ecosystem and distro version, returns Root.io patched versions with aliased names and official repo upgrades",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "analyze",
+                "yum"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ecosystem\": \"<string>\",\n  \"os_distro_version\": \"<string>\",\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "caacd766-f409-4275-82a2-875a1b1b46c7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "yum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patches\": [\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    },\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    }\n  ],\n  \"skipped\": [\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"upgradeable\": [\n    {\n      \"current_version\": \"string\",\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"package_name\": \"string\",\n      \"upgrade_version\": \"string\"\n    },\n    {\n      \"current_version\": \"string\",\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"package_name\": \"string\",\n      \"upgrade_version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a09af74c-b787-4b46-8d13-6ac22f3e0d0b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "yum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f1401a6-fa23-44ef-b686-66f2a50d43b5",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "analyze",
+                    "yum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de8e9969-16ae-4d7a-a516-75502008fff4",
+          "name": "Get PyPI package remediation recommendations",
+          "request": {
+            "name": "Get PyPI package remediation recommendations",
+            "description": {
+              "content": "Accepts a list of installed packages and returns Root.io patched versions with aliased names",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "remediate",
+                "pypi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"packages\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ],\n  \"ignore\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ba8fedf5-347b-42b7-a0ad-a4c3397e2c3c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "remediate",
+                    "pypi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patches\": [\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    },\n    {\n      \"cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"embedded_via\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"package_name\": \"string\",\n      \"patch\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"patch_alias\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"version\": \"string\"\n    }\n  ],\n  \"skipped\": [\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"package_name\": \"string\",\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e5d4444-6ae6-41d2-a557-dcfb274c5921",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "remediate",
+                    "pypi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2badfe2c-490e-4b18-ab1d-1dd6f9f1ee0c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "remediate",
+                    "pypi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.root.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d3127c5b-5592-4403-adda-29281745dd5b",
+    "name": "Root.io Accounts Remediation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the API documentation for Root.io.",
+      "type": "text/plain"
+    }
+  }
+}

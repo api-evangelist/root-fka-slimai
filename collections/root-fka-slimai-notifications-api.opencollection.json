@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts Notifications API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/notifications",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for next page"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for previous page"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size (default 100, max 1000)"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Ordering (e.g., 'created_at:desc')"
+              },
+              {
+                "name": "seen",
+                "value": "",
+                "type": "query",
+                "description": "Filter by seen state"
+              }
+            ]
+          },
+          "docs": "List the caller-org's notifications, cursor-paged, default sort created_at:desc."
+        },
+        {
+          "info": {
+            "name": "Mark all notifications as seen",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/notifications/read_all"
+          },
+          "docs": "Flip every unseen notification in the caller's org to seen=true. Idempotent."
+        },
+        {
+          "info": {
+            "name": "Count unread notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/notifications/unread-count"
+          },
+          "docs": "Returns the number of unseen notifications for the caller's org."
+        },
+        {
+          "info": {
+            "name": "Patch a notification (mark seen/unseen)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v3/notifications/:notificationID",
+            "params": [
+              {
+                "name": "notificationID",
+                "value": "",
+                "type": "path",
+                "description": "Notification ID"
+              }
+            ]
+          },
+          "docs": "Update the `seen` state of a notification. Only `seen` is mutable."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

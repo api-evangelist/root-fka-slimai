@@ -1,0 +1,191 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts AVR API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AVR",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List AVRs with pagination and filtering",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/avrs",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor for next page"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Before cursor for previous page"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size (max 1000)"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Ordering (e.g., 'created_at:desc')"
+              },
+              {
+                "name": "arch",
+                "value": "",
+                "type": "query",
+                "description": "Filter by architectures"
+              },
+              {
+                "name": "ecosystem",
+                "value": "",
+                "type": "query",
+                "description": "Filter by ecosystems"
+              },
+              {
+                "name": "os_distro_major",
+                "value": "",
+                "type": "query",
+                "description": "Filter by OS distro major versions"
+              },
+              {
+                "name": "target_image",
+                "value": "",
+                "type": "query",
+                "description": "Fuzzy filter on target image"
+              },
+              {
+                "name": "unique",
+                "value": "",
+                "type": "query",
+                "description": "Return unique combinations by (target_image, ecosystem, os_distro_major, arch)"
+              }
+            ]
+          },
+          "docs": "Retrieves AVRs with cursor-based pagination and comprehensive filtering"
+        },
+        {
+          "info": {
+            "name": "Create an AVR",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/avrs"
+          },
+          "docs": "Creates a new AVR and triggers the remediation workflow"
+        },
+        {
+          "info": {
+            "name": "Get an AVR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/avrs/:avr_id",
+            "params": [
+              {
+                "name": "avr_id",
+                "value": "",
+                "type": "path",
+                "description": "AVR ID"
+              }
+            ]
+          },
+          "docs": "Retrieves the AVR of the organization with the given avr_id."
+        },
+        {
+          "info": {
+            "name": "Get dockerfile for an AVR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/avrs/:avr_id/artifacts/dockerfile",
+            "params": [
+              {
+                "name": "avr_id",
+                "value": "",
+                "type": "path",
+                "description": "AVR ID"
+              }
+            ]
+          },
+          "docs": "Retrieves a presigned URL for the Dockerfile used in remediation"
+        },
+        {
+          "info": {
+            "name": "Get provenance file for an AVR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/avrs/:avr_id/artifacts/provenance",
+            "params": [
+              {
+                "name": "avr_id",
+                "value": "",
+                "type": "path",
+                "description": "AVR ID"
+              }
+            ]
+          },
+          "docs": "Retrieves a presigned URL for the SLSA provenance file"
+        },
+        {
+          "info": {
+            "name": "Get SBOM file for an AVR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/avrs/:avr_id/artifacts/sbom",
+            "params": [
+              {
+                "name": "avr_id",
+                "value": "",
+                "type": "path",
+                "description": "AVR ID"
+              }
+            ]
+          },
+          "docs": "Retrieves a presigned URL for the SBOM file from the post-remediation scan"
+        },
+        {
+          "info": {
+            "name": "Get VEX file for an AVR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/avrs/:avr_id/artifacts/vex",
+            "params": [
+              {
+                "name": "avr_id",
+                "value": "",
+                "type": "path",
+                "description": "AVR ID"
+              }
+            ]
+          },
+          "docs": "Retrieves a presigned URL for the VEX (Vulnerability Exploitability eXchange) file"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

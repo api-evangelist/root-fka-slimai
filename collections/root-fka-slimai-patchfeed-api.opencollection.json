@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts PatchFeed API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PatchFeed",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get patch feed data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/external/patch_feed",
+            "params": [
+              {
+                "name": "ecosystem",
+                "value": "",
+                "type": "query",
+                "description": "Ecosystem (e.g., alpine, debian, ubuntu)"
+              },
+              {
+                "name": "os_distro_major",
+                "value": "",
+                "type": "query",
+                "description": "OS distribution major version (e.g., 3.15, 12, 22.04)"
+              },
+              {
+                "name": "package_src_name",
+                "value": "",
+                "type": "query",
+                "description": "Package Source Name"
+              }
+            ]
+          },
+          "docs": "Retrieves CVE tickets with status \"done\" for public patch feed consumption. No authentication required."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

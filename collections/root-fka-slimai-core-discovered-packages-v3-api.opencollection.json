@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts Core - Discovered Packages V3 API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Core - Discovered Packages V3",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List discovered packages from artifact repositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/discovered-packages",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor for pagination"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Before cursor for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size (default 100, max 1000)"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order by (e.g., 'created_at:desc')"
+              },
+              {
+                "name": "ecosystem",
+                "value": "",
+                "type": "query",
+                "description": "Filter by ecosystem"
+              },
+              {
+                "name": "package_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package name (source name)"
+              }
+            ]
+          },
+          "docs": "Retrieves discovered packages with vulnerability tracking and Root.io upgrade availability"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

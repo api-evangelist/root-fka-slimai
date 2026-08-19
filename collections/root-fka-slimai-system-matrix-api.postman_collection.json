@@ -1,0 +1,178 @@
+{
+  "item": [
+    {
+      "id": "baf2b50c-be8d-4dc9-a867-8eb58fe6865b",
+      "name": "System Matrix",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3f1050e-b68f-4e2a-9c5f-0ebb12595e8e",
+          "name": "Retrieve The Supported System Matrix",
+          "request": {
+            "name": "Retrieve The Supported System Matrix",
+            "description": {
+              "content": "Retrieve the supported operating systems, distro versions and ecosystems by root remediation process",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external",
+                "globals",
+                "sys_matrix"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17b425c4-aeda-43ce-8280-2557b3729d75",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external",
+                    "globals",
+                    "sys_matrix"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ecosystems\": {\n    \"key_0\": [\n      {\n        \"dev_code_name\": \"string\",\n        \"major_version\": \"string\",\n        \"support_scope\": \"string\"\n      },\n      {\n        \"dev_code_name\": \"string\",\n        \"major_version\": \"string\",\n        \"support_scope\": \"string\"\n      }\n    ]\n  },\n  \"package_ecosystems\": [\n    \"string\",\n    \"string\"\n  ],\n  \"platforms\": [\n    {\n      \"architecture\": \"string\",\n      \"os\": \"string\"\n    },\n    {\n      \"architecture\": \"string\",\n      \"os\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38f7be7c-6aa3-445b-9b54-0b597eaa73af",
+          "name": "Retrieve The Supported System Matrix",
+          "request": {
+            "name": "Retrieve The Supported System Matrix",
+            "description": {
+              "content": "Retrieve the supported operating systems, distro versions and ecosystems by root remediation process",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "sys_matrix"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01fbb745-7a64-4d49-ad25-de35bdf1bef5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "sys_matrix"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ecosystems\": {\n    \"key_0\": [\n      {\n        \"dev_code_name\": \"string\",\n        \"major_version\": \"string\",\n        \"support_scope\": \"string\"\n      },\n      {\n        \"dev_code_name\": \"string\",\n        \"major_version\": \"string\",\n        \"support_scope\": \"string\"\n      }\n    ]\n  },\n  \"package_ecosystems\": [\n    \"string\",\n    \"string\"\n  ],\n  \"platforms\": [\n    {\n      \"architecture\": \"string\",\n      \"os\": \"string\"\n    },\n    {\n      \"architecture\": \"string\",\n      \"os\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.root.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1aa0648f-94f0-4641-b8de-053f7283e130",
+    "name": "Root.io Accounts System Matrix API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the API documentation for Root.io.",
+      "type": "text/plain"
+    }
+  }
+}

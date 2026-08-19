@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts OSVFeed API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OSVFeed",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get OSV feed index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/external/osv/all.json"
+          },
+          "docs": "Returns a lightweight index of all vulnerabilities with only id and modified timestamp. Industry standard format for OSV feeds. Clients should use this to check for updates and fetch individual records as needed."
+        },
+        {
+          "info": {
+            "name": "Get OSV feed index metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "{{baseUrl}}/external/osv/all.json"
+          },
+          "docs": "Returns HTTP headers with metadata (Last-Modified, ETag, Content-Length) about the index file without downloading the content. Useful for checking if the index has been updated."
+        },
+        {
+          "info": {
+            "name": "Get all OSV records as zip archive",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/external/osv/all.zip"
+          },
+          "docs": "Returns a zip archive containing every individual OSV advisory as a flat {id}.json file. Mirrors the format used by osv.dev bulk downloads."
+        },
+        {
+          "info": {
+            "name": "Get individual OSV record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/external/osv/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "OSV ID (e.g., ROOT-OS-ALPINE-318-CVE-2023-1234)"
+              }
+            ]
+          },
+          "docs": "Returns the full vulnerability record for a specific OSV ID"
+        },
+        {
+          "info": {
+            "name": "Get individual OSV record metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "{{baseUrl}}/external/osv/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "OSV ID (e.g., ROOT-OS-ALPINE-318-CVE-2023-1234)"
+              }
+            ]
+          },
+          "docs": "Returns HTTP headers with metadata (Last-Modified, ETag, Content-Length) about a specific OSV record without downloading the content. Useful for checking if a record has been updated."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

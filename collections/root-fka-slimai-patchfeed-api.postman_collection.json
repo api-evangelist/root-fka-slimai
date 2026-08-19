@@ -1,0 +1,136 @@
+{
+  "item": [
+    {
+      "id": "1d84b4a6-b55b-411e-aa80-13c259f084ea",
+      "name": "PatchFeed",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ac682cc-cc55-4ff5-a5fc-2f8151c78754",
+          "name": "Get patch feed data",
+          "request": {
+            "name": "Get patch feed data",
+            "description": {
+              "content": "Retrieves CVE tickets with status \"done\" for public patch feed consumption. No authentication required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external",
+                "patch_feed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ecosystem",
+                  "value": "<string>",
+                  "description": "Ecosystem (e.g., alpine, debian, ubuntu)"
+                },
+                {
+                  "disabled": false,
+                  "key": "os_distro_major",
+                  "value": "<string>",
+                  "description": "OS distribution major version (e.g., 3.15, 12, 22.04)"
+                },
+                {
+                  "disabled": false,
+                  "key": "package_src_name",
+                  "value": "<string>",
+                  "description": "Package Source Name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c155dbff-155c-41a9-8c2d-b11343314b71",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external",
+                    "patch_feed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ecosystem",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "os_distro_major",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "package_src_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": [\n    {\n      \"archs\": [\n        \"string\",\n        \"string\"\n      ],\n      \"distroversion\": \"string\",\n      \"packages\": [\n        {\n          \"pkg\": {\n            \"name\": \"string\",\n            \"secfixes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"pkg\": {\n            \"name\": \"string\",\n            \"secfixes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    {\n      \"archs\": [\n        \"string\",\n        \"string\"\n      ],\n      \"distroversion\": \"string\",\n      \"packages\": [\n        {\n          \"pkg\": {\n            \"name\": \"string\",\n            \"secfixes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"pkg\": {\n            \"name\": \"string\",\n            \"secfixes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"key_1\": [\n    {\n      \"archs\": [\n        \"string\",\n        \"string\"\n      ],\n      \"distroversion\": \"string\",\n      \"packages\": [\n        {\n          \"pkg\": {\n            \"name\": \"string\",\n            \"secfixes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"pkg\": {\n            \"name\": \"string\",\n            \"secfixes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    {\n      \"archs\": [\n        \"string\",\n        \"string\"\n      ],\n      \"distroversion\": \"string\",\n      \"packages\": [\n        {\n          \"pkg\": {\n            \"name\": \"string\",\n            \"secfixes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"pkg\": {\n            \"name\": \"string\",\n            \"secfixes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.root.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "27743aaa-a26b-43ce-8a98-4b77f7b190e6",
+    "name": "Root.io Accounts PatchFeed API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the API documentation for Root.io.",
+      "type": "text/plain"
+    }
+  }
+}

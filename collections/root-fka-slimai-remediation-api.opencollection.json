@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts Remediation API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Remediation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get APK package remediation recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/analyze/apk"
+          },
+          "docs": "Accepts a list of installed APK/Alpine packages with explicit ecosystem and distro version, returns Root.io patched versions with aliased names and official repo upgrades"
+        },
+        {
+          "info": {
+            "name": "Get APT package remediation recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/analyze/apt"
+          },
+          "docs": "Accepts a list of installed APT/Debian/Ubuntu packages with explicit ecosystem and distro version, returns Root.io patched versions with aliased names and official repo upgrades"
+        },
+        {
+          "info": {
+            "name": "Get Composer package remediation recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/analyze/composer"
+          },
+          "docs": "Accepts a list of installed Composer packages and returns Root.io patched versions with aliased names"
+        },
+        {
+          "info": {
+            "name": "Get Go module remediation recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/analyze/golang"
+          },
+          "docs": "Accepts a list of installed Go modules and returns Root.io patched versions with aliased module paths"
+        },
+        {
+          "info": {
+            "name": "Get Maven package remediation recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/analyze/maven"
+          },
+          "docs": "Accepts a list of installed Maven packages and returns Root.io patched versions with aliased names"
+        },
+        {
+          "info": {
+            "name": "Get NPM package remediation recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/analyze/npm"
+          },
+          "docs": "Accepts a list of installed NPM packages and returns Root.io patched versions with aliased names"
+        },
+        {
+          "info": {
+            "name": "Get NuGet package remediation recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/analyze/nuget"
+          },
+          "docs": "Accepts a list of installed NuGet packages and returns Root.io patched versions with aliased names"
+        },
+        {
+          "info": {
+            "name": "Get PyPI package remediation recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/analyze/pypi"
+          },
+          "docs": "Accepts a list of installed packages and returns Root.io patched versions with aliased names"
+        },
+        {
+          "info": {
+            "name": "Get YUM/DNF package remediation recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/analyze/yum"
+          },
+          "docs": "Accepts a list of installed YUM/DNF packages (Amazon Linux, RHEL, Rocky, Fedora) with explicit ecosystem and distro version, returns Root.io patched versions with aliased names and official repo upgrades"
+        },
+        {
+          "info": {
+            "name": "Get PyPI package remediation recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/remediate/pypi"
+          },
+          "docs": "Accepts a list of installed packages and returns Root.io patched versions with aliased names"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,388 @@
+{
+  "item": [
+    {
+      "id": "01c1eed7-178a-422e-9793-59a0aceae472",
+      "name": "OSVFeed",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a8db9398-fba8-417b-bd4b-f2fba082657b",
+          "name": "Get OSV feed index",
+          "request": {
+            "name": "Get OSV feed index",
+            "description": {
+              "content": "Returns a lightweight index of all vulnerabilities with only id and modified timestamp. Industry standard format for OSV feeds. Clients should use this to check for updates and fetch individual records as needed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external",
+                "osv",
+                "all.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07ea49c4-99f5-4e22-8757-6e3be4878f6f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external",
+                    "osv",
+                    "all.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"modified\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"modified\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a8058a0-8390-49a1-a2bc-f7ae9ff33353",
+          "name": "Get OSV feed index metadata",
+          "request": {
+            "name": "Get OSV feed index metadata",
+            "description": {
+              "content": "Returns HTTP headers with metadata (Last-Modified, ETag, Content-Length) about the index file without downloading the content. Useful for checking if the index has been updated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external",
+                "osv",
+                "all.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "HEAD",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce4539ce-2a0f-4331-ad0a-0d49c84f9f08",
+              "name": "Headers: Last-Modified, ETag, Content-Length, Content-Type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external",
+                    "osv",
+                    "all.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93294158-1aa8-49be-b456-e93afb488015",
+          "name": "Get all OSV records as zip archive",
+          "request": {
+            "name": "Get all OSV records as zip archive",
+            "description": {
+              "content": "Returns a zip archive containing every individual OSV advisory as a flat {id}.json file. Mirrors the format used by osv.dev bulk downloads.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external",
+                "osv",
+                "all.zip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/zip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4440a33d-9e2b-4c0a-bb81-5850c350e180",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external",
+                    "osv",
+                    "all.zip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/zip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/zip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc286433-2731-47e8-8324-2fd5beacf3a1",
+          "name": "Get individual OSV record",
+          "request": {
+            "name": "Get individual OSV record",
+            "description": {
+              "content": "Returns the full vulnerability record for a specific OSV ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external",
+                "osv",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "043cb98d-ff85-4863-b505-a3c8b39f6de3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external",
+                    "osv",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"affected\": [\n    {\n      \"package\": {\n        \"ecosystem\": \"Alpine:3.18\",\n        \"name\": \"root-openssl\",\n        \"purl\": \"pkg:apk/alpine/root-openssl@3.0.8-r10071?arch=source&distro=alpine-3.18\"\n      },\n      \"ranges\": [\n        {\n          \"events\": [\n            {\n              \"fixed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"introduced\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"fixed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"introduced\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"type\": \"ECOSYSTEM\"\n        },\n        {\n          \"events\": [\n            {\n              \"fixed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"introduced\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"fixed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"introduced\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"type\": \"ECOSYSTEM\"\n        }\n      ]\n    },\n    {\n      \"package\": {\n        \"ecosystem\": \"Alpine:3.18\",\n        \"name\": \"root-openssl\",\n        \"purl\": \"pkg:apk/alpine/root-openssl@3.0.8-r10071?arch=source&distro=alpine-3.18\"\n      },\n      \"ranges\": [\n        {\n          \"events\": [\n            {\n              \"fixed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"introduced\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"fixed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"introduced\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"type\": \"ECOSYSTEM\"\n        },\n        {\n          \"events\": [\n            {\n              \"fixed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"introduced\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"fixed\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"introduced\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"type\": \"ECOSYSTEM\"\n        }\n      ]\n    }\n  ],\n  \"aliases\": [\n    \"CVE-2023-1234\"\n  ],\n  \"details\": \"string\",\n  \"id\": \"ROOT-OS-ALPINE-318-CVE-2023-1234\",\n  \"modified\": \"2024-11-24T00:00:00Z\",\n  \"published\": \"2024-01-15T00:00:00Z\",\n  \"references\": [\n    {\n      \"type\": \"WEB\",\n      \"url\": \"https://root.io/security/ROOT-OS-ALPINE-318-CVE-2023-1234\"\n    },\n    {\n      \"type\": \"WEB\",\n      \"url\": \"https://root.io/security/ROOT-OS-ALPINE-318-CVE-2023-1234\"\n    }\n  ],\n  \"schema_version\": \"1.6.0\",\n  \"summary\": \"CVE-2023-1234 in root-openssl - Patched by Root\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56af672e-c3c4-4704-8c7a-53050d8da911",
+          "name": "Get individual OSV record metadata",
+          "request": {
+            "name": "Get individual OSV record metadata",
+            "description": {
+              "content": "Returns HTTP headers with metadata (Last-Modified, ETag, Content-Length) about a specific OSV record without downloading the content. Useful for checking if a record has been updated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external",
+                "osv",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "HEAD",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a10ea6c-8991-4923-b23a-0ba344cb5e6f",
+              "name": "Headers: Last-Modified, ETag, Content-Length, Content-Type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external",
+                    "osv",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.root.io",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) OSV ID (e.g., ROOT-OS-ALPINE-318-CVE-2023-1234)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "id"
+    }
+  ],
+  "info": {
+    "_postman_id": "3c1b776a-3a8c-45c4-8577-a5db22bddcbf",
+    "name": "Root.io Accounts OSVFeed API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the API documentation for Root.io.",
+      "type": "text/plain"
+    }
+  }
+}

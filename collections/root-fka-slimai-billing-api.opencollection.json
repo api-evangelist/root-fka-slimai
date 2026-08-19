@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts Billing API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get billing for current organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/billing"
+          },
+          "docs": "Retrieves the billing record for the authenticated user's organization"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

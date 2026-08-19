@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts Discovery API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create discovered package with CVE",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/discovery"
+          },
+          "docs": "Creates complete CVE record chain: scan_packages, cves, cve_tickets, unpatched_cve_metadata"
+        },
+        {
+          "info": {
+            "name": "Bulk discover packages with CVEs (async)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/discovery/bulk"
+          },
+          "docs": "Persists the array to bulk_discovery_jobs, atomically XADDs each item\nto the cve_discovery_events Redis stream, and best-effort deletes the\nrow on success. Items are then processed asynchronously by\npackages-events-consumer (same write path as the single endpoint)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

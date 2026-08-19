@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts Invitations API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invitations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List organization invitations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/invites",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for next page"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for previous page"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size (default 100, max 1000)"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Ordering (e.g., 'created_at:desc')"
+              }
+            ]
+          },
+          "docs": "Lists all invitations for the organization with pagination support"
+        },
+        {
+          "info": {
+            "name": "Create organization invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/invites"
+          },
+          "docs": "Creates an organization invite in the database. Email is validated if provided."
+        },
+        {
+          "info": {
+            "name": "Accept organization invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/invites/:inviteID/accept",
+            "params": [
+              {
+                "name": "inviteID",
+                "value": "",
+                "type": "path",
+                "description": "Invite ID"
+              }
+            ]
+          },
+          "docs": "Accepts an organization invite and adds the account to the organization with the specified role."
+        },
+        {
+          "info": {
+            "name": "Send invite email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/invites/:inviteID/email",
+            "params": [
+              {
+                "name": "inviteID",
+                "value": "",
+                "type": "path",
+                "description": "Invite ID"
+              }
+            ]
+          },
+          "docs": "Sends an invitation email for an existing invite"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

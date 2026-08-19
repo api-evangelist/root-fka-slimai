@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts Organizations API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get own organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/orgs"
+          },
+          "docs": "Get current user's organization with accounts (excluding superadmins) and billing preloaded"
+        },
+        {
+          "info": {
+            "name": "Create organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/orgs"
+          },
+          "docs": "Creates a new organization and assigns the creator to it with admin role.\nThe creator account must not already belong to an organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

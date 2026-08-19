@@ -1,0 +1,952 @@
+{
+  "item": [
+    {
+      "id": "5884232d-b955-402a-a036-a6a5be657b8c",
+      "name": "Security Findings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ab528a20-228c-4127-9491-57e39e5b94a2",
+          "name": "List security findings with pagination",
+          "request": {
+            "name": "List security findings with pagination",
+            "description": {
+              "content": "Retrieves security findings for the authenticated org with cursor-based pagination and filtering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "security_findings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "After cursor for next page"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "Before cursor for previous page"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Page size (max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc', 'status_changed_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc', 'status_changed_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "rrt_id",
+                  "value": "<string>",
+                  "description": "Filter by root registry tag ID (Image Report)"
+                },
+                {
+                  "disabled": false,
+                  "key": "avr_id",
+                  "value": "<string>",
+                  "description": "Filter by AVR ID (Image Report)"
+                },
+                {
+                  "disabled": false,
+                  "key": "package_id",
+                  "value": "<string>",
+                  "description": "Filter by package ID (Library Report)"
+                },
+                {
+                  "disabled": false,
+                  "key": "cve_id",
+                  "value": "<string>",
+                  "description": "Filter by CVE identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "src_name",
+                  "value": "<string>",
+                  "description": "Filter by package source name"
+                },
+                {
+                  "disabled": false,
+                  "key": "ecosystem",
+                  "value": "<string>",
+                  "description": "Filter by package ecosystem"
+                },
+                {
+                  "disabled": false,
+                  "key": "os_distro_release",
+                  "value": "<string>",
+                  "description": "Filter by OS distro release"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "Filter by package version"
+                },
+                {
+                  "disabled": false,
+                  "key": "finding_type",
+                  "value": "<string>",
+                  "description": "Filter by finding type ('image' or 'library')"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by remediation status"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>",
+                  "description": "Filter by severity; repeat for multiple"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>",
+                  "description": "Filter by severity; repeat for multiple"
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<string>",
+                  "description": "os/app layer; repeat both to clear filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<string>",
+                  "description": "os/app layer; repeat both to clear filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "supported_ecosystem",
+                  "value": "<boolean>",
+                  "description": "Filter by supported ecosystem status (true = supported ecosystem, false = non-supported ecosystem)"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_gte",
+                  "value": "<string>",
+                  "description": "Filter: created_at >= (RFC3339 timestamp)"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_lt",
+                  "value": "<string>",
+                  "description": "Filter: created_at < (RFC3339 timestamp)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fixed_at_gte",
+                  "value": "<string>",
+                  "description": "Filter: fixed_at >= (RFC3339 timestamp)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fixed_at_lt",
+                  "value": "<string>",
+                  "description": "Filter: fixed_at < (RFC3339 timestamp)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status_changed_at_gte",
+                  "value": "<string>",
+                  "description": "Filter: status_changed_at >= (RFC3339 timestamp)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status_changed_at_lt",
+                  "value": "<string>",
+                  "description": "Filter: status_changed_at < (RFC3339 timestamp)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1401678c-e076-47c4-a649-c816b6093a5c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "security_findings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rrt_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "avr_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "package_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cve_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "src_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ecosystem",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "os_distro_release",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "finding_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "supported_ecosystem",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "created_at_gte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_lt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fixed_at_gte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fixed_at_lt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status_changed_at_gte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status_changed_at_lt",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cursor\": {\n    \"after\": \"string\",\n    \"before\": \"string\",\n    \"limit\": 7486,\n    \"total_count\": 426\n  },\n  \"data\": [\n    {\n      \"asset\": \"string\",\n      \"avr_id\": \"string\",\n      \"created_at\": \"string\",\n      \"cve_id\": \"string\",\n      \"cvss_score\": 8438.462394251937,\n      \"cvss_vector\": \"string\",\n      \"description\": \"string\",\n      \"finding_type\": \"library\",\n      \"fixed_at\": \"string\",\n      \"fixed_in_version\": \"string\",\n      \"has_artifacts\": false,\n      \"id\": \"string\",\n      \"nvd_link\": \"string\",\n      \"os_distro_release\": \"string\",\n      \"package_arch\": \"string\",\n      \"package_ecosystem\": \"string\",\n      \"package_id\": \"string\",\n      \"package_licenses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"package_name\": \"string\",\n      \"package_src_name\": \"string\",\n      \"package_version\": \"string\",\n      \"severity\": \"high\",\n      \"status\": \"fixed\",\n      \"status_changed_at\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"asset\": \"string\",\n      \"avr_id\": \"string\",\n      \"created_at\": \"string\",\n      \"cve_id\": \"string\",\n      \"cvss_score\": 2522.2979033695924,\n      \"cvss_vector\": \"string\",\n      \"description\": \"string\",\n      \"finding_type\": \"image\",\n      \"fixed_at\": \"string\",\n      \"fixed_in_version\": \"string\",\n      \"has_artifacts\": true,\n      \"id\": \"string\",\n      \"nvd_link\": \"string\",\n      \"os_distro_release\": \"string\",\n      \"package_arch\": \"string\",\n      \"package_ecosystem\": \"string\",\n      \"package_id\": \"string\",\n      \"package_licenses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"package_name\": \"string\",\n      \"package_src_name\": \"string\",\n      \"package_version\": \"string\",\n      \"severity\": \"unknown\",\n      \"status\": \"researching\",\n      \"status_changed_at\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9428034-1b82-477a-93d6-2250d84c0c67",
+          "name": "Remediation vulnerability counts by tag",
+          "request": {
+            "name": "Remediation vulnerability counts by tag",
+            "description": {
+              "content": "Returns before/after vulnerability counts per image tag for remediation workflows (deduplicated per vulnerability).\nBefore = fixed + patch_available + creating_a_patch + researching; after = researching + creating_a_patch + patch_available only.\nOS vs app layer follows the same rules as list/summary (non–app ecosystems vs app ecosystems). Request order preserved; duplicate IDs may repeat; missing tags are zeros.\nPOST body fits long rrt_ids lists; levels includes os, app, or both (both → top-level + app_level).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "security_findings",
+                "remediation_counts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"levels\": [\n    \"<string>\"\n  ],\n  \"rrt_ids\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35e99977-0e58-4812-a90d-1ed028b42e94",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "security_findings",
+                    "remediation_counts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"levels\": [\n    \"<string>\"\n  ],\n  \"rrt_ids\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"after\": {\n        \"app_level\": {\n          \"critical\": 8456,\n          \"high\": 3531,\n          \"low\": 1628,\n          \"medium\": 8839,\n          \"unknown\": 9239\n        },\n        \"critical\": 2360,\n        \"high\": 1619,\n        \"low\": 7331,\n        \"medium\": 3977,\n        \"unknown\": 1275\n      },\n      \"before\": {\n        \"app_level\": {\n          \"critical\": 5922,\n          \"high\": 3087,\n          \"low\": 4421,\n          \"medium\": 7413,\n          \"unknown\": 8001\n        },\n        \"critical\": 906,\n        \"high\": 3456,\n        \"low\": 2023,\n        \"medium\": 2037,\n        \"unknown\": 1174\n      },\n      \"root_registry_tag_id\": \"string\"\n    },\n    {\n      \"after\": {\n        \"app_level\": {\n          \"critical\": 7296,\n          \"high\": 3512,\n          \"low\": 6048,\n          \"medium\": 3187,\n          \"unknown\": 7872\n        },\n        \"critical\": 4827,\n        \"high\": 789,\n        \"low\": 123,\n        \"medium\": 3154,\n        \"unknown\": 9004\n      },\n      \"before\": {\n        \"app_level\": {\n          \"critical\": 3761,\n          \"high\": 3616,\n          \"low\": 3592,\n          \"medium\": 9787,\n          \"unknown\": 6889\n        },\n        \"critical\": 6587,\n        \"high\": 7430,\n        \"low\": 8438,\n        \"medium\": 9771,\n        \"unknown\": 3773\n      },\n      \"root_registry_tag_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07f39774-6fc6-4339-86c2-5aa6b037384c",
+          "name": "Get security findings summary (counts by status and severity)",
+          "request": {
+            "name": "Get security findings summary (counts by status and severity)",
+            "description": {},
+            "url": {
+              "path": [
+                "v3",
+                "security_findings",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "rrt_id",
+                  "value": "<string>",
+                  "description": "Filter by root registry tag ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "avr_id",
+                  "value": "<string>",
+                  "description": "Filter by AVR ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "cve_id",
+                  "value": "<string>",
+                  "description": "Filter by CVE identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "src_name",
+                  "value": "<string>",
+                  "description": "Filter by package source name"
+                },
+                {
+                  "disabled": false,
+                  "key": "ecosystem",
+                  "value": "<string>",
+                  "description": "Filter by package ecosystem"
+                },
+                {
+                  "disabled": false,
+                  "key": "os_distro_release",
+                  "value": "<string>",
+                  "description": "Filter by OS distro release"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "Filter by package version"
+                },
+                {
+                  "disabled": false,
+                  "key": "finding_type",
+                  "value": "<string>",
+                  "description": "Filter by finding type ('image' or 'library')"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by remediation status"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>",
+                  "description": "Filter by severity; repeat for multiple"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>",
+                  "description": "Filter by severity; repeat for multiple"
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<string>",
+                  "description": "os/app layer; repeat both to clear filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<string>",
+                  "description": "os/app layer; repeat both to clear filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "supported_ecosystem",
+                  "value": "<boolean>",
+                  "description": "Filter by supported ecosystem status (true = supported ecosystem, false = non-supported ecosystem)"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_gte",
+                  "value": "<string>",
+                  "description": "Filter: created_at >= (RFC3339 timestamp)"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_lt",
+                  "value": "<string>",
+                  "description": "Filter: created_at < (RFC3339 timestamp)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fixed_at_gte",
+                  "value": "<string>",
+                  "description": "Filter: fixed_at >= (RFC3339 timestamp)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fixed_at_lt",
+                  "value": "<string>",
+                  "description": "Filter: fixed_at < (RFC3339 timestamp)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status_changed_at_gte",
+                  "value": "<string>",
+                  "description": "Filter: status_changed_at >= (RFC3339 timestamp)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status_changed_at_lt",
+                  "value": "<string>",
+                  "description": "Filter: status_changed_at < (RFC3339 timestamp)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1fd68675-f5e7-4ff8-a0a9-d98c6147e3b0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "security_findings",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "rrt_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "avr_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cve_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "src_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ecosystem",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "os_distro_release",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "finding_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "supported_ecosystem",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "created_at_gte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_lt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fixed_at_gte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fixed_at_lt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status_changed_at_gte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status_changed_at_lt",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"count\": 8215,\n      \"severity\": \"low\",\n      \"status\": \"fixed\"\n    },\n    {\n      \"count\": 2036,\n      \"severity\": \"unknown\",\n      \"status\": \"patch_available\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "379da49a-7827-443a-95a5-5f8128e6eff6",
+          "name": "Get security findings daily summary (counts by day, status, and severity)",
+          "request": {
+            "name": "Get security findings daily summary (counts by day, status, and severity)",
+            "description": {
+              "content": "Returns finding counts grouped by day, status, and severity. Use created_at_gte/created_at_lt for an explicit date range, or limit for the most recent N days (mutually exclusive; date range takes precedence).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "security_findings",
+                "summary",
+                "daily"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of most recent days to include (default 84 / 12 weeks, max 365). Ignored when created_at_gte or created_at_lt is set."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_gte",
+                  "value": "<string>",
+                  "description": "Filter: created_at >= (RFC3339 timestamp)"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_lt",
+                  "value": "<string>",
+                  "description": "Filter: created_at < (RFC3339 timestamp)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "supported_ecosystem",
+                  "value": "<boolean>",
+                  "description": "Filter by supported ecosystem status (true = supported ecosystem, false = non-supported ecosystem)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9ab5b370-0150-418b-9bfa-ef0ec79fe5e1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "security_findings",
+                    "summary",
+                    "daily"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "created_at_gte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_lt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "supported_ecosystem",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"key_0\": [\n      {\n        \"count\": 6390,\n        \"severity\": \"medium\",\n        \"status\": \"creating_a_patch\"\n      },\n      {\n        \"count\": 2529,\n        \"severity\": \"high\",\n        \"status\": \"patch_available\"\n      }\n    ],\n    \"key_1\": [\n      {\n        \"count\": 4339,\n        \"severity\": \"unknown\",\n        \"status\": \"patch_available\"\n      },\n      {\n        \"count\": 535,\n        \"severity\": \"unknown\",\n        \"status\": \"researching\"\n      }\n    ],\n    \"key_2\": [\n      {\n        \"count\": 7587,\n        \"severity\": \"high\",\n        \"status\": \"patch_available\"\n      },\n      {\n        \"count\": 5286,\n        \"severity\": \"critical\",\n        \"status\": \"researching\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.root.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a4963d23-2893-4ff6-a19c-5011fafdd9fc",
+    "name": "Root.io Accounts Security Findings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the API documentation for Root.io.",
+      "type": "text/plain"
+    }
+  }
+}

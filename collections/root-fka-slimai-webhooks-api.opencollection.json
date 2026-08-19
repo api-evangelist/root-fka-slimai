@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts Webhooks API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/settings/webhooks",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor for next page"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Before cursor for previous page"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size (max 1000)"
+              }
+            ]
+          },
+          "docs": "Lists webhook subscriptions for the organization (signing secret not included)"
+        },
+        {
+          "info": {
+            "name": "Create webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/settings/webhooks"
+          },
+          "docs": "Creates a new webhook subscription for the organization. Returns the signing secret once — store it securely."
+        },
+        {
+          "info": {
+            "name": "Delete webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v3/settings/webhooks/:webhookSubscriptionID",
+            "params": [
+              {
+                "name": "webhookSubscriptionID",
+                "value": "",
+                "type": "path",
+                "description": "Webhook Subscription ID"
+              }
+            ]
+          },
+          "docs": "Deletes a webhook subscription by ID"
+        },
+        {
+          "info": {
+            "name": "Test tag-created webhook delivery",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/settings/webhooks/:webhookSubscriptionID/test-tag-created",
+            "params": [
+              {
+                "name": "webhookSubscriptionID",
+                "value": "",
+                "type": "path",
+                "description": "Webhook Subscription ID"
+              }
+            ]
+          },
+          "docs": "Performs a test webhook delivery for a specific webhook subscription using a specific RootRegistryTag. Returns 422 if the subscription does not subscribe to the image.created event type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

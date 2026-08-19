@@ -1,0 +1,680 @@
+{
+  "item": [
+    {
+      "id": "3c619ad4-6b9e-4447-b4ec-5b1e68b320d7",
+      "name": "Discovery",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "40517c04-2808-4250-992f-a47d35ff3a72",
+          "name": "Create discovered package with CVE",
+          "request": {
+            "name": "Create discovered package with CVE",
+            "description": {
+              "content": "Creates complete CVE record chain: scan_packages, cves, cve_tickets, unpatched_cve_metadata",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "discovery"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cve_id\": \"<string>\",\n  \"ecosystem\": \"<string>\",\n  \"package_src_name\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"arch\": \"<string>\",\n  \"cvss_score\": \"<number>\",\n  \"cvss_vector\": \"<string>\",\n  \"description\": \"<string>\",\n  \"embedded_in\": {\n    \"name\": \"<string>\",\n    \"path\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"fixed_in_version\": \"<string>\",\n  \"installation_path\": \"<string>\",\n  \"licenses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nvd_link\": \"<string>\",\n  \"os_distro_major\": \"<string>\",\n  \"package_purl\": \"<string>\",\n  \"package_version\": \"<string>\",\n  \"published_at\": \"<string>\",\n  \"title\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "853c754d-5e22-46d1-aade-bad7faaef0f9",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "discovery"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cve_id\": \"<string>\",\n  \"ecosystem\": \"<string>\",\n  \"package_src_name\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"arch\": \"<string>\",\n  \"cvss_score\": \"<number>\",\n  \"cvss_vector\": \"<string>\",\n  \"description\": \"<string>\",\n  \"embedded_in\": {\n    \"name\": \"<string>\",\n    \"path\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"fixed_in_version\": \"<string>\",\n  \"installation_path\": \"<string>\",\n  \"licenses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nvd_link\": \"<string>\",\n  \"os_distro_major\": \"<string>\",\n  \"package_purl\": \"<string>\",\n  \"package_version\": \"<string>\",\n  \"published_at\": \"<string>\",\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cve_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"cve_ticket_id\": \"string\",\n  \"jira_ticket_id\": \"string\",\n  \"metadata_id\": \"string\",\n  \"scan_package_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca7a6955-d970-4927-92c3-d439207b3a3e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "discovery"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cve_id\": \"<string>\",\n  \"ecosystem\": \"<string>\",\n  \"package_src_name\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"arch\": \"<string>\",\n  \"cvss_score\": \"<number>\",\n  \"cvss_vector\": \"<string>\",\n  \"description\": \"<string>\",\n  \"embedded_in\": {\n    \"name\": \"<string>\",\n    \"path\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"fixed_in_version\": \"<string>\",\n  \"installation_path\": \"<string>\",\n  \"licenses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nvd_link\": \"<string>\",\n  \"os_distro_major\": \"<string>\",\n  \"package_purl\": \"<string>\",\n  \"package_version\": \"<string>\",\n  \"published_at\": \"<string>\",\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f1fd1c5-cc47-4796-be7b-c06496b8b79a",
+              "name": "Account not found in context",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "discovery"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cve_id\": \"<string>\",\n  \"ecosystem\": \"<string>\",\n  \"package_src_name\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"arch\": \"<string>\",\n  \"cvss_score\": \"<number>\",\n  \"cvss_vector\": \"<string>\",\n  \"description\": \"<string>\",\n  \"embedded_in\": {\n    \"name\": \"<string>\",\n    \"path\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"fixed_in_version\": \"<string>\",\n  \"installation_path\": \"<string>\",\n  \"licenses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nvd_link\": \"<string>\",\n  \"os_distro_major\": \"<string>\",\n  \"package_purl\": \"<string>\",\n  \"package_version\": \"<string>\",\n  \"published_at\": \"<string>\",\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af034952-1e23-4a6b-a26b-c72fdbfd9d10",
+              "name": "CVE already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "discovery"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cve_id\": \"<string>\",\n  \"ecosystem\": \"<string>\",\n  \"package_src_name\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"arch\": \"<string>\",\n  \"cvss_score\": \"<number>\",\n  \"cvss_vector\": \"<string>\",\n  \"description\": \"<string>\",\n  \"embedded_in\": {\n    \"name\": \"<string>\",\n    \"path\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"fixed_in_version\": \"<string>\",\n  \"installation_path\": \"<string>\",\n  \"licenses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nvd_link\": \"<string>\",\n  \"os_distro_major\": \"<string>\",\n  \"package_purl\": \"<string>\",\n  \"package_version\": \"<string>\",\n  \"published_at\": \"<string>\",\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afa4a221-32c8-4022-a1de-b0e885f98c39",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "discovery"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cve_id\": \"<string>\",\n  \"ecosystem\": \"<string>\",\n  \"package_src_name\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"arch\": \"<string>\",\n  \"cvss_score\": \"<number>\",\n  \"cvss_vector\": \"<string>\",\n  \"description\": \"<string>\",\n  \"embedded_in\": {\n    \"name\": \"<string>\",\n    \"path\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"fixed_in_version\": \"<string>\",\n  \"installation_path\": \"<string>\",\n  \"licenses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nvd_link\": \"<string>\",\n  \"os_distro_major\": \"<string>\",\n  \"package_purl\": \"<string>\",\n  \"package_version\": \"<string>\",\n  \"published_at\": \"<string>\",\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a0b3613-2283-4d5f-b4c1-90082cc74220",
+          "name": "Bulk discover packages with CVEs (async)",
+          "request": {
+            "name": "Bulk discover packages with CVEs (async)",
+            "description": {
+              "content": "Persists the array to bulk_discovery_jobs, atomically XADDs each item\nto the cve_discovery_events Redis stream, and best-effort deletes the\nrow on success. Items are then processed asynchronously by\npackages-events-consumer (same write path as the single endpoint).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "discovery",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"cve_id\": \"<string>\",\n      \"ecosystem\": \"<string>\",\n      \"package_src_name\": \"<string>\",\n      \"severity\": \"<string>\",\n      \"arch\": \"<string>\",\n      \"cvss_score\": \"<number>\",\n      \"cvss_vector\": \"<string>\",\n      \"description\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"fixed_in_version\": \"<string>\",\n      \"installation_path\": \"<string>\",\n      \"licenses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"nvd_link\": \"<string>\",\n      \"os_distro_major\": \"<string>\",\n      \"package_purl\": \"<string>\",\n      \"package_version\": \"<string>\",\n      \"published_at\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "44f02a67-cd30-4502-aa1d-6b07994e9fe7",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "discovery",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"cve_id\": \"<string>\",\n      \"ecosystem\": \"<string>\",\n      \"package_src_name\": \"<string>\",\n      \"severity\": \"<string>\",\n      \"arch\": \"<string>\",\n      \"cvss_score\": \"<number>\",\n      \"cvss_vector\": \"<string>\",\n      \"description\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"fixed_in_version\": \"<string>\",\n      \"installation_path\": \"<string>\",\n      \"licenses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"nvd_link\": \"<string>\",\n      \"os_distro_major\": \"<string>\",\n      \"package_purl\": \"<string>\",\n      \"package_version\": \"<string>\",\n      \"published_at\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bulk_job_id\": \"string\",\n  \"item_count\": 5456\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "772394c8-af14-4ca8-b2cd-3ce03dc15015",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "discovery",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"cve_id\": \"<string>\",\n      \"ecosystem\": \"<string>\",\n      \"package_src_name\": \"<string>\",\n      \"severity\": \"<string>\",\n      \"arch\": \"<string>\",\n      \"cvss_score\": \"<number>\",\n      \"cvss_vector\": \"<string>\",\n      \"description\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"fixed_in_version\": \"<string>\",\n      \"installation_path\": \"<string>\",\n      \"licenses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"nvd_link\": \"<string>\",\n      \"os_distro_major\": \"<string>\",\n      \"package_purl\": \"<string>\",\n      \"package_version\": \"<string>\",\n      \"published_at\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "232fa2a7-6d5b-4596-a352-fa8c36585457",
+              "name": "Account not found in context",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "discovery",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"cve_id\": \"<string>\",\n      \"ecosystem\": \"<string>\",\n      \"package_src_name\": \"<string>\",\n      \"severity\": \"<string>\",\n      \"arch\": \"<string>\",\n      \"cvss_score\": \"<number>\",\n      \"cvss_vector\": \"<string>\",\n      \"description\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"fixed_in_version\": \"<string>\",\n      \"installation_path\": \"<string>\",\n      \"licenses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"nvd_link\": \"<string>\",\n      \"os_distro_major\": \"<string>\",\n      \"package_purl\": \"<string>\",\n      \"package_version\": \"<string>\",\n      \"published_at\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5c8322f-8d79-4233-b045-5ecc8c3c2196",
+              "name": "Request body exceeds 32MB",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "discovery",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"cve_id\": \"<string>\",\n      \"ecosystem\": \"<string>\",\n      \"package_src_name\": \"<string>\",\n      \"severity\": \"<string>\",\n      \"arch\": \"<string>\",\n      \"cvss_score\": \"<number>\",\n      \"cvss_vector\": \"<string>\",\n      \"description\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"fixed_in_version\": \"<string>\",\n      \"installation_path\": \"<string>\",\n      \"licenses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"nvd_link\": \"<string>\",\n      \"os_distro_major\": \"<string>\",\n      \"package_purl\": \"<string>\",\n      \"package_version\": \"<string>\",\n      \"published_at\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97442e36-5c84-48a2-acff-507f74d89680",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "discovery",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"cve_id\": \"<string>\",\n      \"ecosystem\": \"<string>\",\n      \"package_src_name\": \"<string>\",\n      \"severity\": \"<string>\",\n      \"arch\": \"<string>\",\n      \"cvss_score\": \"<number>\",\n      \"cvss_vector\": \"<string>\",\n      \"description\": \"<string>\",\n      \"embedded_in\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"fixed_in_version\": \"<string>\",\n      \"installation_path\": \"<string>\",\n      \"licenses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"nvd_link\": \"<string>\",\n      \"os_distro_major\": \"<string>\",\n      \"package_purl\": \"<string>\",\n      \"package_version\": \"<string>\",\n      \"published_at\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.root.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "56ac5da9-ac66-4d41-be89-2612134616e3",
+    "name": "Root.io Accounts Discovery API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the API documentation for Root.io.",
+      "type": "text/plain"
+    }
+  }
+}

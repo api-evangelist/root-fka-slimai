@@ -1,0 +1,196 @@
+{
+  "item": [
+    {
+      "id": "d6664887-1c1a-484c-8f0d-32fb90b5642d",
+      "name": "Core - Discovered Packages V3",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c8467670-a7e5-4a94-a996-f275f85de1c7",
+          "name": "List discovered packages from artifact repositories",
+          "request": {
+            "name": "List discovered packages from artifact repositories",
+            "description": {
+              "content": "Retrieves discovered packages with vulnerability tracking and Root.io upgrade availability",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "discovered-packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "After cursor for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "Before cursor for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Page size (default 100, max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Order by (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Order by (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "ecosystem",
+                  "value": "<string>",
+                  "description": "Filter by ecosystem"
+                },
+                {
+                  "disabled": false,
+                  "key": "package_name",
+                  "value": "<string>",
+                  "description": "Filter by package name (source name)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5ffb99d6-9a1e-42a5-925e-e425392433ea",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "discovered-packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ecosystem",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "package_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cursor\": {\n    \"after\": \"string\",\n    \"before\": \"string\",\n    \"limit\": 4003,\n    \"total_count\": 8445\n  },\n  \"data\": [\n    {\n      \"available_root_fixable_cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"available_root_version\": \"string\",\n      \"cves\": [\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 7776.141089360324,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"organization_id\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"critical\",\n          \"sla\": {\n            \"cve_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"organization_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"patch_found_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_patch_provided_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_started_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 6777.457672726165,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"organization_id\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"low\",\n          \"sla\": {\n            \"cve_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"organization_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"patch_found_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_patch_provided_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_started_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"ecosystem\": \"string\",\n      \"fixed_cves\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_pulled_at\": \"string\",\n      \"open_cves\": [\n        \"string\",\n        \"string\"\n      ],\n      \"package_name\": \"string\",\n      \"resolved_cves\": [\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 756.3494132129456,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"organization_id\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"low\",\n          \"sla\": {\n            \"cve_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"organization_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"patch_found_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_patch_provided_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_started_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 2097.047871076152,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"organization_id\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"critical\",\n          \"sla\": {\n            \"cve_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"organization_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"patch_found_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_patch_provided_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_started_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"root_available\": true,\n      \"root_used\": false,\n      \"version\": \"string\"\n    },\n    {\n      \"available_root_fixable_cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"available_root_version\": \"string\",\n      \"cves\": [\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 8844.274274915175,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"organization_id\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"medium\",\n          \"sla\": {\n            \"cve_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"organization_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"patch_found_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_patch_provided_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_started_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 3761.3558398343916,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"organization_id\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"high\",\n          \"sla\": {\n            \"cve_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"organization_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"patch_found_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_patch_provided_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_started_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"ecosystem\": \"string\",\n      \"fixed_cves\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_pulled_at\": \"string\",\n      \"open_cves\": [\n        \"string\",\n        \"string\"\n      ],\n      \"package_name\": \"string\",\n      \"resolved_cves\": [\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 1002.4516074514189,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"organization_id\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"critical\",\n          \"sla\": {\n            \"cve_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"organization_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"patch_found_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_patch_provided_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_started_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 6983.895842296634,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"organization_id\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"low\",\n          \"sla\": {\n            \"cve_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"organization_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"patch_found_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_patch_provided_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_started_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"root_available\": true,\n      \"root_used\": false,\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.root.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "80a4ec4a-5abf-4d2f-86e6-4108a91648e0",
+    "name": "Root.io Accounts Core - Discovered Packages V3 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the API documentation for Root.io.",
+      "type": "text/plain"
+    }
+  }
+}

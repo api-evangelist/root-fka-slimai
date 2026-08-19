@@ -1,0 +1,660 @@
+{
+  "item": [
+    {
+      "id": "2420870a-2bee-406d-b33a-fb40f74a8e2a",
+      "name": "API Keys",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5f4d4d02-f62d-47c0-a2e7-a85222c2cde2",
+          "name": "List API keys",
+          "request": {
+            "name": "List API keys",
+            "description": {
+              "content": "List API keys with cursor-based pagination and filtering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "api_keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "After cursor for next page"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "Before cursor for previous page"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Page size (max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Filter by account ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "<boolean>",
+                  "description": "Filter by active status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "62136771-bde5-4657-a654-f61034ca4047",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cursor\": {\n    \"after\": \"string\",\n    \"before\": \"string\",\n    \"limit\": 5725,\n    \"total_count\": 2407\n  },\n  \"data\": [\n    {\n      \"account\": {\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"role\": \"member\"\n      },\n      \"account_id\": \"string\",\n      \"active\": true,\n      \"created_at\": \"string\",\n      \"created_by\": {\n        \"account_id\": \"string\",\n        \"email\": \"string\",\n        \"name\": \"string\",\n        \"role\": \"readonly\"\n      },\n      \"expires_at\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"last_used_at\": \"string\",\n      \"name\": \"string\",\n      \"organization\": {\n        \"id\": \"string\",\n        \"kind\": \"private\",\n        \"name\": \"string\"\n      },\n      \"organization_id\": \"string\",\n      \"role\": \"readonly\",\n      \"type\": \"service\",\n      \"updated_at\": \"string\"\n    },\n    {\n      \"account\": {\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"role\": \"admin\"\n      },\n      \"account_id\": \"string\",\n      \"active\": false,\n      \"created_at\": \"string\",\n      \"created_by\": {\n        \"account_id\": \"string\",\n        \"email\": \"string\",\n        \"name\": \"string\",\n        \"role\": \"admin\"\n      },\n      \"expires_at\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"last_used_at\": \"string\",\n      \"name\": \"string\",\n      \"organization\": {\n        \"id\": \"string\",\n        \"kind\": \"public\",\n        \"name\": \"string\"\n      },\n      \"organization_id\": \"string\",\n      \"role\": \"admin\",\n      \"type\": \"service\",\n      \"updated_at\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6f31e5c-c0f9-4c16-b8e7-35386da026b1",
+          "name": "Create API key",
+          "request": {
+            "name": "Create API key",
+            "description": {
+              "content": "Creates a new API key for the authenticated user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "api_keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expires_at\": \"<string>\",\n  \"name\": \"<string>\",\n  \"role\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d7018c9-0d32-4d6a-8da0-35f31017f8e3",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expires_at\": \"<string>\",\n  \"name\": \"<string>\",\n  \"role\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account\": {\n    \"email\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"role\": \"<string>\"\n  },\n  \"account_id\": \"string\",\n  \"active\": false,\n  \"created_at\": \"string\",\n  \"created_by\": {\n    \"account_id\": \"string\",\n    \"email\": \"string\",\n    \"name\": \"string\",\n    \"role\": \"<string>\"\n  },\n  \"expires_at\": \"string\",\n  \"id\": \"string\",\n  \"key\": \"string\",\n  \"last_used_at\": \"string\",\n  \"name\": \"string\",\n  \"organization\": {\n    \"id\": \"string\",\n    \"kind\": \"private\",\n    \"name\": \"string\"\n  },\n  \"organization_id\": \"string\",\n  \"role\": \"<string>\",\n  \"type\": \"<string>\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7eeb6b9-8bc6-4261-8552-2a8f94cc9a8a",
+          "name": "Get API key",
+          "request": {
+            "name": "Get API key",
+            "description": {
+              "content": "Retrieves a specific API key by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "api_keys",
+                ":api_key_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "api_key_id",
+                  "description": "(Required) API Key ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c2c0865f-7d31-47ff-8f7d-badebd13f9ef",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "api_keys",
+                    ":api_key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api_key_id",
+                      "description": "(Required) API Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account\": {\n    \"email\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"role\": \"<string>\"\n  },\n  \"account_id\": \"string\",\n  \"active\": false,\n  \"created_at\": \"string\",\n  \"created_by\": {\n    \"account_id\": \"string\",\n    \"email\": \"string\",\n    \"name\": \"string\",\n    \"role\": \"<string>\"\n  },\n  \"expires_at\": \"string\",\n  \"id\": \"string\",\n  \"key\": \"string\",\n  \"last_used_at\": \"string\",\n  \"name\": \"string\",\n  \"organization\": {\n    \"id\": \"string\",\n    \"kind\": \"private\",\n    \"name\": \"string\"\n  },\n  \"organization_id\": \"string\",\n  \"role\": \"<string>\",\n  \"type\": \"<string>\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13a2e2f9-833a-401f-af72-b2192d2a5c60",
+          "name": "Delete API key",
+          "request": {
+            "name": "Delete API key",
+            "description": {
+              "content": "Delete an API key",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "api_keys",
+                ":api_key_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "api_key_id",
+                  "description": "(Required) API Key ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "524a289c-018d-4255-b1b6-3f4dbfd33add",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "api_keys",
+                    ":api_key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api_key_id",
+                      "description": "(Required) API Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account\": {\n    \"email\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"role\": \"<string>\"\n  },\n  \"account_id\": \"string\",\n  \"active\": false,\n  \"created_at\": \"string\",\n  \"created_by\": {\n    \"account_id\": \"string\",\n    \"email\": \"string\",\n    \"name\": \"string\",\n    \"role\": \"<string>\"\n  },\n  \"expires_at\": \"string\",\n  \"id\": \"string\",\n  \"key\": \"string\",\n  \"last_used_at\": \"string\",\n  \"name\": \"string\",\n  \"organization\": {\n    \"id\": \"string\",\n    \"kind\": \"private\",\n    \"name\": \"string\"\n  },\n  \"organization_id\": \"string\",\n  \"role\": \"<string>\",\n  \"type\": \"<string>\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00fed42b-3248-4d66-aa92-d41e485709fd",
+          "name": "Patch API key",
+          "request": {
+            "name": "Patch API key",
+            "description": {
+              "content": "Partially update an API key",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "api_keys",
+                ":api_key_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "api_key_id",
+                  "description": "(Required) API Key ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8c609786-e9be-4bc9-bcda-8a931f560a1f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "api_keys",
+                    ":api_key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api_key_id",
+                      "description": "(Required) API Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account\": {\n    \"email\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"role\": \"<string>\"\n  },\n  \"account_id\": \"string\",\n  \"active\": false,\n  \"created_at\": \"string\",\n  \"created_by\": {\n    \"account_id\": \"string\",\n    \"email\": \"string\",\n    \"name\": \"string\",\n    \"role\": \"<string>\"\n  },\n  \"expires_at\": \"string\",\n  \"id\": \"string\",\n  \"key\": \"string\",\n  \"last_used_at\": \"string\",\n  \"name\": \"string\",\n  \"organization\": {\n    \"id\": \"string\",\n    \"kind\": \"private\",\n    \"name\": \"string\"\n  },\n  \"organization_id\": \"string\",\n  \"role\": \"<string>\",\n  \"type\": \"<string>\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.root.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e05f17f3-4753-4491-ae36-5b9b2095e68e",
+    "name": "Root.io Accounts API Keys API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the API documentation for Root.io.",
+      "type": "text/plain"
+    }
+  }
+}

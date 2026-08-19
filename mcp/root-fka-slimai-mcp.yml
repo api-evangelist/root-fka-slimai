@@ -211,3 +211,9 @@ tools:
 - name: get_v3_sys_matrix
   description: Retrieve The Supported System Matrix
   source_operation: openapi/root-fka-slimai-openapi-original.json#get /v3/sys_matrix
+deployment:
+  mode: none
+  verified: derived
+  tools: 67
+  checked: '2026-08-12'
+  source: catalog MCP census

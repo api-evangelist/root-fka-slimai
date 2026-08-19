@@ -1,0 +1,344 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts Security Findings API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security Findings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List security findings with pagination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/security_findings",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor for next page"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Before cursor for previous page"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size (max 1000)"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Ordering (e.g., 'created_at:desc', 'status_changed_at:desc')"
+              },
+              {
+                "name": "rrt_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by root registry tag ID (Image Report)"
+              },
+              {
+                "name": "avr_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by AVR ID (Image Report)"
+              },
+              {
+                "name": "package_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package ID (Library Report)"
+              },
+              {
+                "name": "cve_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by CVE identifier"
+              },
+              {
+                "name": "src_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package source name"
+              },
+              {
+                "name": "ecosystem",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package ecosystem"
+              },
+              {
+                "name": "os_distro_release",
+                "value": "",
+                "type": "query",
+                "description": "Filter by OS distro release"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package version"
+              },
+              {
+                "name": "finding_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by finding type ('image' or 'library')"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by remediation status"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filter by severity; repeat for multiple"
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "os/app layer; repeat both to clear filter"
+              },
+              {
+                "name": "supported_ecosystem",
+                "value": "",
+                "type": "query",
+                "description": "Filter by supported ecosystem status (true = supported ecosystem, false = non-supported ecosystem)"
+              },
+              {
+                "name": "created_at_gte",
+                "value": "",
+                "type": "query",
+                "description": "Filter: created_at >= (RFC3339 timestamp)"
+              },
+              {
+                "name": "created_at_lt",
+                "value": "",
+                "type": "query",
+                "description": "Filter: created_at < (RFC3339 timestamp)"
+              },
+              {
+                "name": "fixed_at_gte",
+                "value": "",
+                "type": "query",
+                "description": "Filter: fixed_at >= (RFC3339 timestamp)"
+              },
+              {
+                "name": "fixed_at_lt",
+                "value": "",
+                "type": "query",
+                "description": "Filter: fixed_at < (RFC3339 timestamp)"
+              },
+              {
+                "name": "status_changed_at_gte",
+                "value": "",
+                "type": "query",
+                "description": "Filter: status_changed_at >= (RFC3339 timestamp)"
+              },
+              {
+                "name": "status_changed_at_lt",
+                "value": "",
+                "type": "query",
+                "description": "Filter: status_changed_at < (RFC3339 timestamp)"
+              }
+            ]
+          },
+          "docs": "Retrieves security findings for the authenticated org with cursor-based pagination and filtering"
+        },
+        {
+          "info": {
+            "name": "Remediation vulnerability counts by tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/security_findings/remediation_counts"
+          },
+          "docs": "Returns before/after vulnerability counts per image tag for remediation workflows (deduplicated per vulnerability).\nBefore = fixed + patch_available + creating_a_patch + researching; after = researching + creating_a_patch + patch_available only.\nOS vs app layer follows the same rules as list/summary (non–app ecosystems vs app ecosystems). Request order preserved; duplicate IDs may repeat; missing tags are zeros.\nPOST body fits long rrt_ids lists; levels includes os, app, or both (both → top-leve"
+        },
+        {
+          "info": {
+            "name": "Get security findings summary (counts by status and severity)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/security_findings/summary",
+            "params": [
+              {
+                "name": "rrt_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by root registry tag ID"
+              },
+              {
+                "name": "avr_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by AVR ID"
+              },
+              {
+                "name": "cve_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by CVE identifier"
+              },
+              {
+                "name": "src_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package source name"
+              },
+              {
+                "name": "ecosystem",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package ecosystem"
+              },
+              {
+                "name": "os_distro_release",
+                "value": "",
+                "type": "query",
+                "description": "Filter by OS distro release"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package version"
+              },
+              {
+                "name": "finding_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by finding type ('image' or 'library')"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by remediation status"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filter by severity; repeat for multiple"
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "os/app layer; repeat both to clear filter"
+              },
+              {
+                "name": "supported_ecosystem",
+                "value": "",
+                "type": "query",
+                "description": "Filter by supported ecosystem status (true = supported ecosystem, false = non-supported ecosystem)"
+              },
+              {
+                "name": "created_at_gte",
+                "value": "",
+                "type": "query",
+                "description": "Filter: created_at >= (RFC3339 timestamp)"
+              },
+              {
+                "name": "created_at_lt",
+                "value": "",
+                "type": "query",
+                "description": "Filter: created_at < (RFC3339 timestamp)"
+              },
+              {
+                "name": "fixed_at_gte",
+                "value": "",
+                "type": "query",
+                "description": "Filter: fixed_at >= (RFC3339 timestamp)"
+              },
+              {
+                "name": "fixed_at_lt",
+                "value": "",
+                "type": "query",
+                "description": "Filter: fixed_at < (RFC3339 timestamp)"
+              },
+              {
+                "name": "status_changed_at_gte",
+                "value": "",
+                "type": "query",
+                "description": "Filter: status_changed_at >= (RFC3339 timestamp)"
+              },
+              {
+                "name": "status_changed_at_lt",
+                "value": "",
+                "type": "query",
+                "description": "Filter: status_changed_at < (RFC3339 timestamp)"
+              }
+            ]
+          },
+          "docs": "Get security findings summary (counts by status and severity)"
+        },
+        {
+          "info": {
+            "name": "Get security findings daily summary (counts by day, status, and severity)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/security_findings/summary/daily",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of most recent days to include (default 84 / 12 weeks, max 365). Ignored when created_at_gte or created_at_lt is set."
+              },
+              {
+                "name": "created_at_gte",
+                "value": "",
+                "type": "query",
+                "description": "Filter: created_at >= (RFC3339 timestamp)"
+              },
+              {
+                "name": "created_at_lt",
+                "value": "",
+                "type": "query",
+                "description": "Filter: created_at < (RFC3339 timestamp)"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Ordering (e.g., 'created_at:desc')"
+              },
+              {
+                "name": "supported_ecosystem",
+                "value": "",
+                "type": "query",
+                "description": "Filter by supported ecosystem status (true = supported ecosystem, false = non-supported ecosystem)"
+              }
+            ]
+          },
+          "docs": "Returns finding counts grouped by day, status, and severity. Use created_at_gte/created_at_lt for an explicit date range, or limit for the most recent N days (mutually exclusive; date range takes precedence)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

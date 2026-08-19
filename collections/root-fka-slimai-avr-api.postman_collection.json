@@ -1,0 +1,935 @@
+{
+  "item": [
+    {
+      "id": "a5656246-f42a-4bd2-a571-603a5b0406e3",
+      "name": "AVR",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5f759692-5c05-4c58-a345-01ff4c27899e",
+          "name": "List AVRs with pagination and filtering",
+          "request": {
+            "name": "List AVRs with pagination and filtering",
+            "description": {
+              "content": "Retrieves AVRs with cursor-based pagination and comprehensive filtering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "avrs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "After cursor for next page"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "Before cursor for previous page"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Page size (max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "arch",
+                  "value": "<string>",
+                  "description": "Filter by architectures"
+                },
+                {
+                  "disabled": false,
+                  "key": "arch",
+                  "value": "<string>",
+                  "description": "Filter by architectures"
+                },
+                {
+                  "disabled": false,
+                  "key": "ecosystem",
+                  "value": "<string>",
+                  "description": "Filter by ecosystems"
+                },
+                {
+                  "disabled": false,
+                  "key": "ecosystem",
+                  "value": "<string>",
+                  "description": "Filter by ecosystems"
+                },
+                {
+                  "disabled": false,
+                  "key": "os_distro_major",
+                  "value": "<string>",
+                  "description": "Filter by OS distro major versions"
+                },
+                {
+                  "disabled": false,
+                  "key": "os_distro_major",
+                  "value": "<string>",
+                  "description": "Filter by OS distro major versions"
+                },
+                {
+                  "disabled": false,
+                  "key": "target_image",
+                  "value": "<string>",
+                  "description": "Fuzzy filter on target image"
+                },
+                {
+                  "disabled": false,
+                  "key": "unique",
+                  "value": "<boolean>",
+                  "description": "Return unique combinations by (target_image, ecosystem, os_distro_major, arch)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "895ae106-a970-415e-950f-5aea04fca22b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "avrs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ecosystem",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ecosystem",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "os_distro_major",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "os_distro_major",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "target_image",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unique",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cursor\": {\n    \"after\": \"string\",\n    \"before\": \"string\",\n    \"limit\": 8540,\n    \"total_count\": 4700\n  },\n  \"data\": [\n    {\n      \"arch\": \"mips64le\",\n      \"completed_at\": \"string\",\n      \"created_at\": \"string\",\n      \"dockerfile_digest\": \"string\",\n      \"dockerfile_key\": \"string\",\n      \"ecosystem\": \"amazon\",\n      \"error\": \"string\",\n      \"id\": \"string\",\n      \"organization_id\": \"string\",\n      \"os_distro_release_major\": \"string\",\n      \"post_remediation_avr_scan_id\": \"string\",\n      \"post_remediation_scan\": {\n        \"arch\": \"mips64\",\n        \"created_at\": \"string\",\n        \"ecosystem\": \"maven\",\n        \"id\": \"string\",\n        \"image_digest\": \"string\",\n        \"organization_id\": \"string\",\n        \"os_distro_release\": \"string\",\n        \"registry_credentials_id\": \"string\",\n        \"sbom_key\": \"string\",\n        \"status\": \"scanning\",\n        \"target_image\": \"string\",\n        \"updated_at\": \"string\",\n        \"vulnerability_counts\": {\n          \"app_level\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"critical\": 9111,\n          \"high\": 4157,\n          \"low\": 6881,\n          \"medium\": 1082,\n          \"unknown\": 2933\n        }\n      },\n      \"pre_remediation_avr_scan_id\": \"string\",\n      \"pre_remediation_scan\": {\n        \"arch\": \"x86\",\n        \"created_at\": \"string\",\n        \"ecosystem\": \"redhat\",\n        \"id\": \"string\",\n        \"image_digest\": \"string\",\n        \"organization_id\": \"string\",\n        \"os_distro_release\": \"string\",\n        \"registry_credentials_id\": \"string\",\n        \"sbom_key\": \"string\",\n        \"status\": \"failed\",\n        \"target_image\": \"string\",\n        \"updated_at\": \"string\",\n        \"vulnerability_counts\": {\n          \"app_level\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"critical\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"high\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"low\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"medium\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unknown\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"provenance_key\": \"string\",\n      \"registry_credentials_id\": \"string\",\n      \"remediation_decision\": \"image_remediation_decision_no_remediation_available\",\n      \"remediation_details\": {\n        \"deleted_packages\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"is_truncated\": true,\n        \"new_packages\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"root_patched_packages\": {\n          \"key_0\": {\n            \"new_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"old_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"upgraded_packages\": {\n          \"key_0\": {\n            \"new_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"old_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"remediation_strategy\": {\n        \"alias_patching\": false,\n        \"python_patching\": true,\n        \"user_id\": \"string\"\n      },\n      \"risk_score\": 8190.747725429862,\n      \"root_registry_tag_id\": \"string\",\n      \"source\": \"image_rebuilder\",\n      \"status\": \"auditing\",\n      \"target_image\": \"string\",\n      \"updated_at\": \"string\",\n      \"vex_key\": \"string\"\n    },\n    {\n      \"arch\": \"arm64\",\n      \"completed_at\": \"string\",\n      \"created_at\": \"string\",\n      \"dockerfile_digest\": \"string\",\n      \"dockerfile_key\": \"string\",\n      \"ecosystem\": \"alpine\",\n      \"error\": \"string\",\n      \"id\": \"string\",\n      \"organization_id\": \"string\",\n      \"os_distro_release_major\": \"string\",\n      \"post_remediation_avr_scan_id\": \"string\",\n      \"post_remediation_scan\": {\n        \"arch\": \"x86\",\n        \"created_at\": \"string\",\n        \"ecosystem\": \"redhat\",\n        \"id\": \"string\",\n        \"image_digest\": \"string\",\n        \"organization_id\": \"string\",\n        \"os_distro_release\": \"string\",\n        \"registry_credentials_id\": \"string\",\n        \"sbom_key\": \"string\",\n        \"status\": \"scanning\",\n        \"target_image\": \"string\",\n        \"updated_at\": \"string\",\n        \"vulnerability_counts\": {\n          \"app_level\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"critical\": 7518,\n          \"high\": 8747,\n          \"low\": 7334,\n          \"medium\": 4762,\n          \"unknown\": 6715\n        }\n      },\n      \"pre_remediation_avr_scan_id\": \"string\",\n      \"pre_remediation_scan\": {\n        \"arch\": \"aarch64\",\n        \"created_at\": \"string\",\n        \"ecosystem\": \"fedora\",\n        \"id\": \"string\",\n        \"image_digest\": \"string\",\n        \"organization_id\": \"string\",\n        \"os_distro_release\": \"string\",\n        \"registry_credentials_id\": \"string\",\n        \"sbom_key\": \"string\",\n        \"status\": \"scanning\",\n        \"target_image\": \"string\",\n        \"updated_at\": \"string\",\n        \"vulnerability_counts\": {\n          \"app_level\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"critical\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"high\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"low\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"medium\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unknown\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"provenance_key\": \"string\",\n      \"registry_credentials_id\": \"string\",\n      \"remediation_decision\": \"image_remediation_decision_no_remediation_required\",\n      \"remediation_details\": {\n        \"deleted_packages\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        },\n        \"is_truncated\": false,\n        \"new_packages\": {\n          \"key_0\": \"string\"\n        },\n        \"root_patched_packages\": {\n          \"key_0\": {\n            \"new_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"old_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"new_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"old_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_2\": {\n            \"new_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"old_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"upgraded_packages\": {\n          \"key_0\": {\n            \"new_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"old_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"new_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"old_version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"remediation_strategy\": {\n        \"alias_patching\": true,\n        \"python_patching\": true,\n        \"user_id\": \"string\"\n      },\n      \"risk_score\": 3071.860209950756,\n      \"root_registry_tag_id\": \"string\",\n      \"source\": \"generated\",\n      \"status\": \"pulling_image\",\n      \"target_image\": \"string\",\n      \"updated_at\": \"string\",\n      \"vex_key\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21e67e7e-9ade-4f1c-8967-7f1d788c74e7",
+          "name": "Create an AVR",
+          "request": {
+            "name": "Create an AVR",
+            "description": {
+              "content": "Creates a new AVR and triggers the remediation workflow",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "avrs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"arch\": \"<string>\",\n  \"target_image\": \"<string>\",\n  \"alias_patching\": \"<boolean>\",\n  \"python_patching\": \"<boolean>\",\n  \"registry_credentials_id\": \"<string>\",\n  \"root_registry_tag_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a39d3f2c-631d-4c7d-a8c6-9a7222865971",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "avrs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"arch\": \"<string>\",\n  \"target_image\": \"<string>\",\n  \"alias_patching\": \"<boolean>\",\n  \"python_patching\": \"<boolean>\",\n  \"registry_credentials_id\": \"<string>\",\n  \"root_registry_tag_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"arch\": \"aarch64\",\n  \"completed_at\": \"string\",\n  \"created_at\": \"string\",\n  \"dockerfile_digest\": \"string\",\n  \"dockerfile_key\": \"string\",\n  \"ecosystem\": \"alpine\",\n  \"error\": \"string\",\n  \"id\": \"string\",\n  \"organization_id\": \"string\",\n  \"os_distro_release_major\": \"string\",\n  \"post_remediation_avr_scan_id\": \"string\",\n  \"post_remediation_scan\": {\n    \"arch\": \"aarch64\",\n    \"created_at\": \"string\",\n    \"ecosystem\": \"composer\",\n    \"id\": \"string\",\n    \"image_digest\": \"string\",\n    \"organization_id\": \"string\",\n    \"os_distro_release\": \"string\",\n    \"registry_credentials_id\": \"string\",\n    \"sbom_key\": \"string\",\n    \"status\": \"completed\",\n    \"target_image\": \"string\",\n    \"updated_at\": \"string\",\n    \"vulnerability_counts\": {\n      \"app_level\": {\n        \"critical\": 8648,\n        \"high\": 8644,\n        \"low\": 5193,\n        \"medium\": 3559,\n        \"unknown\": 7017\n      },\n      \"critical\": 2618,\n      \"high\": 8342,\n      \"low\": 7670,\n      \"medium\": 9871,\n      \"unknown\": 9581\n    }\n  },\n  \"pre_remediation_avr_scan_id\": \"string\",\n  \"pre_remediation_scan\": {\n    \"arch\": \"amd64\",\n    \"created_at\": \"string\",\n    \"ecosystem\": \"distroless\",\n    \"id\": \"string\",\n    \"image_digest\": \"string\",\n    \"organization_id\": \"string\",\n    \"os_distro_release\": \"string\",\n    \"registry_credentials_id\": \"string\",\n    \"sbom_key\": \"string\",\n    \"status\": \"failed\",\n    \"target_image\": \"string\",\n    \"updated_at\": \"string\",\n    \"vulnerability_counts\": {\n      \"app_level\": {\n        \"critical\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"high\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"low\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"medium\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unknown\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"critical\": 1354,\n      \"high\": 4679,\n      \"low\": 7028,\n      \"medium\": 1463,\n      \"unknown\": 5341\n    }\n  },\n  \"provenance_key\": \"string\",\n  \"registry_credentials_id\": \"string\",\n  \"remediation_decision\": \"image_remediation_decision_unsupported_os_distro\",\n  \"remediation_details\": {\n    \"deleted_packages\": {\n      \"key_0\": \"string\"\n    },\n    \"is_truncated\": false,\n    \"new_packages\": {\n      \"key_0\": \"string\"\n    },\n    \"root_patched_packages\": {\n      \"key_0\": {\n        \"new_version\": \"string\",\n        \"old_version\": \"string\"\n      },\n      \"key_1\": {\n        \"new_version\": \"string\",\n        \"old_version\": \"string\"\n      },\n      \"key_2\": {\n        \"new_version\": \"string\",\n        \"old_version\": \"string\"\n      }\n    },\n    \"upgraded_packages\": {\n      \"key_0\": {\n        \"new_version\": \"string\",\n        \"old_version\": \"string\"\n      },\n      \"key_1\": {\n        \"new_version\": \"string\",\n        \"old_version\": \"string\"\n      },\n      \"key_2\": {\n        \"new_version\": \"string\",\n        \"old_version\": \"string\"\n      }\n    }\n  },\n  \"remediation_strategy\": {\n    \"alias_patching\": false,\n    \"python_patching\": true,\n    \"user_id\": \"string\"\n  },\n  \"risk_score\": 9369.923198835957,\n  \"root_registry_tag_id\": \"string\",\n  \"source\": \"generated\",\n  \"status\": \"building\",\n  \"target_image\": \"string\",\n  \"updated_at\": \"string\",\n  \"vex_key\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a27ab230-18a0-4b50-b5e9-808f55dfc9ed",
+          "name": "Get an AVR",
+          "request": {
+            "name": "Get an AVR",
+            "description": {
+              "content": "Retrieves the AVR of the organization with the given avr_id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "avrs",
+                ":avr_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "avr_id",
+                  "description": "(Required) AVR ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2dcd0f85-4e10-415c-87ae-3c7425a9a44b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "avrs",
+                    ":avr_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "avr_id",
+                      "description": "(Required) AVR ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"arch\": \"aarch64\",\n  \"completed_at\": \"string\",\n  \"created_at\": \"string\",\n  \"dockerfile_digest\": \"string\",\n  \"dockerfile_key\": \"string\",\n  \"ecosystem\": \"alpine\",\n  \"error\": \"string\",\n  \"id\": \"string\",\n  \"organization_id\": \"string\",\n  \"os_distro_release_major\": \"string\",\n  \"post_remediation_avr_scan_id\": \"string\",\n  \"post_remediation_scan\": {\n    \"arch\": \"aarch64\",\n    \"created_at\": \"string\",\n    \"ecosystem\": \"composer\",\n    \"id\": \"string\",\n    \"image_digest\": \"string\",\n    \"organization_id\": \"string\",\n    \"os_distro_release\": \"string\",\n    \"registry_credentials_id\": \"string\",\n    \"sbom_key\": \"string\",\n    \"status\": \"completed\",\n    \"target_image\": \"string\",\n    \"updated_at\": \"string\",\n    \"vulnerability_counts\": {\n      \"app_level\": {\n        \"critical\": 8648,\n        \"high\": 8644,\n        \"low\": 5193,\n        \"medium\": 3559,\n        \"unknown\": 7017\n      },\n      \"critical\": 2618,\n      \"high\": 8342,\n      \"low\": 7670,\n      \"medium\": 9871,\n      \"unknown\": 9581\n    }\n  },\n  \"pre_remediation_avr_scan_id\": \"string\",\n  \"pre_remediation_scan\": {\n    \"arch\": \"amd64\",\n    \"created_at\": \"string\",\n    \"ecosystem\": \"distroless\",\n    \"id\": \"string\",\n    \"image_digest\": \"string\",\n    \"organization_id\": \"string\",\n    \"os_distro_release\": \"string\",\n    \"registry_credentials_id\": \"string\",\n    \"sbom_key\": \"string\",\n    \"status\": \"failed\",\n    \"target_image\": \"string\",\n    \"updated_at\": \"string\",\n    \"vulnerability_counts\": {\n      \"app_level\": {\n        \"critical\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"high\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"low\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"medium\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"unknown\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"critical\": 1354,\n      \"high\": 4679,\n      \"low\": 7028,\n      \"medium\": 1463,\n      \"unknown\": 5341\n    }\n  },\n  \"provenance_key\": \"string\",\n  \"registry_credentials_id\": \"string\",\n  \"remediation_decision\": \"image_remediation_decision_unsupported_os_distro\",\n  \"remediation_details\": {\n    \"deleted_packages\": {\n      \"key_0\": \"string\"\n    },\n    \"is_truncated\": false,\n    \"new_packages\": {\n      \"key_0\": \"string\"\n    },\n    \"root_patched_packages\": {\n      \"key_0\": {\n        \"new_version\": \"string\",\n        \"old_version\": \"string\"\n      },\n      \"key_1\": {\n        \"new_version\": \"string\",\n        \"old_version\": \"string\"\n      },\n      \"key_2\": {\n        \"new_version\": \"string\",\n        \"old_version\": \"string\"\n      }\n    },\n    \"upgraded_packages\": {\n      \"key_0\": {\n        \"new_version\": \"string\",\n        \"old_version\": \"string\"\n      },\n      \"key_1\": {\n        \"new_version\": \"string\",\n        \"old_version\": \"string\"\n      },\n      \"key_2\": {\n        \"new_version\": \"string\",\n        \"old_version\": \"string\"\n      }\n    }\n  },\n  \"remediation_strategy\": {\n    \"alias_patching\": false,\n    \"python_patching\": true,\n    \"user_id\": \"string\"\n  },\n  \"risk_score\": 9369.923198835957,\n  \"root_registry_tag_id\": \"string\",\n  \"source\": \"generated\",\n  \"status\": \"building\",\n  \"target_image\": \"string\",\n  \"updated_at\": \"string\",\n  \"vex_key\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a996a1be-802c-4e36-9752-6cb7d5a589e5",
+          "name": "Get dockerfile for an AVR",
+          "request": {
+            "name": "Get dockerfile for an AVR",
+            "description": {
+              "content": "Retrieves a presigned URL for the Dockerfile used in remediation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "avrs",
+                ":avr_id",
+                "artifacts",
+                "dockerfile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "avr_id",
+                  "description": "(Required) AVR ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b8cd1195-1960-4ddf-ba56-7a232fa81f02",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "avrs",
+                    ":avr_id",
+                    "artifacts",
+                    "dockerfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "avr_id",
+                      "description": "(Required) AVR ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dockerfile_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bea09c46-0427-45d4-b1f7-e5d5d90e05f9",
+          "name": "Get provenance file for an AVR",
+          "request": {
+            "name": "Get provenance file for an AVR",
+            "description": {
+              "content": "Retrieves a presigned URL for the SLSA provenance file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "avrs",
+                ":avr_id",
+                "artifacts",
+                "provenance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "avr_id",
+                  "description": "(Required) AVR ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "445abc56-c473-4a1f-acf6-5cb877e45b38",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "avrs",
+                    ":avr_id",
+                    "artifacts",
+                    "provenance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "avr_id",
+                      "description": "(Required) AVR ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cosign_public_key_url\": \"string\",\n  \"provenance_file_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0d32aed-6495-4438-a05c-9ef40cb5c7a5",
+          "name": "Get SBOM file for an AVR",
+          "request": {
+            "name": "Get SBOM file for an AVR",
+            "description": {
+              "content": "Retrieves a presigned URL for the SBOM file from the post-remediation scan",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "avrs",
+                ":avr_id",
+                "artifacts",
+                "sbom"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "avr_id",
+                  "description": "(Required) AVR ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "840f2635-83c6-4e08-a080-f1e18bf1cf30",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "avrs",
+                    ":avr_id",
+                    "artifacts",
+                    "sbom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "avr_id",
+                      "description": "(Required) AVR ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sbom_file_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e266ba24-220f-49b4-b2c8-d9943af5d726",
+          "name": "Get VEX file for an AVR",
+          "request": {
+            "name": "Get VEX file for an AVR",
+            "description": {
+              "content": "Retrieves a presigned URL for the VEX (Vulnerability Exploitability eXchange) file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "avrs",
+                ":avr_id",
+                "artifacts",
+                "vex"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "avr_id",
+                  "description": "(Required) AVR ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "94389ffd-37a5-4355-9eae-d79617f64cdc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "avrs",
+                    ":avr_id",
+                    "artifacts",
+                    "vex"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "avr_id",
+                      "description": "(Required) AVR ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vex_file_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.root.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "45ecdf35-8547-49ae-9c53-46a934229325",
+    "name": "Root.io Accounts AVR API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the API documentation for Root.io.",
+      "type": "text/plain"
+    }
+  }
+}

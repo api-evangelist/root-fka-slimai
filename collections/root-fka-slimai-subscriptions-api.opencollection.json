@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts Subscriptions API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/subscriptions",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for next page"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for previous page"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size (default 100, max 1000)"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Ordering (e.g., 'created_at:desc')"
+              },
+              {
+                "name": "tag_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by root registry tag IDs"
+              }
+            ]
+          },
+          "docs": "Lists all subscriptions for the organization with pagination and preloaded tag/image data"
+        },
+        {
+          "info": {
+            "name": "Create subscriptions (bulk)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v3/subscriptions"
+          },
+          "docs": "Creates multiple subscriptions from a list of tag IDs. The infrastructure supports bulk operations out of the box."
+        },
+        {
+          "info": {
+            "name": "Delete subscriptions (bulk)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v3/subscriptions"
+          },
+          "docs": "Deletes multiple subscriptions by their IDs. The infrastructure supports bulk operations out of the box."
+        },
+        {
+          "info": {
+            "name": "Get subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/subscriptions/:subscriptionID",
+            "params": [
+              {
+                "name": "subscriptionID",
+                "value": "",
+                "type": "path",
+                "description": "Subscription ID"
+              }
+            ]
+          },
+          "docs": "Gets a specific subscription by ID with preloaded tag and image data"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

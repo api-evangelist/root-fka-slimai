@@ -1,0 +1,190 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts Package API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Package",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List packages with pagination and filtering",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/packages",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor for next page"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Before cursor for previous page"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size (max 1000)"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Ordering (e.g., 'created_at:desc')"
+              },
+              {
+                "name": "avr_scan_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by AVR Scan IDs"
+              },
+              {
+                "name": "arch",
+                "value": "",
+                "type": "query",
+                "description": "Filter by architectures"
+              },
+              {
+                "name": "ecosystem",
+                "value": "",
+                "type": "query",
+                "description": "Filter by ecosystems"
+              },
+              {
+                "name": "os_distro_release",
+                "value": "",
+                "type": "query",
+                "description": "Filter by OS distro releases"
+              },
+              {
+                "name": "versions",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package versions"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Fuzzy filter on package name"
+              },
+              {
+                "name": "src_name",
+                "value": "",
+                "type": "query",
+                "description": "Fuzzy filter on source package name"
+              },
+              {
+                "name": "licenses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by licenses"
+              },
+              {
+                "name": "cve_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by CVE IDs"
+              },
+              {
+                "name": "severities",
+                "value": "",
+                "type": "query",
+                "description": "Filter by CVE severities"
+              },
+              {
+                "name": "fixable",
+                "value": "",
+                "type": "query",
+                "description": "Only packages with fixable vulnerabilities"
+              },
+              {
+                "name": "package_source",
+                "value": "",
+                "type": "query",
+                "description": "Get the packages with their resolved CVEs according to the source - subscribed image or discovered package in repo"
+              },
+              {
+                "name": "sla_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by SLA status"
+              }
+            ]
+          },
+          "docs": "Retrieves packages from vulnerability scans with cursor-based pagination and comprehensive filtering"
+        },
+        {
+          "info": {
+            "name": "Get a package by its ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/packages/:pkg_id",
+            "params": [
+              {
+                "name": "pkg_id",
+                "value": "",
+                "type": "path",
+                "description": "AVR ID"
+              }
+            ]
+          },
+          "docs": "Retrieves a packages of from image catalog or the users discovered"
+        },
+        {
+          "info": {
+            "name": "Get patch files for a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/packages/:pkg_id/artifacts/patches",
+            "params": [
+              {
+                "name": "pkg_id",
+                "value": "",
+                "type": "path",
+                "description": "Package ID"
+              }
+            ]
+          },
+          "docs": "Retrieves presigned URLs for all patch files available for a specific package"
+        },
+        {
+          "info": {
+            "name": "Get provenance file for a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/packages/:pkg_id/artifacts/provenance",
+            "params": [
+              {
+                "name": "pkg_id",
+                "value": "",
+                "type": "path",
+                "description": "Package ID"
+              }
+            ]
+          },
+          "docs": "Retrieves a presigned URL for the SLSA provenance file of a specific package"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

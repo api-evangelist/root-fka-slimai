@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts Patches API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List CVE tickets (patches)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/patches",
+            "params": [
+              {
+                "name": "cve_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by CVE ID"
+              },
+              {
+                "name": "package_src_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package source name"
+              },
+              {
+                "name": "ecosystem",
+                "value": "",
+                "type": "query",
+                "description": "Filter by ecosystem"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package version (for app tickets)"
+              },
+              {
+                "name": "os_distro_major",
+                "value": "",
+                "type": "query",
+                "description": "Filter by OS distro major version (for OS tickets)"
+              },
+              {
+                "name": "severities",
+                "value": "",
+                "type": "query",
+                "description": "Filter by severities (critical, high, medium, low)"
+              },
+              {
+                "name": "ticket_statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by ticket statuses (open, in_progress, done, deferred)"
+              },
+              {
+                "name": "patch_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by patch status (found, not_found, running)"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Ordering (e.g., 'created_at:desc')"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size (default 100, max 1000)"
+              }
+            ]
+          },
+          "docs": "List and search CVE tickets with filters, org-scoped for non-superadmins. Returns patch status (found, not_found, running) by checking Argo workflows."
+        },
+        {
+          "info": {
+            "name": "List research artifacts for a CVE ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/patches/:ticketID/artifacts",
+            "params": [
+              {
+                "name": "ticketID",
+                "value": "",
+                "type": "path",
+                "description": "CVE Ticket ID"
+              }
+            ]
+          },
+          "docs": "Returns the list of artifact files from the latest research run. Each entry contains a relative file path (name) and a download_key (the full S3 object key). Use the download_key to fetch individual artifacts."
+        },
+        {
+          "info": {
+            "name": "Download a specific research artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/patches/:ticketID/artifacts/:downloadKey",
+            "params": [
+              {
+                "name": "ticketID",
+                "value": "",
+                "type": "path",
+                "description": "CVE Ticket ID"
+              },
+              {
+                "name": "downloadKey",
+                "value": "",
+                "type": "path",
+                "description": "Artifact download key (relative path). URL-encode slashes as %2F"
+              }
+            ]
+          },
+          "docs": "Downloads and streams a specific artifact file identified by its download_key (relative path from the list endpoint). URL-encode slashes as %2F."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

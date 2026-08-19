@@ -1,0 +1,940 @@
+{
+  "item": [
+    {
+      "id": "8402a1e2-3bcf-494a-9393-8783efa4b135",
+      "name": "Patches",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ca8908ff-fbfb-455f-b597-2f1ea7aad3f6",
+          "name": "List CVE tickets (patches)",
+          "request": {
+            "name": "List CVE tickets (patches)",
+            "description": {
+              "content": "List and search CVE tickets with filters, org-scoped for non-superadmins. Returns patch status (found, not_found, running) by checking Argo workflows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "patches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cve_id",
+                  "value": "<string>",
+                  "description": "Filter by CVE ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "package_src_name",
+                  "value": "<string>",
+                  "description": "Filter by package source name"
+                },
+                {
+                  "disabled": false,
+                  "key": "ecosystem",
+                  "value": "<string>",
+                  "description": "Filter by ecosystem"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "Filter by package version (for app tickets)"
+                },
+                {
+                  "disabled": false,
+                  "key": "os_distro_major",
+                  "value": "<string>",
+                  "description": "Filter by OS distro major version (for OS tickets)"
+                },
+                {
+                  "disabled": false,
+                  "key": "severities",
+                  "value": "<string>,<string>",
+                  "description": "Filter by severities (critical, high, medium, low)"
+                },
+                {
+                  "disabled": false,
+                  "key": "ticket_statuses",
+                  "value": "<string>,<string>",
+                  "description": "Filter by ticket statuses (open, in_progress, done, deferred)"
+                },
+                {
+                  "disabled": false,
+                  "key": "patch_status",
+                  "value": "<string>",
+                  "description": "Filter by patch status (found, not_found, running)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>,<string>",
+                  "description": "Ordering (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Page size (default 100, max 1000)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2065f87c-4e37-4e09-a561-e10ccf480b55",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "patches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cve_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "package_src_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ecosystem",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "os_distro_major",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severities",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "ticket_statuses",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "patch_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cursor\": {\n    \"after\": \"string\",\n    \"before\": \"string\",\n    \"limit\": 6917,\n    \"total_count\": 9532\n  },\n  \"tickets\": [\n    {\n      \"created_at\": \"string\",\n      \"cve_id\": \"string\",\n      \"ecosystem\": \"string\",\n      \"os_distro_major\": \"string\",\n      \"package_src_name\": \"string\",\n      \"patch_found\": false,\n      \"patch_found_at\": \"string\",\n      \"patch_status\": \"found\",\n      \"root_patch_provided\": true,\n      \"severity\": \"string\",\n      \"ticket_id\": \"string\",\n      \"ticket_status\": \"string\",\n      \"updated_at\": \"string\",\n      \"version\": \"string\",\n      \"workflow_name\": \"string\",\n      \"workflow_running\": true\n    },\n    {\n      \"created_at\": \"string\",\n      \"cve_id\": \"string\",\n      \"ecosystem\": \"string\",\n      \"os_distro_major\": \"string\",\n      \"package_src_name\": \"string\",\n      \"patch_found\": true,\n      \"patch_found_at\": \"string\",\n      \"patch_status\": \"found\",\n      \"root_patch_provided\": false,\n      \"severity\": \"string\",\n      \"ticket_id\": \"string\",\n      \"ticket_status\": \"string\",\n      \"updated_at\": \"string\",\n      \"version\": \"string\",\n      \"workflow_name\": \"string\",\n      \"workflow_running\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f7419f3-2a65-4798-81e7-7ba740bfba83",
+          "name": "List research artifacts for a CVE ticket",
+          "request": {
+            "name": "List research artifacts for a CVE ticket",
+            "description": {
+              "content": "Returns the list of artifact files from the latest research run. Each entry contains a relative file path (name) and a download_key (the full S3 object key). Use the download_key to fetch individual artifacts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "patches",
+                ":ticketID",
+                "artifacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketID",
+                  "description": "(Required) CVE Ticket ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2171da64-a138-4c2d-908c-a4d177814aeb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "patches",
+                    ":ticketID",
+                    "artifacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketID",
+                      "description": "(Required) CVE Ticket ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"string\",\n  \"files\": [\n    {\n      \"download_key\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"download_key\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"research_id\": \"string\",\n  \"ticket_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c25f892f-6ba1-4e26-ac1b-8059e5e231f1",
+              "name": "Invalid ticket ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "patches",
+                    ":ticketID",
+                    "artifacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketID",
+                      "description": "(Required) CVE Ticket ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c0ce435-86ab-48bb-b3ec-fa962e6cdfe2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "patches",
+                    ":ticketID",
+                    "artifacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketID",
+                      "description": "(Required) CVE Ticket ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df7df6a5-f6a4-41ff-8c5d-f800603ea65d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "patches",
+                    ":ticketID",
+                    "artifacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketID",
+                      "description": "(Required) CVE Ticket ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46dd4285-64c0-45f1-81c2-90c3816df0f0",
+              "name": "No research found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "patches",
+                    ":ticketID",
+                    "artifacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketID",
+                      "description": "(Required) CVE Ticket ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3aca9023-414c-46d9-8e8b-a4f791a08e8b",
+          "name": "Download a specific research artifact",
+          "request": {
+            "name": "Download a specific research artifact",
+            "description": {
+              "content": "Downloads and streams a specific artifact file identified by its download_key (relative path from the list endpoint). URL-encode slashes as %2F.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "patches",
+                ":ticketID",
+                "artifacts",
+                ":downloadKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketID",
+                  "description": "(Required) CVE Ticket ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "downloadKey",
+                  "description": "(Required) Artifact download key (relative path). URL-encode slashes as %2F"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "30ca24da-e470-4a62-be46-22a6199475bc",
+              "name": "The artifact file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "patches",
+                    ":ticketID",
+                    "artifacts",
+                    ":downloadKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketID",
+                      "description": "(Required) CVE Ticket ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "downloadKey",
+                      "description": "(Required) Artifact download key (relative path). URL-encode slashes as %2F"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae681b3f-7b4f-4976-91d6-ae79346876d0",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "patches",
+                    ":ticketID",
+                    "artifacts",
+                    ":downloadKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketID",
+                      "description": "(Required) CVE Ticket ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "downloadKey",
+                      "description": "(Required) Artifact download key (relative path). URL-encode slashes as %2F"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0531d4e7-6481-462e-9de0-eb57d395fb11",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "patches",
+                    ":ticketID",
+                    "artifacts",
+                    ":downloadKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketID",
+                      "description": "(Required) CVE Ticket ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "downloadKey",
+                      "description": "(Required) Artifact download key (relative path). URL-encode slashes as %2F"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c9024aee-761d-48ac-9f2b-d2723c961d1f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "patches",
+                    ":ticketID",
+                    "artifacts",
+                    ":downloadKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketID",
+                      "description": "(Required) CVE Ticket ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "downloadKey",
+                      "description": "(Required) Artifact download key (relative path). URL-encode slashes as %2F"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "afebe22e-a678-4c0a-9599-69f44027e0a1",
+              "name": "Artifact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "patches",
+                    ":ticketID",
+                    "artifacts",
+                    ":downloadKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketID",
+                      "description": "(Required) CVE Ticket ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "downloadKey",
+                      "description": "(Required) Artifact download key (relative path). URL-encode slashes as %2F"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.root.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6b0b24e6-ac71-4e7d-af28-c602b78d6b36",
+    "name": "Root.io Accounts Patches API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the API documentation for Root.io.",
+      "type": "text/plain"
+    }
+  }
+}

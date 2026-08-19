@@ -1,0 +1,734 @@
+{
+  "item": [
+    {
+      "id": "4d08571a-b7ca-43ec-a5c6-c3c502ef8707",
+      "name": "Package",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "941f790d-8a29-4e67-b6e7-15727eec6d3a",
+          "name": "List packages with pagination and filtering",
+          "request": {
+            "name": "List packages with pagination and filtering",
+            "description": {
+              "content": "Retrieves packages from vulnerability scans with cursor-based pagination and comprehensive filtering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "After cursor for next page"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "Before cursor for previous page"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Page size (max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Ordering (e.g., 'created_at:desc')"
+                },
+                {
+                  "disabled": false,
+                  "key": "avr_scan_ids",
+                  "value": "<string>",
+                  "description": "Filter by AVR Scan IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "avr_scan_ids",
+                  "value": "<string>",
+                  "description": "Filter by AVR Scan IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "arch",
+                  "value": "<string>",
+                  "description": "Filter by architectures"
+                },
+                {
+                  "disabled": false,
+                  "key": "arch",
+                  "value": "<string>",
+                  "description": "Filter by architectures"
+                },
+                {
+                  "disabled": false,
+                  "key": "ecosystem",
+                  "value": "<string>",
+                  "description": "Filter by ecosystems"
+                },
+                {
+                  "disabled": false,
+                  "key": "ecosystem",
+                  "value": "<string>",
+                  "description": "Filter by ecosystems"
+                },
+                {
+                  "disabled": false,
+                  "key": "os_distro_release",
+                  "value": "<string>",
+                  "description": "Filter by OS distro releases"
+                },
+                {
+                  "disabled": false,
+                  "key": "os_distro_release",
+                  "value": "<string>",
+                  "description": "Filter by OS distro releases"
+                },
+                {
+                  "disabled": false,
+                  "key": "versions",
+                  "value": "<string>",
+                  "description": "Filter by package versions"
+                },
+                {
+                  "disabled": false,
+                  "key": "versions",
+                  "value": "<string>",
+                  "description": "Filter by package versions"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Fuzzy filter on package name"
+                },
+                {
+                  "disabled": false,
+                  "key": "src_name",
+                  "value": "<string>",
+                  "description": "Fuzzy filter on source package name"
+                },
+                {
+                  "disabled": false,
+                  "key": "licenses",
+                  "value": "<string>",
+                  "description": "Filter by licenses"
+                },
+                {
+                  "disabled": false,
+                  "key": "licenses",
+                  "value": "<string>",
+                  "description": "Filter by licenses"
+                },
+                {
+                  "disabled": false,
+                  "key": "cve_ids",
+                  "value": "<string>",
+                  "description": "Filter by CVE IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "cve_ids",
+                  "value": "<string>",
+                  "description": "Filter by CVE IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "severities",
+                  "value": "<string>",
+                  "description": "Filter by CVE severities"
+                },
+                {
+                  "disabled": false,
+                  "key": "severities",
+                  "value": "<string>",
+                  "description": "Filter by CVE severities"
+                },
+                {
+                  "disabled": false,
+                  "key": "fixable",
+                  "value": "<boolean>",
+                  "description": "Only packages with fixable vulnerabilities"
+                },
+                {
+                  "disabled": false,
+                  "key": "package_source",
+                  "value": "<string>",
+                  "description": "Get the packages with their resolved CVEs according to the source - subscribed image or discovered package in repo"
+                },
+                {
+                  "disabled": false,
+                  "key": "sla_status",
+                  "value": "<string>",
+                  "description": "Filter by SLA status"
+                },
+                {
+                  "disabled": false,
+                  "key": "sla_status",
+                  "value": "<string>",
+                  "description": "Filter by SLA status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "adf18684-e313-4400-b2b5-f1bda4d22309",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "avr_scan_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "avr_scan_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ecosystem",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ecosystem",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "os_distro_release",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "os_distro_release",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "versions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "versions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "src_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "licenses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "licenses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cve_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cve_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fixable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "package_source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sla_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sla_status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cursor\": {\n    \"after\": \"string\",\n    \"before\": \"string\",\n    \"limit\": 385,\n    \"total_count\": 9546\n  },\n  \"data\": [\n    {\n      \"arch\": \"amd64\",\n      \"available_root_fixable_cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"available_root_version\": \"string\",\n      \"avr_scan_id\": \"string\",\n      \"created_at\": \"string\",\n      \"cves\": [\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 2934.9887678455466,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"unknown\",\n          \"sla\": {\n            \"cve_id\": \"string\",\n            \"organization_id\": \"string\",\n            \"patch_found_at\": \"string\",\n            \"root_patch_provided_at\": \"string\",\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": \"string\",\n            \"sla_started_at\": \"string\",\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 5073.235195452908,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"high\",\n          \"sla\": {\n            \"cve_id\": \"string\",\n            \"organization_id\": \"string\",\n            \"patch_found_at\": \"string\",\n            \"root_patch_provided_at\": \"string\",\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": \"string\",\n            \"sla_started_at\": \"string\",\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"ecosystem\": \"opensuse-leap\",\n      \"id\": \"string\",\n      \"installation_path\": \"string\",\n      \"is_root_package\": false,\n      \"last_pulled_at\": \"string\",\n      \"licenses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"os_distro_release\": \"string\",\n      \"package_purl\": \"string\",\n      \"resolved_cves\": [\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 4942.097047682915,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"critical\",\n          \"sla\": {\n            \"cve_id\": \"string\",\n            \"organization_id\": \"string\",\n            \"patch_found_at\": \"string\",\n            \"root_patch_provided_at\": \"string\",\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": \"string\",\n            \"sla_started_at\": \"string\",\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 767.0635261207636,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"medium\",\n          \"sla\": {\n            \"cve_id\": \"string\",\n            \"organization_id\": \"string\",\n            \"patch_found_at\": \"string\",\n            \"root_patch_provided_at\": \"string\",\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": \"string\",\n            \"sla_started_at\": \"string\",\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"root_upgrade_available\": true,\n      \"src_name\": \"string\",\n      \"updated_at\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"arch\": \"amd64\",\n      \"available_root_fixable_cve_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"available_root_version\": \"string\",\n      \"avr_scan_id\": \"string\",\n      \"created_at\": \"string\",\n      \"cves\": [\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 2053.973144937873,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"critical\",\n          \"sla\": {\n            \"cve_id\": \"string\",\n            \"organization_id\": \"string\",\n            \"patch_found_at\": \"string\",\n            \"root_patch_provided_at\": \"string\",\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": \"string\",\n            \"sla_started_at\": \"string\",\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 8497.349612969312,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"unknown\",\n          \"sla\": {\n            \"cve_id\": \"string\",\n            \"organization_id\": \"string\",\n            \"patch_found_at\": \"string\",\n            \"root_patch_provided_at\": \"string\",\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": \"string\",\n            \"sla_started_at\": \"string\",\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"ecosystem\": \"fedora\",\n      \"id\": \"string\",\n      \"installation_path\": \"string\",\n      \"is_root_package\": false,\n      \"last_pulled_at\": \"string\",\n      \"licenses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"os_distro_release\": \"string\",\n      \"package_purl\": \"string\",\n      \"resolved_cves\": [\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 5828.109556563886,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"critical\",\n          \"sla\": {\n            \"cve_id\": \"string\",\n            \"organization_id\": \"string\",\n            \"patch_found_at\": \"string\",\n            \"root_patch_provided_at\": \"string\",\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": \"string\",\n            \"sla_started_at\": \"string\",\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"avr_scan_id\": \"string\",\n          \"created_at\": \"string\",\n          \"cve_id\": \"string\",\n          \"cve_ticket_id\": \"string\",\n          \"cvss_score\": 1494.2636706376588,\n          \"cvss_vector\": \"string\",\n          \"description\": \"string\",\n          \"discovered_at\": \"string\",\n          \"fixed_in_version\": \"string\",\n          \"id\": \"string\",\n          \"nvd_link\": \"string\",\n          \"package_id\": \"string\",\n          \"published_at\": \"string\",\n          \"severity\": \"high\",\n          \"sla\": {\n            \"cve_id\": \"string\",\n            \"organization_id\": \"string\",\n            \"patch_found_at\": \"string\",\n            \"root_patch_provided_at\": \"string\",\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sla_deadline_at\": \"string\",\n            \"sla_started_at\": \"string\",\n            \"sla_status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"title\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"root_upgrade_available\": true,\n      \"src_name\": \"string\",\n      \"updated_at\": \"string\",\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "515b6db0-ccba-4d65-9f63-fe406c8e50b1",
+          "name": "Get a package by its ID",
+          "request": {
+            "name": "Get a package by its ID",
+            "description": {
+              "content": "Retrieves a packages of from image catalog or the users discovered",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "packages",
+                ":pkg_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pkg_id",
+                  "description": "(Required) AVR ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1f67d462-b973-45a7-b699-080c15d6dcbe",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "packages",
+                    ":pkg_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pkg_id",
+                      "description": "(Required) AVR ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"arch\": \"mips64\",\n  \"available_root_fixable_cve_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"available_root_version\": \"string\",\n  \"avr_scan_id\": \"string\",\n  \"created_at\": \"string\",\n  \"cves\": [\n    {\n      \"avr_scan_id\": \"string\",\n      \"created_at\": \"string\",\n      \"cve_id\": \"string\",\n      \"cve_ticket_id\": \"string\",\n      \"cvss_score\": 1213.0975381981025,\n      \"cvss_vector\": \"string\",\n      \"description\": \"string\",\n      \"discovered_at\": \"string\",\n      \"fixed_in_version\": \"string\",\n      \"id\": \"string\",\n      \"nvd_link\": \"string\",\n      \"package_id\": \"string\",\n      \"published_at\": \"string\",\n      \"severity\": \"low\",\n      \"sla\": {\n        \"cve_id\": \"string\",\n        \"organization_id\": \"string\",\n        \"patch_found_at\": \"string\",\n        \"root_patch_provided_at\": \"string\",\n        \"severity\": \"high\",\n        \"sla_deadline_at\": \"string\",\n        \"sla_started_at\": \"string\",\n        \"sla_status\": \"met\"\n      },\n      \"title\": \"string\",\n      \"updated_at\": \"string\"\n    },\n    {\n      \"avr_scan_id\": \"string\",\n      \"created_at\": \"string\",\n      \"cve_id\": \"string\",\n      \"cve_ticket_id\": \"string\",\n      \"cvss_score\": 8335.81788136287,\n      \"cvss_vector\": \"string\",\n      \"description\": \"string\",\n      \"discovered_at\": \"string\",\n      \"fixed_in_version\": \"string\",\n      \"id\": \"string\",\n      \"nvd_link\": \"string\",\n      \"package_id\": \"string\",\n      \"published_at\": \"string\",\n      \"severity\": \"low\",\n      \"sla\": {\n        \"cve_id\": \"string\",\n        \"organization_id\": \"string\",\n        \"patch_found_at\": \"string\",\n        \"root_patch_provided_at\": \"string\",\n        \"severity\": \"low\",\n        \"sla_deadline_at\": \"string\",\n        \"sla_started_at\": \"string\",\n        \"sla_status\": \"met\"\n      },\n      \"title\": \"string\",\n      \"updated_at\": \"string\"\n    }\n  ],\n  \"ecosystem\": \"binary\",\n  \"id\": \"string\",\n  \"installation_path\": \"string\",\n  \"is_root_package\": true,\n  \"last_pulled_at\": \"string\",\n  \"licenses\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"os_distro_release\": \"string\",\n  \"package_purl\": \"string\",\n  \"resolved_cves\": [\n    {\n      \"avr_scan_id\": \"string\",\n      \"created_at\": \"string\",\n      \"cve_id\": \"string\",\n      \"cve_ticket_id\": \"string\",\n      \"cvss_score\": 9242.464985249248,\n      \"cvss_vector\": \"string\",\n      \"description\": \"string\",\n      \"discovered_at\": \"string\",\n      \"fixed_in_version\": \"string\",\n      \"id\": \"string\",\n      \"nvd_link\": \"string\",\n      \"package_id\": \"string\",\n      \"published_at\": \"string\",\n      \"severity\": \"critical\",\n      \"sla\": {\n        \"cve_id\": \"string\",\n        \"organization_id\": \"string\",\n        \"patch_found_at\": \"string\",\n        \"root_patch_provided_at\": \"string\",\n        \"severity\": \"high\",\n        \"sla_deadline_at\": \"string\",\n        \"sla_started_at\": \"string\",\n        \"sla_status\": \"active\"\n      },\n      \"title\": \"string\",\n      \"updated_at\": \"string\"\n    },\n    {\n      \"avr_scan_id\": \"string\",\n      \"created_at\": \"string\",\n      \"cve_id\": \"string\",\n      \"cve_ticket_id\": \"string\",\n      \"cvss_score\": 9230.722008563214,\n      \"cvss_vector\": \"string\",\n      \"description\": \"string\",\n      \"discovered_at\": \"string\",\n      \"fixed_in_version\": \"string\",\n      \"id\": \"string\",\n      \"nvd_link\": \"string\",\n      \"package_id\": \"string\",\n      \"published_at\": \"string\",\n      \"severity\": \"medium\",\n      \"sla\": {\n        \"cve_id\": \"string\",\n        \"organization_id\": \"string\",\n        \"patch_found_at\": \"string\",\n        \"root_patch_provided_at\": \"string\",\n        \"severity\": \"unknown\",\n        \"sla_deadline_at\": \"string\",\n        \"sla_started_at\": \"string\",\n        \"sla_status\": \"not_applicable\"\n      },\n      \"title\": \"string\",\n      \"updated_at\": \"string\"\n    }\n  ],\n  \"root_upgrade_available\": true,\n  \"src_name\": \"string\",\n  \"updated_at\": \"string\",\n  \"version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b3c5910-0bc1-440a-87c4-d66ebc0cf490",
+          "name": "Get patch files for a package",
+          "request": {
+            "name": "Get patch files for a package",
+            "description": {
+              "content": "Retrieves presigned URLs for all patch files available for a specific package",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "packages",
+                ":pkg_id",
+                "artifacts",
+                "patches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pkg_id",
+                  "description": "(Required) Package ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "07bff36e-d129-4054-ac88-35b6dc7d18b0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "packages",
+                    ":pkg_id",
+                    "artifacts",
+                    "patches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pkg_id",
+                      "description": "(Required) Package ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patch_files_urls\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65e3b3cb-3c85-4235-8b34-5e1597cced44",
+          "name": "Get provenance file for a package",
+          "request": {
+            "name": "Get provenance file for a package",
+            "description": {
+              "content": "Retrieves a presigned URL for the SLSA provenance file of a specific package",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "packages",
+                ":pkg_id",
+                "artifacts",
+                "provenance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pkg_id",
+                  "description": "(Required) Package ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2f6c5472-deb1-4a75-8fcc-3529305ab883",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "packages",
+                    ":pkg_id",
+                    "artifacts",
+                    "provenance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pkg_id",
+                      "description": "(Required) Package ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"provenance_file_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.root.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fa19cf01-a6a3-4913-80d4-6bd67e007a1a",
+    "name": "Root.io Accounts Package API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the API documentation for Root.io.",
+      "type": "text/plain"
+    }
+  }
+}

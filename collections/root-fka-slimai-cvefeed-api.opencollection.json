@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Root.io Accounts CveFeed API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CveFeed",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get CVE feed data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/external/cve_feed"
+          },
+          "docs": "Downloads and returns JSON data from S3 for CVE feed consumption. No authentication required."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
