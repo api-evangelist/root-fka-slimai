@@ -46,6 +46,17 @@ tags:
 - Software Supply Chain
 - CVE
 - SBOM
+- Open-Source
+- Patching
+tags_raw:
+- Company
+- Security
+- Vulnerability Management
+- Container Security
+- DevSecOps
+- Software Supply Chain
+- CVE
+- SBOM
 - Open Source
 - Patching
 apis:
@@ -55,6 +66,8 @@ apis:
   humanURL: https://docs.root.io/reference/api
   baseURL: https://api.root.io
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -67,6 +80,8 @@ apis:
   humanURL: https://docs.root.io/reference/api
   baseURL: https://api.root.io
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
@@ -165,6 +180,8 @@ apis:
   humanURL: https://docs.root.io/reference/api
   baseURL: https://api.root.io
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -177,6 +194,8 @@ apis:
   humanURL: https://docs.root.io/reference/api
   baseURL: https://api.root.io
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -262,6 +281,8 @@ apis:
   humanURL: https://docs.root.io/reference/api
   baseURL: https://api.root.io
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -286,6 +307,8 @@ apis:
   humanURL: https://docs.root.io/reference/api
   baseURL: https://api.root.io
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
