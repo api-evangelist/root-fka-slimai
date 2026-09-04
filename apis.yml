@@ -13,15 +13,17 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: unknown
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Unknown
+  confidence: low
   source:
   - authentication
-  generated: '2026-07-22'
+  - security
+  - {url: 'https://www.root.io/', status: 301, note: 'declared website redirects to https://www.aikido.dev/cloud/hardened-images — a different registrable domain (root.io -> aikido.dev), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/root-fka-slimai.png
 name: Root (fka Slim.ai)
@@ -343,8 +345,9 @@ common:
   url: authentication/root-fka-slimai-authentication.yml
 - type: Packages
   url: packages/root-fka-slimai-packages.yml
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/root-fka-slimai-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: LLMsTxt
   url: llms/root-fka-slimai-llms.txt
 - type: Conformance
