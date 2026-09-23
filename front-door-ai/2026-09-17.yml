@@ -1,0 +1,28 @@
+# Front Door AI Index — root-fka-slimai — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: root-fka-slimai
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.root.io
+  final_host: www.aikido.dev
+  ownership: own
+  owner: root-fka-slimai
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 5
+  host_score: 5
+  density: 5.1
+  words: 980
+  tiers:
+    agentic: 1
+    core: 4
+    model: 0
+  ambiguous: 2
+  top_terms:
+    AI: 4
+    AI agent: 1
+    agent: 1
+    smart: 1
