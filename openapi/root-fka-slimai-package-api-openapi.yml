@@ -245,6 +245,39 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Cursor:
+      type: object
+      properties:
+        after:
+          type: string
+        before:
+          type: string
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
+    v3.SLAStatus:
+      type: string
+      enum:
+      - met
+      - active
+      - breached
+      - not_applicable
+      x-enum-varnames:
+      - SLAStatusMet
+      - SLAStatusActive
+      - SLAStatusBreached
+      - SLAStatusNotApplicable
+    ListPackagesPagedResponse:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScanPackageResponse'
     ScanPackageResponse:
       type: object
       properties:
@@ -304,13 +337,30 @@ components:
           type: string
         version:
           type: string
-    PatchFilesResponse:
+    v3.SLAInfo:
       type: object
       properties:
-        patch_files_urls:
-          type: array
-          items:
-            type: string
+        cve_id:
+          type: string
+        organization_id:
+          type: string
+        patch_found_at:
+          type: string
+        root_patch_provided_at:
+          type: string
+        severity:
+          $ref: '#/components/schemas/v3.CVESeverity'
+        sla_deadline_at:
+          type: string
+        sla_started_at:
+          type: string
+        sla_status:
+          $ref: '#/components/schemas/v3.SLAStatus'
+    PackageProvenanceFileResponse:
+      type: object
+      properties:
+        provenance_file_url:
+          type: string
     constants.EcosystemName:
       type: string
       enum:
@@ -347,25 +397,13 @@ components:
       - EcosystemNameNuget
       - EcosystemNameComposer
       - EcosystemNameBinary
-    v3.SLAInfo:
+    PatchFilesResponse:
       type: object
       properties:
-        cve_id:
-          type: string
-        organization_id:
-          type: string
-        patch_found_at:
-          type: string
-        root_patch_provided_at:
-          type: string
-        severity:
-          $ref: '#/components/schemas/v3.CVESeverity'
-        sla_deadline_at:
-          type: string
-        sla_started_at:
-          type: string
-        sla_status:
-          $ref: '#/components/schemas/v3.SLAStatus'
+        patch_files_urls:
+          type: array
+          items:
+            type: string
     CVEResponse:
       type: object
       properties:
@@ -417,18 +455,6 @@ components:
       - CveSeverityMedium
       - CveSeverityLow
       - CveSeverityUnknown
-    v3.SLAStatus:
-      type: string
-      enum:
-      - met
-      - active
-      - breached
-      - not_applicable
-      x-enum-varnames:
-      - SLAStatusMet
-      - SLAStatusActive
-      - SLAStatusBreached
-      - SLAStatusNotApplicable
     Arch:
       type: string
       enum:
@@ -455,32 +481,6 @@ components:
       - ArchMIPS64
       - ArchMIPS64LE
       - ArchMIPSLE
-    ListPackagesPagedResponse:
-      type: object
-      properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScanPackageResponse'
-    Cursor:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
-    PackageProvenanceFileResponse:
-      type: object
-      properties:
-        provenance_file_url:
-          type: string
   securitySchemes:
     BasicAuth:
       type: http

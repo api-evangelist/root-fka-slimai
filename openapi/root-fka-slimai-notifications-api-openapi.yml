@@ -120,43 +120,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ListNotificationsResponse:
+    Cursor:
       type: object
       properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationResponse'
-    PatchNotificationRequest:
-      type: object
-      required:
-      - seen
-      properties:
-        seen:
-          type: boolean
-    FixedCVE:
-      type: object
-      properties:
-        cve_id:
+        after:
           type: string
-        severity:
-          $ref: '#/components/schemas/v3.CVESeverity'
-    v3.CVESeverity:
-      type: string
-      enum:
-      - critical
-      - high
-      - medium
-      - low
-      - unknown
-      x-enum-varnames:
-      - CveSeverityCritical
-      - CveSeverityHigh
-      - CveSeverityMedium
-      - CveSeverityLow
-      - CveSeverityUnknown
+        before:
+          type: string
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
     NotificationResponse:
       type: object
       properties:
@@ -170,6 +145,15 @@ components:
           type: boolean
         type:
           type: string
+    ListNotificationsResponse:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationResponse'
     NotificationData:
       type: object
       properties:
@@ -188,23 +172,39 @@ components:
         rrt_id:
           description: root_registry_tags.id for image notifications; NULL for packages.
           type: string
-    Cursor:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
     UnreadCountResponse:
       type: object
       properties:
         count:
           type: integer
+    PatchNotificationRequest:
+      type: object
+      required:
+      - seen
+      properties:
+        seen:
+          type: boolean
+    v3.CVESeverity:
+      type: string
+      enum:
+      - critical
+      - high
+      - medium
+      - low
+      - unknown
+      x-enum-varnames:
+      - CveSeverityCritical
+      - CveSeverityHigh
+      - CveSeverityMedium
+      - CveSeverityLow
+      - CveSeverityUnknown
+    FixedCVE:
+      type: object
+      properties:
+        cve_id:
+          type: string
+        severity:
+          $ref: '#/components/schemas/v3.CVESeverity'
   securitySchemes:
     BasicAuth:
       type: http

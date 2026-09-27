@@ -125,6 +125,27 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Cursor:
+      type: object
+      properties:
+        after:
+          type: string
+        before:
+          type: string
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
+    CreateInviteRequest:
+      type: object
+      required:
+      - role
+      properties:
+        email:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
     ListInvitesResponse:
       type: object
       properties:
@@ -141,19 +162,6 @@ components:
           type: string
         invite:
           $ref: '#/components/schemas/InviteResponse'
-    InviteAcceptAccountResponse:
-      type: object
-      properties:
-        email:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        organization_id:
-          type: string
-        role:
-          $ref: '#/components/schemas/Role'
     InviteResponse:
       type: object
       properties:
@@ -177,27 +185,19 @@ components:
       - RoleAdmin
       - RoleMember
       - RoleReadonly
-    CreateInviteRequest:
+    InviteAcceptAccountResponse:
       type: object
-      required:
-      - role
       properties:
         email:
           type: string
+        id:
+          type: string
+        name:
+          type: string
+        organization_id:
+          type: string
         role:
           $ref: '#/components/schemas/Role'
-    Cursor:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
   securitySchemes:
     BasicAuth:
       type: http

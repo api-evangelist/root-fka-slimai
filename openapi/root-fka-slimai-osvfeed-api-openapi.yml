@@ -104,36 +104,6 @@ components:
         type:
           type: string
           example: ECOSYSTEM
-    osvfeed.OSVAffected:
-      type: object
-      properties:
-        package:
-          $ref: '#/components/schemas/osvfeed.OSVPackage'
-        ranges:
-          type: array
-          items:
-            $ref: '#/components/schemas/osvfeed.OSVRange'
-    osvfeed.OSVPackage:
-      type: object
-      properties:
-        ecosystem:
-          type: string
-          example: Alpine:3.18
-        name:
-          type: string
-          example: root-openssl
-        purl:
-          type: string
-          example: pkg:apk/alpine/root-openssl@3.0.8-r10071?arch=source&distro=alpine-3.18
-    osvfeed.OSVReference:
-      type: object
-      properties:
-        type:
-          type: string
-          example: WEB
-        url:
-          type: string
-          example: https://root.io/security/ROOT-OS-ALPINE-318-CVE-2023-1234
     osvfeed.OSVVulnerability:
       type: object
       properties:
@@ -168,6 +138,13 @@ components:
         summary:
           type: string
           example: CVE-2023-1234 in root-openssl - Patched by Root
+    osvfeed.IndexEntry:
+      type: object
+      properties:
+        id:
+          type: string
+        modified:
+          type: string
     osvfeed.OSVEvent:
       type: object
       properties:
@@ -177,13 +154,36 @@ components:
         introduced:
           type: string
           example: '0'
-    osvfeed.IndexEntry:
+    osvfeed.OSVPackage:
       type: object
       properties:
-        id:
+        ecosystem:
           type: string
-        modified:
+          example: Alpine:3.18
+        name:
           type: string
+          example: root-openssl
+        purl:
+          type: string
+          example: pkg:apk/alpine/root-openssl@3.0.8-r10071?arch=source&distro=alpine-3.18
+    osvfeed.OSVReference:
+      type: object
+      properties:
+        type:
+          type: string
+          example: WEB
+        url:
+          type: string
+          example: https://root.io/security/ROOT-OS-ALPINE-318-CVE-2023-1234
+    osvfeed.OSVAffected:
+      type: object
+      properties:
+        package:
+          $ref: '#/components/schemas/osvfeed.OSVPackage'
+        ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/osvfeed.OSVRange'
   securitySchemes:
     BasicAuth:
       type: http

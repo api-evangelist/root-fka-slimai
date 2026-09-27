@@ -200,6 +200,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Cursor:
+      type: object
+      properties:
+        after:
+          type: string
+        before:
+          type: string
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
     patches.SearchResult:
       type: object
       properties:
@@ -209,35 +221,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/patches.TicketWithStatus'
-    patches.PatchStatus:
-      type: string
-      enum:
-      - found
-      - not_found
-      - running
-      x-enum-varnames:
-      - PatchStatusFound
-      - PatchStatusNotFound
-      - PatchStatusRunning
     patches.ArtifactFile:
       type: object
       properties:
         download_key:
           type: string
         name:
-          type: string
-    patches.ArtifactsResult:
-      type: object
-      properties:
-        created_at:
-          type: string
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/patches.ArtifactFile'
-        research_id:
-          type: string
-        ticket_id:
           type: string
     patches.TicketWithStatus:
       type: object
@@ -274,18 +263,29 @@ components:
           type: string
         workflow_running:
           type: boolean
-    Cursor:
+    patches.PatchStatus:
+      type: string
+      enum:
+      - found
+      - not_found
+      - running
+      x-enum-varnames:
+      - PatchStatusFound
+      - PatchStatusNotFound
+      - PatchStatusRunning
+    patches.ArtifactsResult:
       type: object
       properties:
-        after:
+        created_at:
           type: string
-        before:
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/patches.ArtifactFile'
+        research_id:
           type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
+        ticket_id:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http

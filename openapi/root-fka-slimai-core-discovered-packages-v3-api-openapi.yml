@@ -69,39 +69,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v3.SLAInfo:
+    Cursor:
       type: object
       properties:
-        cve_id:
+        after:
           type: string
-        organization_id:
+        before:
           type: string
-        patch_found_at:
-          type: string
-        root_patch_provided_at:
-          type: string
-        severity:
-          $ref: '#/components/schemas/v3.CVESeverity'
-        sla_deadline_at:
-          type: string
-        sla_started_at:
-          type: string
-        sla_status:
-          $ref: '#/components/schemas/v3.SLAStatus'
-    v3.CVESeverity:
-      type: string
-      enum:
-      - critical
-      - high
-      - medium
-      - low
-      - unknown
-      x-enum-varnames:
-      - CveSeverityCritical
-      - CveSeverityHigh
-      - CveSeverityMedium
-      - CveSeverityLow
-      - CveSeverityUnknown
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
     discovered_packages.DiscoveredPackageResponse:
       type: object
       properties:
@@ -153,18 +132,6 @@ components:
         version:
           description: Current version
           type: string
-    Cursor:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
     v3.SLAStatus:
       type: string
       enum:
@@ -177,15 +144,25 @@ components:
       - SLAStatusActive
       - SLAStatusBreached
       - SLAStatusNotApplicable
-    discovered_packages.ListDiscoveredPackagesPagedResponse:
+    v3.SLAInfo:
       type: object
       properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/discovered_packages.DiscoveredPackageResponse'
+        cve_id:
+          type: string
+        organization_id:
+          type: string
+        patch_found_at:
+          type: string
+        root_patch_provided_at:
+          type: string
+        severity:
+          $ref: '#/components/schemas/v3.CVESeverity'
+        sla_deadline_at:
+          type: string
+        sla_started_at:
+          type: string
+        sla_status:
+          $ref: '#/components/schemas/v3.SLAStatus'
     v3.CVE:
       type: object
       properties:
@@ -230,6 +207,29 @@ components:
           type: string
         updated_at:
           type: string
+    v3.CVESeverity:
+      type: string
+      enum:
+      - critical
+      - high
+      - medium
+      - low
+      - unknown
+      x-enum-varnames:
+      - CveSeverityCritical
+      - CveSeverityHigh
+      - CveSeverityMedium
+      - CveSeverityLow
+      - CveSeverityUnknown
+    discovered_packages.ListDiscoveredPackagesPagedResponse:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/discovered_packages.DiscoveredPackageResponse'
   securitySchemes:
     BasicAuth:
       type: http

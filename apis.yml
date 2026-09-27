@@ -60,7 +60,7 @@ tags:
 - Software Supply Chain
 - CVE
 - SBOM
-- Open-Source
+- Open Source
 - Patching
 tags_raw:
 - Company
@@ -73,6 +73,7 @@ tags_raw:
 - SBOM
 - Open Source
 - Patching
+- Open-Source
 apis:
 - aid: root-fka-slimai:root-fka-slimai-accounts-api
   name: Root (fka Slim.ai) Accounts API

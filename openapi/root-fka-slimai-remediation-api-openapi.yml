@@ -354,11 +354,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    analyze.PatchInfo:
+    analyze.PackagePatch:
       type: object
       properties:
-        name:
+        cve_ids:
+          type: array
+          items:
+            type: string
+        embedded_via:
+          description: EmbeddedVia is non-nil when the fix ships via a parent vendor bump.
+          allOf:
+          - $ref: '#/components/schemas/EmbeddedRef'
+        package_name:
           type: string
+        patch:
+          $ref: '#/components/schemas/analyze.PatchInfo'
+        patch_alias:
+          $ref: '#/components/schemas/analyze.PatchInfo'
         version:
           type: string
     MavenAnalyzePackagesRequest:
@@ -380,6 +392,65 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/analyze.PackageInfo'
+    EmbeddedRef:
+      type: object
+      properties:
+        name:
+          description: parent name, e.g. "setuptools"
+          type: string
+        path:
+          description: Path locates the inner *.dist-info; absolute on scans, relative on audit rows.
+          type: string
+        version:
+          description: parent version, e.g. "65.5.0"
+          type: string
+    analyze.UpgradeableOsPackage:
+      type: object
+      properties:
+        current_version:
+          type: string
+        cve_ids:
+          type: array
+          items:
+            type: string
+        package_name:
+          type: string
+        upgrade_version:
+          type: string
+    analyze.AnalyzeOsPackagesRequest:
+      type: object
+      required:
+      - ecosystem
+      - os_distro_version
+      - packages
+      properties:
+        ecosystem:
+          type: string
+        os_distro_version:
+          type: string
+        packages:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/analyze.PackageInfo'
+    NugetAnalyzePackagesResponse:
+      type: object
+      properties:
+        patches:
+          type: array
+          items:
+            $ref: '#/components/schemas/analyze.PackagePatch'
+        skipped:
+          type: array
+          items:
+            $ref: '#/components/schemas/analyze.SkippedPackage'
+    analyze.SkippedPackage:
+      type: object
+      properties:
+        package_name:
+          type: string
+        version:
+          type: string
     ComposerAnalyzePackagesResponse:
       type: object
       properties:
@@ -391,26 +462,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/analyze.SkippedPackage'
-    analyze.PackagePatch:
-      type: object
-      properties:
-        cve_ids:
-          type: array
-          items:
-            type: string
-        embedded_via:
-          description: EmbeddedVia is non-nil when the fix ships via a parent vendor bump.
-          allOf:
-          - $ref: '#/components/schemas/EmbeddedRef'
-        package_name:
-          type: string
-        patch:
-          $ref: '#/components/schemas/analyze.PatchInfo'
-        patch_alias:
-          $ref: '#/components/schemas/analyze.PatchInfo'
-        version:
-          type: string
-    NpmAnalyzePackagesRequest:
+    GolangAnalyzePackagesRequest:
       type: object
       required:
       - packages
@@ -429,30 +481,6 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/analyze.PackageInfo'
-    analyze.UpgradeableOsPackage:
-      type: object
-      properties:
-        current_version:
-          type: string
-        cve_ids:
-          type: array
-          items:
-            type: string
-        package_name:
-          type: string
-        upgrade_version:
-          type: string
-    NpmAnalyzePackagesResponse:
-      type: object
-      properties:
-        patches:
-          type: array
-          items:
-            $ref: '#/components/schemas/analyze.PackagePatch'
-        skipped:
-          type: array
-          items:
-            $ref: '#/components/schemas/analyze.SkippedPackage'
     analyze.AnalyzeOsPackagesResponse:
       type: object
       properties:
@@ -468,7 +496,50 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/analyze.UpgradeableOsPackage'
-    NugetAnalyzePackagesResponse:
+    GolangAnalyzePackagesResponse:
+      type: object
+      properties:
+        patches:
+          type: array
+          items:
+            $ref: '#/components/schemas/analyze.PackagePatch'
+        skipped:
+          type: array
+          items:
+            $ref: '#/components/schemas/analyze.SkippedPackage'
+    analyze.PatchInfo:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+    PyPiAnalyzePackagesResponse:
+      type: object
+      properties:
+        patches:
+          type: array
+          items:
+            $ref: '#/components/schemas/analyze.PackagePatch'
+        skipped:
+          type: array
+          items:
+            $ref: '#/components/schemas/analyze.SkippedPackage'
+    analyze.PackageInfo:
+      type: object
+      required:
+      - name
+      - version
+      properties:
+        embedded_in:
+          description: EmbeddedIn is non-nil when this package is vendored inside another (PyPI).
+          allOf:
+          - $ref: '#/components/schemas/EmbeddedRef'
+        name:
+          type: string
+        version:
+          type: string
+    NpmAnalyzePackagesResponse:
       type: object
       properties:
         patches:
@@ -498,7 +569,7 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/analyze.PackageInfo'
-    GolangAnalyzePackagesRequest:
+    PyPiAnalyzePackagesRequest:
       type: object
       required:
       - packages
@@ -517,88 +588,6 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/analyze.PackageInfo'
-    analyze.PackageInfo:
-      type: object
-      required:
-      - name
-      - version
-      properties:
-        embedded_in:
-          description: EmbeddedIn is non-nil when this package is vendored inside another (PyPI).
-          allOf:
-          - $ref: '#/components/schemas/EmbeddedRef'
-        name:
-          type: string
-        version:
-          type: string
-    GolangAnalyzePackagesResponse:
-      type: object
-      properties:
-        patches:
-          type: array
-          items:
-            $ref: '#/components/schemas/analyze.PackagePatch'
-        skipped:
-          type: array
-          items:
-            $ref: '#/components/schemas/analyze.SkippedPackage'
-    MavenAnalyzePackagesResponse:
-      type: object
-      properties:
-        patches:
-          type: array
-          items:
-            $ref: '#/components/schemas/analyze.PackagePatch'
-        skipped:
-          type: array
-          items:
-            $ref: '#/components/schemas/analyze.SkippedPackage'
-    PyPiAnalyzePackagesResponse:
-      type: object
-      properties:
-        patches:
-          type: array
-          items:
-            $ref: '#/components/schemas/analyze.PackagePatch'
-        skipped:
-          type: array
-          items:
-            $ref: '#/components/schemas/analyze.SkippedPackage'
-    analyze.AnalyzeOsPackagesRequest:
-      type: object
-      required:
-      - ecosystem
-      - os_distro_version
-      - packages
-      properties:
-        ecosystem:
-          type: string
-        os_distro_version:
-          type: string
-        packages:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/analyze.PackageInfo'
-    EmbeddedRef:
-      type: object
-      properties:
-        name:
-          description: parent name, e.g. "setuptools"
-          type: string
-        path:
-          description: Path locates the inner *.dist-info; absolute on scans, relative on audit rows.
-          type: string
-        version:
-          description: parent version, e.g. "65.5.0"
-          type: string
-    analyze.SkippedPackage:
-      type: object
-      properties:
-        package_name:
-          type: string
-        version:
-          type: string
     ComposerAnalyzePackagesRequest:
       type: object
       required:
@@ -618,7 +607,18 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/analyze.PackageInfo'
-    PyPiAnalyzePackagesRequest:
+    MavenAnalyzePackagesResponse:
+      type: object
+      properties:
+        patches:
+          type: array
+          items:
+            $ref: '#/components/schemas/analyze.PackagePatch'
+        skipped:
+          type: array
+          items:
+            $ref: '#/components/schemas/analyze.SkippedPackage'
+    NpmAnalyzePackagesRequest:
       type: object
       required:
       - packages

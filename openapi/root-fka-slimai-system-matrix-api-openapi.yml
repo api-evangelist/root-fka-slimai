@@ -42,6 +42,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    DistroVersionSupport:
+      type: object
+      properties:
+        dev_code_name:
+          type: string
+        major_version:
+          type: string
+        support_scope:
+          type: string
     Platform:
       type: object
       properties:
@@ -68,15 +77,6 @@ components:
         type: array
         items:
           $ref: '#/components/schemas/DistroVersionSupport'
-    DistroVersionSupport:
-      type: object
-      properties:
-        dev_code_name:
-          type: string
-        major_version:
-          type: string
-        support_scope:
-          type: string
   securitySchemes:
     BasicAuth:
       type: http
