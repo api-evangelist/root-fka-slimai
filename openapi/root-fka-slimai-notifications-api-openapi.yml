@@ -120,40 +120,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Cursor:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
-    NotificationResponse:
-      type: object
-      properties:
-        created_at:
-          type: string
-        data:
-          $ref: '#/components/schemas/NotificationData'
-        id:
-          type: string
-        seen:
-          type: boolean
-        type:
-          type: string
-    ListNotificationsResponse:
-      type: object
-      properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationResponse'
     NotificationData:
       type: object
       properties:
@@ -172,11 +138,6 @@ components:
         rrt_id:
           description: root_registry_tags.id for image notifications; NULL for packages.
           type: string
-    UnreadCountResponse:
-      type: object
-      properties:
-        count:
-          type: integer
     PatchNotificationRequest:
       type: object
       required:
@@ -184,6 +145,15 @@ components:
       properties:
         seen:
           type: boolean
+    ListNotificationsResponse:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationResponse'
     v3.CVESeverity:
       type: string
       enum:
@@ -205,6 +175,36 @@ components:
           type: string
         severity:
           $ref: '#/components/schemas/v3.CVESeverity'
+    NotificationResponse:
+      type: object
+      properties:
+        created_at:
+          type: string
+        data:
+          $ref: '#/components/schemas/NotificationData'
+        id:
+          type: string
+        seen:
+          type: boolean
+        type:
+          type: string
+    UnreadCountResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+    Cursor:
+      type: object
+      properties:
+        after:
+          type: string
+        before:
+          type: string
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
   securitySchemes:
     BasicAuth:
       type: http

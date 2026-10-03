@@ -245,39 +245,42 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Cursor:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
-    v3.SLAStatus:
+    constants.EcosystemName:
       type: string
       enum:
-      - met
-      - active
-      - breached
-      - not_applicable
+      - debian
+      - ubuntu
+      - alpine
+      - amazon
+      - redhat
+      - rocky
+      - distroless
+      - fedora
+      - opensuse-leap
+      - pypi
+      - npm
+      - maven
+      - gobinary
+      - nuget
+      - composer
+      - binary
       x-enum-varnames:
-      - SLAStatusMet
-      - SLAStatusActive
-      - SLAStatusBreached
-      - SLAStatusNotApplicable
-    ListPackagesPagedResponse:
-      type: object
-      properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScanPackageResponse'
+      - EcosystemNameDebian
+      - EcosystemNameUbuntu
+      - EcosystemNameAlpine
+      - EcosystemNameAmazon
+      - EcosystemNameRedhat
+      - EcosystemNameRocky
+      - EcosystemNameDistroless
+      - EcosystemNameFedora
+      - EcosystemNameOpenSUSELeap
+      - EcosystemNamePypi
+      - EcosystemNameNpm
+      - EcosystemNameMaven
+      - EcosystemNameGoBinary
+      - EcosystemNameNuget
+      - EcosystemNameComposer
+      - EcosystemNameBinary
     ScanPackageResponse:
       type: object
       properties:
@@ -337,110 +340,6 @@ components:
           type: string
         version:
           type: string
-    v3.SLAInfo:
-      type: object
-      properties:
-        cve_id:
-          type: string
-        organization_id:
-          type: string
-        patch_found_at:
-          type: string
-        root_patch_provided_at:
-          type: string
-        severity:
-          $ref: '#/components/schemas/v3.CVESeverity'
-        sla_deadline_at:
-          type: string
-        sla_started_at:
-          type: string
-        sla_status:
-          $ref: '#/components/schemas/v3.SLAStatus'
-    PackageProvenanceFileResponse:
-      type: object
-      properties:
-        provenance_file_url:
-          type: string
-    constants.EcosystemName:
-      type: string
-      enum:
-      - debian
-      - ubuntu
-      - alpine
-      - amazon
-      - redhat
-      - rocky
-      - distroless
-      - fedora
-      - opensuse-leap
-      - pypi
-      - npm
-      - maven
-      - gobinary
-      - nuget
-      - composer
-      - binary
-      x-enum-varnames:
-      - EcosystemNameDebian
-      - EcosystemNameUbuntu
-      - EcosystemNameAlpine
-      - EcosystemNameAmazon
-      - EcosystemNameRedhat
-      - EcosystemNameRocky
-      - EcosystemNameDistroless
-      - EcosystemNameFedora
-      - EcosystemNameOpenSUSELeap
-      - EcosystemNamePypi
-      - EcosystemNameNpm
-      - EcosystemNameMaven
-      - EcosystemNameGoBinary
-      - EcosystemNameNuget
-      - EcosystemNameComposer
-      - EcosystemNameBinary
-    PatchFilesResponse:
-      type: object
-      properties:
-        patch_files_urls:
-          type: array
-          items:
-            type: string
-    CVEResponse:
-      type: object
-      properties:
-        avr_scan_id:
-          type: string
-        created_at:
-          type: string
-        cve_id:
-          type: string
-        cve_ticket_id:
-          type: string
-        cvss_score:
-          type: number
-        cvss_vector:
-          type: string
-        description:
-          type: string
-        discovered_at:
-          type: string
-        fixed_in_version:
-          type: string
-        id:
-          type: string
-        nvd_link:
-          type: string
-        package_id:
-          type: string
-        published_at:
-          type: string
-        severity:
-          $ref: '#/components/schemas/v3.CVESeverity'
-        sla:
-          $ref: '#/components/schemas/v3.SLAInfo'
-        title:
-          type: string
-        updated_at:
-          type: string
     v3.CVESeverity:
       type: string
       enum:
@@ -481,6 +380,107 @@ components:
       - ArchMIPS64
       - ArchMIPS64LE
       - ArchMIPSLE
+    PatchFilesResponse:
+      type: object
+      properties:
+        patch_files_urls:
+          type: array
+          items:
+            type: string
+    v3.SLAStatus:
+      type: string
+      enum:
+      - met
+      - active
+      - breached
+      - not_applicable
+      x-enum-varnames:
+      - SLAStatusMet
+      - SLAStatusActive
+      - SLAStatusBreached
+      - SLAStatusNotApplicable
+    PackageProvenanceFileResponse:
+      type: object
+      properties:
+        provenance_file_url:
+          type: string
+    ListPackagesPagedResponse:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScanPackageResponse'
+    Cursor:
+      type: object
+      properties:
+        after:
+          type: string
+        before:
+          type: string
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
+    v3.SLAInfo:
+      type: object
+      properties:
+        cve_id:
+          type: string
+        organization_id:
+          type: string
+        patch_found_at:
+          type: string
+        root_patch_provided_at:
+          type: string
+        severity:
+          $ref: '#/components/schemas/v3.CVESeverity'
+        sla_deadline_at:
+          type: string
+        sla_started_at:
+          type: string
+        sla_status:
+          $ref: '#/components/schemas/v3.SLAStatus'
+    CVEResponse:
+      type: object
+      properties:
+        avr_scan_id:
+          type: string
+        created_at:
+          type: string
+        cve_id:
+          type: string
+        cve_ticket_id:
+          type: string
+        cvss_score:
+          type: number
+        cvss_vector:
+          type: string
+        description:
+          type: string
+        discovered_at:
+          type: string
+        fixed_in_version:
+          type: string
+        id:
+          type: string
+        nvd_link:
+          type: string
+        package_id:
+          type: string
+        published_at:
+          type: string
+        severity:
+          $ref: '#/components/schemas/v3.CVESeverity'
+        sla:
+          $ref: '#/components/schemas/v3.SLAInfo'
+        title:
+          type: string
+        updated_at:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http

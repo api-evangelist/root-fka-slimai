@@ -69,100 +69,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Cursor:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
-    discovered_packages.DiscoveredPackageResponse:
-      type: object
-      properties:
-        available_root_fixable_cve_ids:
-          description: 'CVE IDs newly fixed by upgrading to AvailableRootVersion. Empty when no
-
-            upgrade applies.'
-          type: array
-          items:
-            type: string
-        available_root_version:
-          description: Highest applicable Root.io patch version; empty when no upgrade applies.
-          type: string
-        cves:
-          description: Current CVEs with full details
-          type: array
-          items:
-            $ref: '#/components/schemas/v3.CVE'
-        ecosystem:
-          description: pypi, npm, maven, etc.
-          type: string
-        fixed_cves:
-          description: CVEs fixed by root version
-          type: array
-          items:
-            type: string
-        last_pulled_at:
-          description: Last detected timestamp
-          type: string
-        open_cves:
-          description: CVEs not fixed by root version
-          type: array
-          items:
-            type: string
-        package_name:
-          description: Source package name (canonical)
-          type: string
-        resolved_cves:
-          description: CVEs resolved by user's updates
-          type: array
-          items:
-            $ref: '#/components/schemas/v3.CVE'
-        root_available:
-          description: Has Root.io upgrade available
-          type: boolean
-        root_used:
-          description: Currently using Root.io version
-          type: boolean
-        version:
-          description: Current version
-          type: string
-    v3.SLAStatus:
-      type: string
-      enum:
-      - met
-      - active
-      - breached
-      - not_applicable
-      x-enum-varnames:
-      - SLAStatusMet
-      - SLAStatusActive
-      - SLAStatusBreached
-      - SLAStatusNotApplicable
-    v3.SLAInfo:
-      type: object
-      properties:
-        cve_id:
-          type: string
-        organization_id:
-          type: string
-        patch_found_at:
-          type: string
-        root_patch_provided_at:
-          type: string
-        severity:
-          $ref: '#/components/schemas/v3.CVESeverity'
-        sla_deadline_at:
-          type: string
-        sla_started_at:
-          type: string
-        sla_status:
-          $ref: '#/components/schemas/v3.SLAStatus'
     v3.CVE:
       type: object
       properties:
@@ -221,6 +127,57 @@ components:
       - CveSeverityMedium
       - CveSeverityLow
       - CveSeverityUnknown
+    discovered_packages.DiscoveredPackageResponse:
+      type: object
+      properties:
+        available_root_fixable_cve_ids:
+          description: 'CVE IDs newly fixed by upgrading to AvailableRootVersion. Empty when no
+
+            upgrade applies.'
+          type: array
+          items:
+            type: string
+        available_root_version:
+          description: Highest applicable Root.io patch version; empty when no upgrade applies.
+          type: string
+        cves:
+          description: Current CVEs with full details
+          type: array
+          items:
+            $ref: '#/components/schemas/v3.CVE'
+        ecosystem:
+          description: pypi, npm, maven, etc.
+          type: string
+        fixed_cves:
+          description: CVEs fixed by root version
+          type: array
+          items:
+            type: string
+        last_pulled_at:
+          description: Last detected timestamp
+          type: string
+        open_cves:
+          description: CVEs not fixed by root version
+          type: array
+          items:
+            type: string
+        package_name:
+          description: Source package name (canonical)
+          type: string
+        resolved_cves:
+          description: CVEs resolved by user's updates
+          type: array
+          items:
+            $ref: '#/components/schemas/v3.CVE'
+        root_available:
+          description: Has Root.io upgrade available
+          type: boolean
+        root_used:
+          description: Currently using Root.io version
+          type: boolean
+        version:
+          description: Current version
+          type: string
     discovered_packages.ListDiscoveredPackagesPagedResponse:
       type: object
       properties:
@@ -230,6 +187,49 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/discovered_packages.DiscoveredPackageResponse'
+    v3.SLAStatus:
+      type: string
+      enum:
+      - met
+      - active
+      - breached
+      - not_applicable
+      x-enum-varnames:
+      - SLAStatusMet
+      - SLAStatusActive
+      - SLAStatusBreached
+      - SLAStatusNotApplicable
+    Cursor:
+      type: object
+      properties:
+        after:
+          type: string
+        before:
+          type: string
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
+    v3.SLAInfo:
+      type: object
+      properties:
+        cve_id:
+          type: string
+        organization_id:
+          type: string
+        patch_found_at:
+          type: string
+        root_patch_provided_at:
+          type: string
+        severity:
+          $ref: '#/components/schemas/v3.CVESeverity'
+        sla_deadline_at:
+          type: string
+        sla_started_at:
+          type: string
+        sla_status:
+          $ref: '#/components/schemas/v3.SLAStatus'
   securitySchemes:
     BasicAuth:
       type: http

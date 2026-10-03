@@ -114,47 +114,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    EmbeddedRef:
+    discovery.CreateDiscoveredPackagesBulkRequest:
       type: object
+      required:
+      - items
       properties:
-        name:
-          description: parent name, e.g. "setuptools"
-          type: string
-        path:
-          description: Path locates the inner *.dist-info; absolute on scans, relative on audit rows.
-          type: string
-        version:
-          description: parent version, e.g. "65.5.0"
-          type: string
-    discovery.CreateDiscoveredPackageResponse:
-      type: object
-      properties:
-        cve_ids:
+        items:
           type: array
+          minItems: 1
           items:
-            type: string
-        cve_ticket_id:
-          type: string
-        jira_ticket_id:
-          type: string
-        metadata_id:
-          type: string
-        scan_package_id:
-          type: string
-    v3.CVESeverity:
-      type: string
-      enum:
-      - critical
-      - high
-      - medium
-      - low
-      - unknown
-      x-enum-varnames:
-      - CveSeverityCritical
-      - CveSeverityHigh
-      - CveSeverityMedium
-      - CveSeverityLow
-      - CveSeverityUnknown
+            $ref: '#/components/schemas/discovery.CreateDiscoveredPackageRequest'
     Arch:
       type: string
       enum:
@@ -181,16 +150,35 @@ components:
       - ArchMIPS64
       - ArchMIPS64LE
       - ArchMIPSLE
-    discovery.CreateDiscoveredPackagesBulkRequest:
+    v3.CVESeverity:
+      type: string
+      enum:
+      - critical
+      - high
+      - medium
+      - low
+      - unknown
+      x-enum-varnames:
+      - CveSeverityCritical
+      - CveSeverityHigh
+      - CveSeverityMedium
+      - CveSeverityLow
+      - CveSeverityUnknown
+    discovery.CreateDiscoveredPackageResponse:
       type: object
-      required:
-      - items
       properties:
-        items:
+        cve_ids:
           type: array
-          minItems: 1
           items:
-            $ref: '#/components/schemas/discovery.CreateDiscoveredPackageRequest'
+            type: string
+        cve_ticket_id:
+          type: string
+        jira_ticket_id:
+          type: string
+        metadata_id:
+          type: string
+        scan_package_id:
+          type: string
     discovery.CreateDiscoveredPackageRequest:
       type: object
       required:
@@ -246,6 +234,18 @@ components:
           type: string
         item_count:
           type: integer
+    EmbeddedRef:
+      type: object
+      properties:
+        name:
+          description: parent name, e.g. "setuptools"
+          type: string
+        path:
+          description: Path locates the inner *.dist-info; absolute on scans, relative on audit rows.
+          type: string
+        version:
+          description: parent version, e.g. "65.5.0"
+          type: string
   securitySchemes:
     BasicAuth:
       type: http

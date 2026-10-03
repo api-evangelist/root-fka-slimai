@@ -137,6 +137,196 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    TagResponse:
+      type: object
+      properties:
+        access_tier:
+          $ref: '#/components/schemas/AccessTier'
+        arch:
+          $ref: '#/components/schemas/Arch'
+        artifacts_available:
+          type: boolean
+        avr:
+          $ref: '#/components/schemas/AVRWithScansResponse'
+        created_at:
+          type: string
+        id:
+          type: string
+        last_avr_id:
+          type: string
+        original_scan:
+          $ref: '#/components/schemas/OriginalScanResponse'
+        root_image_tag:
+          type: string
+        root_registry_image_repo:
+          type: string
+        updated_at:
+          type: string
+    constants.EcosystemName:
+      type: string
+      enum:
+      - debian
+      - ubuntu
+      - alpine
+      - amazon
+      - redhat
+      - rocky
+      - distroless
+      - fedora
+      - opensuse-leap
+      - pypi
+      - npm
+      - maven
+      - gobinary
+      - nuget
+      - composer
+      - binary
+      x-enum-varnames:
+      - EcosystemNameDebian
+      - EcosystemNameUbuntu
+      - EcosystemNameAlpine
+      - EcosystemNameAmazon
+      - EcosystemNameRedhat
+      - EcosystemNameRocky
+      - EcosystemNameDistroless
+      - EcosystemNameFedora
+      - EcosystemNameOpenSUSELeap
+      - EcosystemNamePypi
+      - EcosystemNameNpm
+      - EcosystemNameMaven
+      - EcosystemNameGoBinary
+      - EcosystemNameNuget
+      - EcosystemNameComposer
+      - EcosystemNameBinary
+    v3.VulnerabilityCountsBreakdown:
+      type: object
+      properties:
+        critical:
+          type: integer
+        high:
+          type: integer
+        low:
+          type: integer
+        medium:
+          type: integer
+        unknown:
+          type: integer
+    ListSubscriptionsResponse:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubscriptionResponse'
+    SubscriptionResponse:
+      type: object
+      properties:
+        created_at:
+          type: string
+        id:
+          type: string
+        organization_id:
+          type: string
+        root_registry_tag_id:
+          description: Which tag subscribed to
+          type: string
+        tag:
+          $ref: '#/components/schemas/TagResponse'
+        updated_at:
+          type: string
+    AccessTier:
+      type: string
+      enum:
+      - none
+      - free
+      - pro
+      - fips
+      x-enum-varnames:
+      - AccessTierNone
+      - AccessTierFree
+      - AccessTierPro
+      - AccessTierFIPS
+    DeleteSubscriptionsRequest:
+      type: object
+      required:
+      - subscription_ids
+      properties:
+        subscription_ids:
+          type: array
+          minItems: 1
+          items:
+            type: string
+    Arch:
+      type: string
+      enum:
+      - arm64
+      - amd64
+      - x86
+      - aarch64
+      - arm
+      - ppc64
+      - ppc64le
+      - mips
+      - mips64
+      - mips64le
+      - mipsle
+      x-enum-varnames:
+      - ArchARM64
+      - ArchAmd64
+      - ArchX86
+      - ArchAARCH64
+      - ArchARM
+      - ArchPPC64
+      - ArchPPC
+      - ArchMIPS
+      - ArchMIPS64
+      - ArchMIPS64LE
+      - ArchMIPSLE
+    CreateSubscriptionsRequest:
+      type: object
+      properties:
+        image_tags:
+          type: array
+          items:
+            type: string
+        tag_ids:
+          type: array
+          items:
+            type: string
+    v3.PackageChange:
+      type: object
+      properties:
+        new_version:
+          type: string
+        old_version:
+          type: string
+    AVRScanResponse:
+      type: object
+      properties:
+        arch:
+          $ref: '#/components/schemas/Arch'
+        created_at:
+          type: string
+        ecosystem:
+          $ref: '#/components/schemas/constants.EcosystemName'
+        id:
+          type: string
+        image_digest:
+          type: string
+        os_distro_release:
+          type: string
+        sbom_key:
+          type: string
+        status:
+          $ref: '#/components/schemas/v3.AVRScanStatus'
+        target_image:
+          type: string
+        updated_at:
+          type: string
+        vulnerability_counts:
+          $ref: '#/components/schemas/v3.VulnerabilityCounts'
     Cursor:
       type: object
       properties:
@@ -176,51 +366,6 @@ components:
           type: string
         vex_key:
           type: string
-    DeleteSubscriptionsRequest:
-      type: object
-      required:
-      - subscription_ids
-      properties:
-        subscription_ids:
-          type: array
-          minItems: 1
-          items:
-            type: string
-    AVRScanResponse:
-      type: object
-      properties:
-        arch:
-          $ref: '#/components/schemas/Arch'
-        created_at:
-          type: string
-        ecosystem:
-          $ref: '#/components/schemas/constants.EcosystemName'
-        id:
-          type: string
-        image_digest:
-          type: string
-        os_distro_release:
-          type: string
-        sbom_key:
-          type: string
-        status:
-          $ref: '#/components/schemas/v3.AVRScanStatus'
-        target_image:
-          type: string
-        updated_at:
-          type: string
-        vulnerability_counts:
-          $ref: '#/components/schemas/v3.VulnerabilityCounts'
-    v3.AVRScanStatus:
-      type: string
-      enum:
-      - scanning
-      - completed
-      - failed
-      x-enum-varnames:
-      - AVRScanStatusScanning
-      - AVRScanStatusCompleted
-      - AVRScanStatusFailed
     v3.VulnerabilityCounts:
       type: object
       properties:
@@ -239,158 +384,6 @@ components:
           type: integer
         unknown:
           type: integer
-    AccessTier:
-      type: string
-      enum:
-      - none
-      - free
-      - pro
-      - fips
-      x-enum-varnames:
-      - AccessTierNone
-      - AccessTierFree
-      - AccessTierPro
-      - AccessTierFIPS
-    v3.VulnerabilityCountsBreakdown:
-      type: object
-      properties:
-        critical:
-          type: integer
-        high:
-          type: integer
-        low:
-          type: integer
-        medium:
-          type: integer
-        unknown:
-          type: integer
-    v3.AVRStatus:
-      type: string
-      enum:
-      - pulling_image
-      - scanning
-      - building
-      - rescanning
-      - auditing
-      - completed
-      - failed
-      x-enum-varnames:
-      - AVRStatusPullingImage
-      - AVRStatusScanning
-      - AVRStatusBuilding
-      - AVRStatusRescanning
-      - AVRStatusAuditing
-      - AVRStatusCompleted
-      - AVRStatusFailed
-    constants.EcosystemName:
-      type: string
-      enum:
-      - debian
-      - ubuntu
-      - alpine
-      - amazon
-      - redhat
-      - rocky
-      - distroless
-      - fedora
-      - opensuse-leap
-      - pypi
-      - npm
-      - maven
-      - gobinary
-      - nuget
-      - composer
-      - binary
-      x-enum-varnames:
-      - EcosystemNameDebian
-      - EcosystemNameUbuntu
-      - EcosystemNameAlpine
-      - EcosystemNameAmazon
-      - EcosystemNameRedhat
-      - EcosystemNameRocky
-      - EcosystemNameDistroless
-      - EcosystemNameFedora
-      - EcosystemNameOpenSUSELeap
-      - EcosystemNamePypi
-      - EcosystemNameNpm
-      - EcosystemNameMaven
-      - EcosystemNameGoBinary
-      - EcosystemNameNuget
-      - EcosystemNameComposer
-      - EcosystemNameBinary
-    TagResponse:
-      type: object
-      properties:
-        access_tier:
-          $ref: '#/components/schemas/AccessTier'
-        arch:
-          $ref: '#/components/schemas/Arch'
-        artifacts_available:
-          type: boolean
-        avr:
-          $ref: '#/components/schemas/AVRWithScansResponse'
-        created_at:
-          type: string
-        id:
-          type: string
-        last_avr_id:
-          type: string
-        original_scan:
-          $ref: '#/components/schemas/OriginalScanResponse'
-        root_image_tag:
-          type: string
-        root_registry_image_repo:
-          type: string
-        updated_at:
-          type: string
-    ListSubscriptionsResponse:
-      type: object
-      properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SubscriptionResponse'
-    Arch:
-      type: string
-      enum:
-      - arm64
-      - amd64
-      - x86
-      - aarch64
-      - arm
-      - ppc64
-      - ppc64le
-      - mips
-      - mips64
-      - mips64le
-      - mipsle
-      x-enum-varnames:
-      - ArchARM64
-      - ArchAmd64
-      - ArchX86
-      - ArchAARCH64
-      - ArchARM
-      - ArchPPC64
-      - ArchPPC
-      - ArchMIPS
-      - ArchMIPS64
-      - ArchMIPS64LE
-      - ArchMIPSLE
-    OriginalScanResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        scanned_at:
-          type: string
-        status:
-          $ref: '#/components/schemas/v3.AVRScanStatus'
-        target_image:
-          type: string
-        vulnerability_counts:
-          $ref: '#/components/schemas/v3.VulnerabilityCounts'
     v3.RemediationDetails:
       type: object
       properties:
@@ -412,40 +405,47 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/v3.PackageChange'
-    SubscriptionResponse:
+    v3.AVRScanStatus:
+      type: string
+      enum:
+      - scanning
+      - completed
+      - failed
+      x-enum-varnames:
+      - AVRScanStatusScanning
+      - AVRScanStatusCompleted
+      - AVRScanStatusFailed
+    v3.AVRStatus:
+      type: string
+      enum:
+      - pulling_image
+      - scanning
+      - building
+      - rescanning
+      - auditing
+      - completed
+      - failed
+      x-enum-varnames:
+      - AVRStatusPullingImage
+      - AVRStatusScanning
+      - AVRStatusBuilding
+      - AVRStatusRescanning
+      - AVRStatusAuditing
+      - AVRStatusCompleted
+      - AVRStatusFailed
+    OriginalScanResponse:
       type: object
       properties:
-        created_at:
-          type: string
         id:
           type: string
-        organization_id:
+        scanned_at:
           type: string
-        root_registry_tag_id:
-          description: Which tag subscribed to
+        status:
+          $ref: '#/components/schemas/v3.AVRScanStatus'
+        target_image:
           type: string
-        tag:
-          $ref: '#/components/schemas/TagResponse'
-        updated_at:
-          type: string
-    v3.PackageChange:
-      type: object
-      properties:
-        new_version:
-          type: string
-        old_version:
-          type: string
-    CreateSubscriptionsRequest:
-      type: object
-      properties:
-        image_tags:
-          type: array
-          items:
-            type: string
-        tag_ids:
-          type: array
-          items:
-            type: string
+        vulnerability_counts:
+          $ref: '#/components/schemas/v3.VulnerabilityCounts'
   securitySchemes:
     BasicAuth:
       type: http

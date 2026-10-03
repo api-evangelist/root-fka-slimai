@@ -140,6 +140,40 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Role:
+      type: string
+      enum:
+      - admin
+      - member
+      - readonly
+      x-enum-varnames:
+      - RoleAdmin
+      - RoleMember
+      - RoleReadonly
+    UpdateAccountRequest:
+      type: object
+      required:
+      - role
+      properties:
+        role:
+          $ref: '#/components/schemas/Role'
+    ListAccountsPagedResponse:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountResponse'
+    OrganizationKind:
+      type: string
+      enum:
+      - public
+      - private
+      x-enum-varnames:
+      - OrganizationKindPublic
+      - OrganizationKindPrivate
     Cursor:
       type: object
       properties:
@@ -152,30 +186,6 @@ components:
         total_count:
           description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
           type: integer
-    OrganizationBrief:
-      type: object
-      properties:
-        id:
-          type: string
-        kind:
-          $ref: '#/components/schemas/OrganizationKind'
-        name:
-          type: string
-    OrganizationKind:
-      type: string
-      enum:
-      - public
-      - private
-      x-enum-varnames:
-      - OrganizationKindPublic
-      - OrganizationKindPrivate
-    UpdateAccountRequest:
-      type: object
-      required:
-      - role
-      properties:
-        role:
-          $ref: '#/components/schemas/Role'
     AccountResponse:
       type: object
       properties:
@@ -209,25 +219,15 @@ components:
           $ref: '#/components/schemas/Role'
         updated_at:
           type: string
-    Role:
-      type: string
-      enum:
-      - admin
-      - member
-      - readonly
-      x-enum-varnames:
-      - RoleAdmin
-      - RoleMember
-      - RoleReadonly
-    ListAccountsPagedResponse:
+    OrganizationBrief:
       type: object
       properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountResponse'
+        id:
+          type: string
+        kind:
+          $ref: '#/components/schemas/OrganizationKind'
+        name:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http

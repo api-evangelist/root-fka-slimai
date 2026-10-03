@@ -235,166 +235,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    v3.AVRScan:
-      type: object
-      properties:
-        arch:
-          $ref: '#/components/schemas/Arch'
-        created_at:
-          type: string
-        ecosystem:
-          $ref: '#/components/schemas/constants.EcosystemName'
-        id:
-          type: string
-        image_digest:
-          type: string
-        organization_id:
-          type: string
-        os_distro_release:
-          type: string
-        registry_credentials_id:
-          type: string
-        sbom_key:
-          type: string
-        status:
-          $ref: '#/components/schemas/v3.AVRScanStatus'
-        target_image:
-          type: string
-        updated_at:
-          type: string
-        vulnerability_counts:
-          description: Vulnerability counts by severity
-          allOf:
-          - $ref: '#/components/schemas/v3.VulnerabilityCounts'
-    ImageRemediationDecision:
-      type: string
-      enum:
-      - image_remediation_decision_patch
-      - image_remediation_decision_unsupported_arch
-      - image_remediation_decision_unsupported_ecosystem
-      - image_remediation_decision_unsupported_os_distro
-      - image_remediation_decision_no_remediation_available
-      - image_remediation_decision_no_remediation_required
-      - image_remediation_decision_distroless
-      x-enum-comments:
-        ImageRemediationDecisionArchNotSupported: nolint:lll
-        ImageRemediationDecisionDistroless: nolint:lll
-        ImageRemediationDecisionEcosystemNotSupported: nolint:lll
-        ImageRemediationDecisionNoRemediationAvailable: nolint:lll
-        ImageRemediationDecisionNoRemediationRequired: nolint:lll
-        ImageRemediationDecisionOSDistroNotSupported: nolint:lll
-      x-enum-varnames:
-      - ImageRemediationDecisionPatch
-      - ImageRemediationDecisionArchNotSupported
-      - ImageRemediationDecisionEcosystemNotSupported
-      - ImageRemediationDecisionOSDistroNotSupported
-      - ImageRemediationDecisionNoRemediationAvailable
-      - ImageRemediationDecisionNoRemediationRequired
-      - ImageRemediationDecisionDistroless
-    v3.AVRScanStatus:
-      type: string
-      enum:
-      - scanning
-      - completed
-      - failed
-      x-enum-varnames:
-      - AVRScanStatusScanning
-      - AVRScanStatusCompleted
-      - AVRScanStatusFailed
-    v3.AVRStatus:
-      type: string
-      enum:
-      - pulling_image
-      - scanning
-      - building
-      - rescanning
-      - auditing
-      - completed
-      - failed
-      x-enum-varnames:
-      - AVRStatusPullingImage
-      - AVRStatusScanning
-      - AVRStatusBuilding
-      - AVRStatusRescanning
-      - AVRStatusAuditing
-      - AVRStatusCompleted
-      - AVRStatusFailed
-    v3.PackageChange:
-      type: object
-      properties:
-        new_version:
-          type: string
-        old_version:
-          type: string
-    Cursor:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
-    CreateAVRRequest:
-      type: object
-      required:
-      - arch
-      - target_image
-      properties:
-        alias_patching:
-          type: boolean
-        arch:
-          type: string
-        python_patching:
-          type: boolean
-        registry_credentials_id:
-          type: string
-        root_registry_tag_id:
-          type: string
-        target_image:
-          type: string
-    Arch:
-      type: string
-      enum:
-      - arm64
-      - amd64
-      - x86
-      - aarch64
-      - arm
-      - ppc64
-      - ppc64le
-      - mips
-      - mips64
-      - mips64le
-      - mipsle
-      x-enum-varnames:
-      - ArchARM64
-      - ArchAmd64
-      - ArchX86
-      - ArchAARCH64
-      - ArchARM
-      - ArchPPC64
-      - ArchPPC
-      - ArchMIPS
-      - ArchMIPS64
-      - ArchMIPS64LE
-      - ArchMIPSLE
-    v3.AVRSource:
-      type: string
-      enum:
-      - generated
-      - image_rebuilder
-      x-enum-varnames:
-      - AVRSourceGenerated
-      - AVRSourceImageRebuilder
-    DockerfileResponse:
-      type: object
-      properties:
-        dockerfile_url:
-          type: string
     constants.EcosystemName:
       type: string
       enum:
@@ -431,46 +271,32 @@ components:
       - EcosystemNameNuget
       - EcosystemNameComposer
       - EcosystemNameBinary
-    v3.RemediationStrategy:
-      type: object
-      properties:
-        alias_patching:
-          type: boolean
-        python_patching:
-          type: boolean
-        user_id:
-          type: string
-    v3.VulnerabilityCounts:
-      type: object
-      properties:
-        app_level:
-          description: App-level vulnerability counts (nil/omitted for old records)
-          allOf:
-          - $ref: '#/components/schemas/v3.VulnerabilityCountsBreakdown'
-        critical:
-          description: OS-level vulnerability counts (top-level for backward compatibility)
-          type: integer
-        high:
-          type: integer
-        low:
-          type: integer
-        medium:
-          type: integer
-        unknown:
-          type: integer
-    v3.VulnerabilityCountsBreakdown:
-      type: object
-      properties:
-        critical:
-          type: integer
-        high:
-          type: integer
-        low:
-          type: integer
-        medium:
-          type: integer
-        unknown:
-          type: integer
+    Arch:
+      type: string
+      enum:
+      - arm64
+      - amd64
+      - x86
+      - aarch64
+      - arm
+      - ppc64
+      - ppc64le
+      - mips
+      - mips64
+      - mips64le
+      - mipsle
+      x-enum-varnames:
+      - ArchARM64
+      - ArchAmd64
+      - ArchX86
+      - ArchAARCH64
+      - ArchARM
+      - ArchPPC64
+      - ArchPPC
+      - ArchMIPS
+      - ArchMIPS64
+      - ArchMIPS64LE
+      - ArchMIPSLE
     v3.AVR:
       type: object
       properties:
@@ -542,16 +368,6 @@ components:
           type: string
         vex_key:
           type: string
-    VEXFileResponse:
-      type: object
-      properties:
-        vex_file_url:
-          type: string
-    SBOMFileResponse:
-      type: object
-      properties:
-        sbom_file_url:
-          type: string
     v3.RemediationDetails:
       type: object
       properties:
@@ -573,6 +389,98 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/v3.PackageChange'
+    v3.VulnerabilityCountsBreakdown:
+      type: object
+      properties:
+        critical:
+          type: integer
+        high:
+          type: integer
+        low:
+          type: integer
+        medium:
+          type: integer
+        unknown:
+          type: integer
+    AVRProvenanceFileResponse:
+      type: object
+      properties:
+        cosign_public_key_url:
+          type: string
+        provenance_file_url:
+          type: string
+    v3.AVRSource:
+      type: string
+      enum:
+      - generated
+      - image_rebuilder
+      x-enum-varnames:
+      - AVRSourceGenerated
+      - AVRSourceImageRebuilder
+    Cursor:
+      type: object
+      properties:
+        after:
+          type: string
+        before:
+          type: string
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
+    ImageRemediationDecision:
+      type: string
+      enum:
+      - image_remediation_decision_patch
+      - image_remediation_decision_unsupported_arch
+      - image_remediation_decision_unsupported_ecosystem
+      - image_remediation_decision_unsupported_os_distro
+      - image_remediation_decision_no_remediation_available
+      - image_remediation_decision_no_remediation_required
+      - image_remediation_decision_distroless
+      x-enum-comments:
+        ImageRemediationDecisionArchNotSupported: nolint:lll
+        ImageRemediationDecisionDistroless: nolint:lll
+        ImageRemediationDecisionEcosystemNotSupported: nolint:lll
+        ImageRemediationDecisionNoRemediationAvailable: nolint:lll
+        ImageRemediationDecisionNoRemediationRequired: nolint:lll
+        ImageRemediationDecisionOSDistroNotSupported: nolint:lll
+      x-enum-varnames:
+      - ImageRemediationDecisionPatch
+      - ImageRemediationDecisionArchNotSupported
+      - ImageRemediationDecisionEcosystemNotSupported
+      - ImageRemediationDecisionOSDistroNotSupported
+      - ImageRemediationDecisionNoRemediationAvailable
+      - ImageRemediationDecisionNoRemediationRequired
+      - ImageRemediationDecisionDistroless
+    v3.VulnerabilityCounts:
+      type: object
+      properties:
+        app_level:
+          description: App-level vulnerability counts (nil/omitted for old records)
+          allOf:
+          - $ref: '#/components/schemas/v3.VulnerabilityCountsBreakdown'
+        critical:
+          description: OS-level vulnerability counts (top-level for backward compatibility)
+          type: integer
+        high:
+          type: integer
+        low:
+          type: integer
+        medium:
+          type: integer
+        unknown:
+          type: integer
+    v3.RemediationStrategy:
+      type: object
+      properties:
+        alias_patching:
+          type: boolean
+        python_patching:
+          type: boolean
+        user_id:
+          type: string
     ListAVRsPagedResponse:
       type: object
       properties:
@@ -653,12 +561,104 @@ components:
           type: string
         vex_key:
           type: string
-    AVRProvenanceFileResponse:
+    v3.AVRScanStatus:
+      type: string
+      enum:
+      - scanning
+      - completed
+      - failed
+      x-enum-varnames:
+      - AVRScanStatusScanning
+      - AVRScanStatusCompleted
+      - AVRScanStatusFailed
+    SBOMFileResponse:
       type: object
       properties:
-        cosign_public_key_url:
+        sbom_file_url:
           type: string
-        provenance_file_url:
+    DockerfileResponse:
+      type: object
+      properties:
+        dockerfile_url:
+          type: string
+    VEXFileResponse:
+      type: object
+      properties:
+        vex_file_url:
+          type: string
+    v3.AVRScan:
+      type: object
+      properties:
+        arch:
+          $ref: '#/components/schemas/Arch'
+        created_at:
+          type: string
+        ecosystem:
+          $ref: '#/components/schemas/constants.EcosystemName'
+        id:
+          type: string
+        image_digest:
+          type: string
+        organization_id:
+          type: string
+        os_distro_release:
+          type: string
+        registry_credentials_id:
+          type: string
+        sbom_key:
+          type: string
+        status:
+          $ref: '#/components/schemas/v3.AVRScanStatus'
+        target_image:
+          type: string
+        updated_at:
+          type: string
+        vulnerability_counts:
+          description: Vulnerability counts by severity
+          allOf:
+          - $ref: '#/components/schemas/v3.VulnerabilityCounts'
+    CreateAVRRequest:
+      type: object
+      required:
+      - arch
+      - target_image
+      properties:
+        alias_patching:
+          type: boolean
+        arch:
+          type: string
+        python_patching:
+          type: boolean
+        registry_credentials_id:
+          type: string
+        root_registry_tag_id:
+          type: string
+        target_image:
+          type: string
+    v3.AVRStatus:
+      type: string
+      enum:
+      - pulling_image
+      - scanning
+      - building
+      - rescanning
+      - auditing
+      - completed
+      - failed
+      x-enum-varnames:
+      - AVRStatusPullingImage
+      - AVRStatusScanning
+      - AVRStatusBuilding
+      - AVRStatusRescanning
+      - AVRStatusAuditing
+      - AVRStatusCompleted
+      - AVRStatusFailed
+    v3.PackageChange:
+      type: object
+      properties:
+        new_version:
+          type: string
+        old_version:
           type: string
   securitySchemes:
     BasicAuth:

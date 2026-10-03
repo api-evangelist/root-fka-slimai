@@ -232,48 +232,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Cursor:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
-    WebhookSubscriptionResponse:
-      type: object
-      properties:
-        created_at:
-          type: string
-        description:
-          type: string
-        event_types:
-          description: EventTypes lists the event types being delivered. Empty means all event types.
-          type: array
-          items:
-            type: string
-        id:
-          type: string
-        organization_id:
-          type: string
-        updated_at:
-          type: string
-        url:
-          type: string
-    v3.WebhookDeliveryAttemptStatus:
-      type: string
-      enum:
-      - pending
-      - delivered
-      - failed
-      x-enum-varnames:
-      - WebhookDeliveryAttemptStatusPending
-      - WebhookDeliveryAttemptStatusDelivered
-      - WebhookDeliveryAttemptStatusFailed
     TestWebhookResponse:
       type: object
       properties:
@@ -293,23 +251,43 @@ components:
           type: string
         type:
           type: string
-    TestWebhookRequest:
+    ListWebhookSubscriptionsResponse:
       type: object
       properties:
-        root_registry_tag_id:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookSubscriptionResponse'
+    v3.WebhookDeliveryAttemptStatus:
+      type: string
+      enum:
+      - pending
+      - delivered
+      - failed
+      x-enum-varnames:
+      - WebhookDeliveryAttemptStatusPending
+      - WebhookDeliveryAttemptStatusDelivered
+      - WebhookDeliveryAttemptStatusFailed
+    WebhookSubscriptionResponse:
+      type: object
+      properties:
+        created_at:
           type: string
-    CreateWebhookSubscriptionRequest:
-      type: object
-      required:
-      - url
-      properties:
         description:
           type: string
         event_types:
-          description: EventTypes lists the event types to deliver. Empty means all event types.
+          description: EventTypes lists the event types being delivered. Empty means all event types.
           type: array
           items:
             type: string
+        id:
+          type: string
+        organization_id:
+          type: string
+        updated_at:
+          type: string
         url:
           type: string
     CreateWebhookSubscriptionResponse:
@@ -334,15 +312,37 @@ components:
           type: string
         url:
           type: string
-    ListWebhookSubscriptionsResponse:
+    Cursor:
       type: object
       properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
+        after:
+          type: string
+        before:
+          type: string
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
+    TestWebhookRequest:
+      type: object
+      properties:
+        root_registry_tag_id:
+          type: string
+    CreateWebhookSubscriptionRequest:
+      type: object
+      required:
+      - url
+      properties:
+        description:
+          type: string
+        event_types:
+          description: EventTypes lists the event types to deliver. Empty means all event types.
           type: array
           items:
-            $ref: '#/components/schemas/WebhookSubscriptionResponse'
+            type: string
+        url:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http

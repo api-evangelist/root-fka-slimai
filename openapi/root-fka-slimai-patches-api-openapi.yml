@@ -200,34 +200,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Cursor:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
-    patches.SearchResult:
-      type: object
-      properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        tickets:
-          type: array
-          items:
-            $ref: '#/components/schemas/patches.TicketWithStatus'
-    patches.ArtifactFile:
-      type: object
-      properties:
-        download_key:
-          type: string
-        name:
-          type: string
+    patches.PatchStatus:
+      type: string
+      enum:
+      - found
+      - not_found
+      - running
+      x-enum-varnames:
+      - PatchStatusFound
+      - PatchStatusNotFound
+      - PatchStatusRunning
     patches.TicketWithStatus:
       type: object
       properties:
@@ -263,16 +245,6 @@ components:
           type: string
         workflow_running:
           type: boolean
-    patches.PatchStatus:
-      type: string
-      enum:
-      - found
-      - not_found
-      - running
-      x-enum-varnames:
-      - PatchStatusFound
-      - PatchStatusNotFound
-      - PatchStatusRunning
     patches.ArtifactsResult:
       type: object
       properties:
@@ -285,6 +257,34 @@ components:
         research_id:
           type: string
         ticket_id:
+          type: string
+    patches.SearchResult:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        tickets:
+          type: array
+          items:
+            $ref: '#/components/schemas/patches.TicketWithStatus'
+    Cursor:
+      type: object
+      properties:
+        after:
+          type: string
+        before:
+          type: string
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
+    patches.ArtifactFile:
+      type: object
+      properties:
+        download_key:
+          type: string
+        name:
           type: string
   securitySchemes:
     BasicAuth:

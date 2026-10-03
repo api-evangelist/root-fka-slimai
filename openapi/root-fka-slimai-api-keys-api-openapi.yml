@@ -165,18 +165,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Cursor:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
     APIKeyCreatedBy:
       type: object
       properties:
@@ -188,50 +176,6 @@ components:
           type: string
         role:
           $ref: '#/components/schemas/Role'
-    AccountType:
-      type: string
-      enum:
-      - user
-      - service
-      x-enum-varnames:
-      - AccountTypeUser
-      - AccountTypeService
-    OrganizationBrief:
-      type: object
-      properties:
-        id:
-          type: string
-        kind:
-          $ref: '#/components/schemas/OrganizationKind'
-        name:
-          type: string
-    OrganizationKind:
-      type: string
-      enum:
-      - public
-      - private
-      x-enum-varnames:
-      - OrganizationKindPublic
-      - OrganizationKindPrivate
-    ListAPIKeysPagedResponse:
-      type: object
-      properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIKeyResponse'
-    Role:
-      type: string
-      enum:
-      - admin
-      - member
-      - readonly
-      x-enum-varnames:
-      - RoleAdmin
-      - RoleMember
-      - RoleReadonly
     AccountBrief:
       type: object
       properties:
@@ -243,6 +187,46 @@ components:
           type: string
         role:
           $ref: '#/components/schemas/Role'
+    PatchAPIKeyRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          maxLength: 100
+          minLength: 1
+    Role:
+      type: string
+      enum:
+      - admin
+      - member
+      - readonly
+      x-enum-varnames:
+      - RoleAdmin
+      - RoleMember
+      - RoleReadonly
+    CreateAPIKeyRequest:
+      type: object
+      properties:
+        expires_at:
+          type: string
+        name:
+          type: string
+          maxLength: 100
+        role:
+          enum:
+          - admin
+          - member
+          - readonly
+          allOf:
+          - $ref: '#/components/schemas/Role'
+        type:
+          enum:
+          - user
+          - service
+          allOf:
+          - $ref: '#/components/schemas/AccountType'
     APIKeyResponse:
       type: object
       properties:
@@ -276,36 +260,52 @@ components:
           $ref: '#/components/schemas/AccountType'
         updated_at:
           type: string
-    CreateAPIKeyRequest:
+    OrganizationKind:
+      type: string
+      enum:
+      - public
+      - private
+      x-enum-varnames:
+      - OrganizationKindPublic
+      - OrganizationKindPrivate
+    AccountType:
+      type: string
+      enum:
+      - user
+      - service
+      x-enum-varnames:
+      - AccountTypeUser
+      - AccountTypeService
+    Cursor:
       type: object
       properties:
-        expires_at:
+        after:
           type: string
-        name:
+        before:
           type: string
-          maxLength: 100
-        role:
-          enum:
-          - admin
-          - member
-          - readonly
-          allOf:
-          - $ref: '#/components/schemas/Role'
-        type:
-          enum:
-          - user
-          - service
-          allOf:
-          - $ref: '#/components/schemas/AccountType'
-    PatchAPIKeyRequest:
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
+    ListAPIKeysPagedResponse:
       type: object
-      required:
-      - name
       properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIKeyResponse'
+    OrganizationBrief:
+      type: object
+      properties:
+        id:
+          type: string
+        kind:
+          $ref: '#/components/schemas/OrganizationKind'
         name:
           type: string
-          maxLength: 100
-          minLength: 1
   securitySchemes:
     BasicAuth:
       type: http

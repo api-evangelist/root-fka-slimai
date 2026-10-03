@@ -51,6 +51,12 @@ components:
           type: string
         support_scope:
           type: string
+    Ecosystems:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          $ref: '#/components/schemas/DistroVersionSupport'
     Platform:
       type: object
       properties:
@@ -71,12 +77,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Platform'
-    Ecosystems:
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          $ref: '#/components/schemas/DistroVersionSupport'
   securitySchemes:
     BasicAuth:
       type: http

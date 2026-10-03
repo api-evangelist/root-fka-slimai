@@ -94,6 +94,24 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    osvfeed.OSVAffected:
+      type: object
+      properties:
+        package:
+          $ref: '#/components/schemas/osvfeed.OSVPackage'
+        ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/osvfeed.OSVRange'
+    osvfeed.OSVEvent:
+      type: object
+      properties:
+        fixed:
+          type: string
+          example: 3.0.8-r10071
+        introduced:
+          type: string
+          example: '0'
     osvfeed.OSVRange:
       type: object
       properties:
@@ -138,22 +156,6 @@ components:
         summary:
           type: string
           example: CVE-2023-1234 in root-openssl - Patched by Root
-    osvfeed.IndexEntry:
-      type: object
-      properties:
-        id:
-          type: string
-        modified:
-          type: string
-    osvfeed.OSVEvent:
-      type: object
-      properties:
-        fixed:
-          type: string
-          example: 3.0.8-r10071
-        introduced:
-          type: string
-          example: '0'
     osvfeed.OSVPackage:
       type: object
       properties:
@@ -175,15 +177,13 @@ components:
         url:
           type: string
           example: https://root.io/security/ROOT-OS-ALPINE-318-CVE-2023-1234
-    osvfeed.OSVAffected:
+    osvfeed.IndexEntry:
       type: object
       properties:
-        package:
-          $ref: '#/components/schemas/osvfeed.OSVPackage'
-        ranges:
-          type: array
-          items:
-            $ref: '#/components/schemas/osvfeed.OSVRange'
+        id:
+          type: string
+        modified:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http
