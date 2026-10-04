@@ -43,18 +43,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    v3.PatchFeedPackageWrapper:
+      type: object
+      properties:
+        pkg:
+          $ref: '#/components/schemas/v3.PatchFeedPackage'
     PatchFeedResponse:
       type: object
       additionalProperties:
         type: array
         items:
           $ref: '#/components/schemas/v3.SingleDistroFeedResponse'
-    v3.PatchFeedPackageSecFixes:
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          type: string
     v3.PatchFeedPackage:
       type: object
       properties:
@@ -62,11 +61,6 @@ components:
           type: string
         secfixes:
           $ref: '#/components/schemas/v3.PatchFeedPackageSecFixes'
-    v3.PatchFeedPackageWrapper:
-      type: object
-      properties:
-        pkg:
-          $ref: '#/components/schemas/v3.PatchFeedPackage'
     v3.SingleDistroFeedResponse:
       type: object
       properties:
@@ -80,6 +74,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/v3.PatchFeedPackageWrapper'
+    v3.PatchFeedPackageSecFixes:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http

@@ -42,6 +42,26 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    SysMatrix:
+      type: object
+      properties:
+        ecosystems:
+          $ref: '#/components/schemas/Ecosystems'
+        package_ecosystems:
+          type: array
+          items:
+            type: string
+        platforms:
+          type: array
+          items:
+            $ref: '#/components/schemas/Platform'
+    Platform:
+      type: object
+      properties:
+        architecture:
+          type: string
+        os:
+          type: string
     DistroVersionSupport:
       type: object
       properties:
@@ -57,26 +77,6 @@ components:
         type: array
         items:
           $ref: '#/components/schemas/DistroVersionSupport'
-    Platform:
-      type: object
-      properties:
-        architecture:
-          type: string
-        os:
-          type: string
-    SysMatrix:
-      type: object
-      properties:
-        ecosystems:
-          $ref: '#/components/schemas/Ecosystems'
-        package_ecosystems:
-          type: array
-          items:
-            type: string
-        platforms:
-          type: array
-          items:
-            $ref: '#/components/schemas/Platform'
   securitySchemes:
     BasicAuth:
       type: http

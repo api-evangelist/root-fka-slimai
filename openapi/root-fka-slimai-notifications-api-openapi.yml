@@ -145,15 +145,26 @@ components:
       properties:
         seen:
           type: boolean
-    ListNotificationsResponse:
+    NotificationResponse:
       type: object
       properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
+        created_at:
+          type: string
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationResponse'
+          $ref: '#/components/schemas/NotificationData'
+        id:
+          type: string
+        seen:
+          type: boolean
+        type:
+          type: string
+    FixedCVE:
+      type: object
+      properties:
+        cve_id:
+          type: string
+        severity:
+          $ref: '#/components/schemas/v3.CVESeverity'
     v3.CVESeverity:
       type: string
       enum:
@@ -168,31 +179,15 @@ components:
       - CveSeverityMedium
       - CveSeverityLow
       - CveSeverityUnknown
-    FixedCVE:
+    ListNotificationsResponse:
       type: object
       properties:
-        cve_id:
-          type: string
-        severity:
-          $ref: '#/components/schemas/v3.CVESeverity'
-    NotificationResponse:
-      type: object
-      properties:
-        created_at:
-          type: string
+        cursor:
+          $ref: '#/components/schemas/Cursor'
         data:
-          $ref: '#/components/schemas/NotificationData'
-        id:
-          type: string
-        seen:
-          type: boolean
-        type:
-          type: string
-    UnreadCountResponse:
-      type: object
-      properties:
-        count:
-          type: integer
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationResponse'
     Cursor:
       type: object
       properties:
@@ -204,6 +199,11 @@ components:
           type: integer
         total_count:
           description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
+    UnreadCountResponse:
+      type: object
+      properties:
+        count:
           type: integer
   securitySchemes:
     BasicAuth:

@@ -125,38 +125,22 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    InviteResponse:
+    CreateInviteRequest:
       type: object
+      required:
+      - role
       properties:
         email:
           type: string
-        id:
-          type: string
-        issuer_id:
-          type: string
-        organization_id:
-          type: string
         role:
           $ref: '#/components/schemas/Role'
-    Role:
-      type: string
-      enum:
-      - admin
-      - member
-      - readonly
-      x-enum-varnames:
-      - RoleAdmin
-      - RoleMember
-      - RoleReadonly
-    ListInvitesResponse:
+    InviteEmailResponse:
       type: object
       properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/InviteResponse'
+        email_status:
+          type: string
+        invite:
+          $ref: '#/components/schemas/InviteResponse'
     InviteAcceptAccountResponse:
       type: object
       properties:
@@ -170,15 +154,15 @@ components:
           type: string
         role:
           $ref: '#/components/schemas/Role'
-    CreateInviteRequest:
+    ListInvitesResponse:
       type: object
-      required:
-      - role
       properties:
-        email:
-          type: string
-        role:
-          $ref: '#/components/schemas/Role'
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/InviteResponse'
     Cursor:
       type: object
       properties:
@@ -191,13 +175,29 @@ components:
         total_count:
           description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
           type: integer
-    InviteEmailResponse:
+    Role:
+      type: string
+      enum:
+      - admin
+      - member
+      - readonly
+      x-enum-varnames:
+      - RoleAdmin
+      - RoleMember
+      - RoleReadonly
+    InviteResponse:
       type: object
       properties:
-        email_status:
+        email:
           type: string
-        invite:
-          $ref: '#/components/schemas/InviteResponse'
+        id:
+          type: string
+        issuer_id:
+          type: string
+        organization_id:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
   securitySchemes:
     BasicAuth:
       type: http

@@ -210,6 +210,40 @@ components:
       - PatchStatusFound
       - PatchStatusNotFound
       - PatchStatusRunning
+    patches.SearchResult:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        tickets:
+          type: array
+          items:
+            $ref: '#/components/schemas/patches.TicketWithStatus'
+    Cursor:
+      type: object
+      properties:
+        after:
+          type: string
+        before:
+          type: string
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
+    patches.ArtifactsResult:
+      type: object
+      properties:
+        created_at:
+          type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/patches.ArtifactFile'
+        research_id:
+          type: string
+        ticket_id:
+          type: string
     patches.TicketWithStatus:
       type: object
       properties:
@@ -245,40 +279,6 @@ components:
           type: string
         workflow_running:
           type: boolean
-    patches.ArtifactsResult:
-      type: object
-      properties:
-        created_at:
-          type: string
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/patches.ArtifactFile'
-        research_id:
-          type: string
-        ticket_id:
-          type: string
-    patches.SearchResult:
-      type: object
-      properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        tickets:
-          type: array
-          items:
-            $ref: '#/components/schemas/patches.TicketWithStatus'
-    Cursor:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
     patches.ArtifactFile:
       type: object
       properties:

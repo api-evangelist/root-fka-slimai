@@ -140,16 +140,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Role:
-      type: string
-      enum:
-      - admin
-      - member
-      - readonly
-      x-enum-varnames:
-      - RoleAdmin
-      - RoleMember
-      - RoleReadonly
     UpdateAccountRequest:
       type: object
       required:
@@ -157,15 +147,6 @@ components:
       properties:
         role:
           $ref: '#/components/schemas/Role'
-    ListAccountsPagedResponse:
-      type: object
-      properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountResponse'
     OrganizationKind:
       type: string
       enum:
@@ -186,6 +167,16 @@ components:
         total_count:
           description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
           type: integer
+    Role:
+      type: string
+      enum:
+      - admin
+      - member
+      - readonly
+      x-enum-varnames:
+      - RoleAdmin
+      - RoleMember
+      - RoleReadonly
     AccountResponse:
       type: object
       properties:
@@ -219,6 +210,15 @@ components:
           $ref: '#/components/schemas/Role'
         updated_at:
           type: string
+    ListAccountsPagedResponse:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountResponse'
     OrganizationBrief:
       type: object
       properties:

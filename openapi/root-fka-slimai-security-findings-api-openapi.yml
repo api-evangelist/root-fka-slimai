@@ -384,31 +384,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ListSecurityFindingsPagedResponse:
-      type: object
-      properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SecurityFindingResponse'
-    RemediationVulnerabilityCountsRequest:
-      type: object
-      required:
-      - levels
-      - rrt_ids
-      properties:
-        levels:
-          type: array
-          minItems: 1
-          items:
-            type: string
-        rrt_ids:
-          type: array
-          minItems: 1
-          items:
-            type: string
     v3.VulnerabilityCountsBreakdown:
       type: object
       properties:
@@ -422,31 +397,14 @@ components:
           type: integer
         unknown:
           type: integer
-    SecurityFindingsSummaryResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SecurityFindingsSummaryRow'
-    SecurityFindingsSummaryRow:
-      type: object
-      properties:
-        count:
-          type: integer
-        severity:
-          $ref: '#/components/schemas/v3.CVESeverity'
-        status:
-          $ref: '#/components/schemas/v3.FindingStatus'
-    SecurityFindingsDailySummaryRow:
-      type: object
-      properties:
-        count:
-          type: integer
-        severity:
-          $ref: '#/components/schemas/v3.CVESeverity'
-        status:
-          $ref: '#/components/schemas/v3.FindingStatus'
+    v3.FindingType:
+      type: string
+      enum:
+      - library
+      - image
+      x-enum-varnames:
+      - FindingTypeLibrary
+      - FindingTypeImage
     v3.CVESeverity:
       type: string
       enum:
@@ -461,81 +419,6 @@ components:
       - CveSeverityMedium
       - CveSeverityLow
       - CveSeverityUnknown
-    RemediationVulnerabilityCountsItem:
-      type: object
-      properties:
-        after:
-          $ref: '#/components/schemas/v3.VulnerabilityCounts'
-        before:
-          $ref: '#/components/schemas/v3.VulnerabilityCounts'
-        root_registry_tag_id:
-          type: string
-    RemediationVulnerabilityCountsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/RemediationVulnerabilityCountsItem'
-    SecurityFindingsDailySummaryResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/SecurityFindingsDailySummaryRow'
-    Cursor:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
-    v3.FindingType:
-      type: string
-      enum:
-      - library
-      - image
-      x-enum-varnames:
-      - FindingTypeLibrary
-      - FindingTypeImage
-    v3.VulnerabilityCounts:
-      type: object
-      properties:
-        app_level:
-          description: App-level vulnerability counts (nil/omitted for old records)
-          allOf:
-          - $ref: '#/components/schemas/v3.VulnerabilityCountsBreakdown'
-        critical:
-          description: OS-level vulnerability counts (top-level for backward compatibility)
-          type: integer
-        high:
-          type: integer
-        low:
-          type: integer
-        medium:
-          type: integer
-        unknown:
-          type: integer
-    v3.FindingStatus:
-      type: string
-      enum:
-      - researching
-      - creating_a_patch
-      - patch_available
-      - fixed
-      x-enum-varnames:
-      - FindingStatusResearching
-      - FindingStatusCreatingAPatch
-      - FindingStatusPatchAvailable
-      - FindingStatusFixed
     SecurityFindingResponse:
       type: object
       properties:
@@ -591,6 +474,123 @@ components:
           type: string
         title:
           type: string
+    v3.FindingStatus:
+      type: string
+      enum:
+      - researching
+      - creating_a_patch
+      - patch_available
+      - fixed
+      x-enum-varnames:
+      - FindingStatusResearching
+      - FindingStatusCreatingAPatch
+      - FindingStatusPatchAvailable
+      - FindingStatusFixed
+    Cursor:
+      type: object
+      properties:
+        after:
+          type: string
+        before:
+          type: string
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
+    SecurityFindingsDailySummaryResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/SecurityFindingsDailySummaryRow'
+    SecurityFindingsDailySummaryRow:
+      type: object
+      properties:
+        count:
+          type: integer
+        severity:
+          $ref: '#/components/schemas/v3.CVESeverity'
+        status:
+          $ref: '#/components/schemas/v3.FindingStatus'
+    RemediationVulnerabilityCountsItem:
+      type: object
+      properties:
+        after:
+          $ref: '#/components/schemas/v3.VulnerabilityCounts'
+        before:
+          $ref: '#/components/schemas/v3.VulnerabilityCounts'
+        root_registry_tag_id:
+          type: string
+    SecurityFindingsSummaryResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityFindingsSummaryRow'
+    SecurityFindingsSummaryRow:
+      type: object
+      properties:
+        count:
+          type: integer
+        severity:
+          $ref: '#/components/schemas/v3.CVESeverity'
+        status:
+          $ref: '#/components/schemas/v3.FindingStatus'
+    RemediationVulnerabilityCountsRequest:
+      type: object
+      required:
+      - levels
+      - rrt_ids
+      properties:
+        levels:
+          type: array
+          minItems: 1
+          items:
+            type: string
+        rrt_ids:
+          type: array
+          minItems: 1
+          items:
+            type: string
+    ListSecurityFindingsPagedResponse:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityFindingResponse'
+    v3.VulnerabilityCounts:
+      type: object
+      properties:
+        app_level:
+          description: App-level vulnerability counts (nil/omitted for old records)
+          allOf:
+          - $ref: '#/components/schemas/v3.VulnerabilityCountsBreakdown'
+        critical:
+          description: OS-level vulnerability counts (top-level for backward compatibility)
+          type: integer
+        high:
+          type: integer
+        low:
+          type: integer
+        medium:
+          type: integer
+        unknown:
+          type: integer
+    RemediationVulnerabilityCountsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RemediationVulnerabilityCountsItem'
   securitySchemes:
     BasicAuth:
       type: http

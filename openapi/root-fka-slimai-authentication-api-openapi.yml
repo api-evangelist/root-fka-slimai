@@ -34,11 +34,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DirectAuthResponse:
-      type: object
-      properties:
-        token:
-          type: string
     DirectAuthRequest:
       type: object
       required:
@@ -58,6 +53,11 @@ components:
         name:
           type: string
         provider:
+          type: string
+    DirectAuthResponse:
+      type: object
+      properties:
+        token:
           type: string
   securitySchemes:
     BasicAuth:

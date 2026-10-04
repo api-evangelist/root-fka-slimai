@@ -54,6 +54,31 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    OrganizationKind:
+      type: string
+      enum:
+      - public
+      - private
+      x-enum-varnames:
+      - OrganizationKindPublic
+      - OrganizationKindPrivate
+    CreateOrganizationRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+    Role:
+      type: string
+      enum:
+      - admin
+      - member
+      - readonly
+      x-enum-varnames:
+      - RoleAdmin
+      - RoleMember
+      - RoleReadonly
     AccountBrief:
       type: object
       properties:
@@ -65,24 +90,6 @@ components:
           type: string
         role:
           $ref: '#/components/schemas/Role'
-    Role:
-      type: string
-      enum:
-      - admin
-      - member
-      - readonly
-      x-enum-varnames:
-      - RoleAdmin
-      - RoleMember
-      - RoleReadonly
-    OrganizationKind:
-      type: string
-      enum:
-      - public
-      - private
-      x-enum-varnames:
-      - OrganizationKindPublic
-      - OrganizationKindPrivate
     OrganizationResponse:
       type: object
       properties:
@@ -101,13 +108,6 @@ components:
         name:
           type: string
         updated_at:
-          type: string
-    CreateOrganizationRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
           type: string
   securitySchemes:
     BasicAuth:

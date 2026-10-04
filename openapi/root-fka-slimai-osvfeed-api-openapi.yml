@@ -94,15 +94,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    osvfeed.OSVAffected:
-      type: object
-      properties:
-        package:
-          $ref: '#/components/schemas/osvfeed.OSVPackage'
-        ranges:
-          type: array
-          items:
-            $ref: '#/components/schemas/osvfeed.OSVRange'
     osvfeed.OSVEvent:
       type: object
       properties:
@@ -112,16 +103,6 @@ components:
         introduced:
           type: string
           example: '0'
-    osvfeed.OSVRange:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/osvfeed.OSVEvent'
-        type:
-          type: string
-          example: ECOSYSTEM
     osvfeed.OSVVulnerability:
       type: object
       properties:
@@ -156,6 +137,15 @@ components:
         summary:
           type: string
           example: CVE-2023-1234 in root-openssl - Patched by Root
+    osvfeed.OSVAffected:
+      type: object
+      properties:
+        package:
+          $ref: '#/components/schemas/osvfeed.OSVPackage'
+        ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/osvfeed.OSVRange'
     osvfeed.OSVPackage:
       type: object
       properties:
@@ -184,6 +174,16 @@ components:
           type: string
         modified:
           type: string
+    osvfeed.OSVRange:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/osvfeed.OSVEvent'
+        type:
+          type: string
+          example: ECOSYSTEM
   securitySchemes:
     BasicAuth:
       type: http

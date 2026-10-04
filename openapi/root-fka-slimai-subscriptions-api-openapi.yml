@@ -137,6 +137,79 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    v3.VulnerabilityCountsBreakdown:
+      type: object
+      properties:
+        critical:
+          type: integer
+        high:
+          type: integer
+        low:
+          type: integer
+        medium:
+          type: integer
+        unknown:
+          type: integer
+    v3.AVRScanStatus:
+      type: string
+      enum:
+      - scanning
+      - completed
+      - failed
+      x-enum-varnames:
+      - AVRScanStatusScanning
+      - AVRScanStatusCompleted
+      - AVRScanStatusFailed
+    AVRWithScansResponse:
+      type: object
+      properties:
+        created_at:
+          type: string
+        dockerfile_digest:
+          type: string
+        dockerfile_key:
+          type: string
+        id:
+          type: string
+        post_remediation_scan:
+          $ref: '#/components/schemas/AVRScanResponse'
+        pre_remediation_scan:
+          $ref: '#/components/schemas/AVRScanResponse'
+        provenance_key:
+          type: string
+        remediation_details:
+          $ref: '#/components/schemas/v3.RemediationDetails'
+        status:
+          $ref: '#/components/schemas/v3.AVRStatus'
+        target_image:
+          type: string
+        updated_at:
+          type: string
+        vex_key:
+          type: string
+    SubscriptionResponse:
+      type: object
+      properties:
+        created_at:
+          type: string
+        id:
+          type: string
+        organization_id:
+          type: string
+        root_registry_tag_id:
+          description: Which tag subscribed to
+          type: string
+        tag:
+          $ref: '#/components/schemas/TagResponse'
+        updated_at:
+          type: string
+    v3.PackageChange:
+      type: object
+      properties:
+        new_version:
+          type: string
+        old_version:
+          type: string
     TagResponse:
       type: object
       properties:
@@ -198,66 +271,6 @@ components:
       - EcosystemNameNuget
       - EcosystemNameComposer
       - EcosystemNameBinary
-    v3.VulnerabilityCountsBreakdown:
-      type: object
-      properties:
-        critical:
-          type: integer
-        high:
-          type: integer
-        low:
-          type: integer
-        medium:
-          type: integer
-        unknown:
-          type: integer
-    ListSubscriptionsResponse:
-      type: object
-      properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SubscriptionResponse'
-    SubscriptionResponse:
-      type: object
-      properties:
-        created_at:
-          type: string
-        id:
-          type: string
-        organization_id:
-          type: string
-        root_registry_tag_id:
-          description: Which tag subscribed to
-          type: string
-        tag:
-          $ref: '#/components/schemas/TagResponse'
-        updated_at:
-          type: string
-    AccessTier:
-      type: string
-      enum:
-      - none
-      - free
-      - pro
-      - fips
-      x-enum-varnames:
-      - AccessTierNone
-      - AccessTierFree
-      - AccessTierPro
-      - AccessTierFIPS
-    DeleteSubscriptionsRequest:
-      type: object
-      required:
-      - subscription_ids
-      properties:
-        subscription_ids:
-          type: array
-          minItems: 1
-          items:
-            type: string
     Arch:
       type: string
       enum:
@@ -284,24 +297,79 @@ components:
       - ArchMIPS64
       - ArchMIPS64LE
       - ArchMIPSLE
-    CreateSubscriptionsRequest:
+    AccessTier:
+      type: string
+      enum:
+      - none
+      - free
+      - pro
+      - fips
+      x-enum-varnames:
+      - AccessTierNone
+      - AccessTierFree
+      - AccessTierPro
+      - AccessTierFIPS
+    DeleteSubscriptionsRequest:
       type: object
+      required:
+      - subscription_ids
       properties:
-        image_tags:
+        subscription_ids:
           type: array
+          minItems: 1
           items:
             type: string
-        tag_ids:
-          type: array
-          items:
-            type: string
-    v3.PackageChange:
+    Cursor:
       type: object
       properties:
-        new_version:
+        after:
           type: string
-        old_version:
+        before:
           type: string
+        limit:
+          type: integer
+        total_count:
+          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
+          type: integer
+    v3.RemediationDetails:
+      type: object
+      properties:
+        deleted_packages:
+          type: object
+          additionalProperties:
+            type: string
+        is_truncated:
+          type: boolean
+        new_packages:
+          type: object
+          additionalProperties:
+            type: string
+        root_patched_packages:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/v3.PackageChange'
+        upgraded_packages:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/v3.PackageChange'
+    v3.AVRStatus:
+      type: string
+      enum:
+      - pulling_image
+      - scanning
+      - building
+      - rescanning
+      - auditing
+      - completed
+      - failed
+      x-enum-varnames:
+      - AVRStatusPullingImage
+      - AVRStatusScanning
+      - AVRStatusBuilding
+      - AVRStatusRescanning
+      - AVRStatusAuditing
+      - AVRStatusCompleted
+      - AVRStatusFailed
     AVRScanResponse:
       type: object
       properties:
@@ -327,45 +395,26 @@ components:
           type: string
         vulnerability_counts:
           $ref: '#/components/schemas/v3.VulnerabilityCounts'
-    Cursor:
+    CreateSubscriptionsRequest:
       type: object
       properties:
-        after:
-          type: string
-        before:
-          type: string
-        limit:
-          type: integer
-        total_count:
-          description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
-          type: integer
-    AVRWithScansResponse:
+        image_tags:
+          type: array
+          items:
+            type: string
+        tag_ids:
+          type: array
+          items:
+            type: string
+    ListSubscriptionsResponse:
       type: object
       properties:
-        created_at:
-          type: string
-        dockerfile_digest:
-          type: string
-        dockerfile_key:
-          type: string
-        id:
-          type: string
-        post_remediation_scan:
-          $ref: '#/components/schemas/AVRScanResponse'
-        pre_remediation_scan:
-          $ref: '#/components/schemas/AVRScanResponse'
-        provenance_key:
-          type: string
-        remediation_details:
-          $ref: '#/components/schemas/v3.RemediationDetails'
-        status:
-          $ref: '#/components/schemas/v3.AVRStatus'
-        target_image:
-          type: string
-        updated_at:
-          type: string
-        vex_key:
-          type: string
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubscriptionResponse'
     v3.VulnerabilityCounts:
       type: object
       properties:
@@ -384,55 +433,6 @@ components:
           type: integer
         unknown:
           type: integer
-    v3.RemediationDetails:
-      type: object
-      properties:
-        deleted_packages:
-          type: object
-          additionalProperties:
-            type: string
-        is_truncated:
-          type: boolean
-        new_packages:
-          type: object
-          additionalProperties:
-            type: string
-        root_patched_packages:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/v3.PackageChange'
-        upgraded_packages:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/v3.PackageChange'
-    v3.AVRScanStatus:
-      type: string
-      enum:
-      - scanning
-      - completed
-      - failed
-      x-enum-varnames:
-      - AVRScanStatusScanning
-      - AVRScanStatusCompleted
-      - AVRScanStatusFailed
-    v3.AVRStatus:
-      type: string
-      enum:
-      - pulling_image
-      - scanning
-      - building
-      - rescanning
-      - auditing
-      - completed
-      - failed
-      x-enum-varnames:
-      - AVRStatusPullingImage
-      - AVRStatusScanning
-      - AVRStatusBuilding
-      - AVRStatusRescanning
-      - AVRStatusAuditing
-      - AVRStatusCompleted
-      - AVRStatusFailed
     OriginalScanResponse:
       type: object
       properties:

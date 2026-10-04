@@ -113,20 +113,27 @@ components:
           type: string
         updated_at:
           type: string
-    v3.CVESeverity:
+    discovered_packages.ListDiscoveredPackagesPagedResponse:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/discovered_packages.DiscoveredPackageResponse'
+    v3.SLAStatus:
       type: string
       enum:
-      - critical
-      - high
-      - medium
-      - low
-      - unknown
+      - met
+      - active
+      - breached
+      - not_applicable
       x-enum-varnames:
-      - CveSeverityCritical
-      - CveSeverityHigh
-      - CveSeverityMedium
-      - CveSeverityLow
-      - CveSeverityUnknown
+      - SLAStatusMet
+      - SLAStatusActive
+      - SLAStatusBreached
+      - SLAStatusNotApplicable
     discovered_packages.DiscoveredPackageResponse:
       type: object
       properties:
@@ -178,27 +185,20 @@ components:
         version:
           description: Current version
           type: string
-    discovered_packages.ListDiscoveredPackagesPagedResponse:
-      type: object
-      properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/discovered_packages.DiscoveredPackageResponse'
-    v3.SLAStatus:
+    v3.CVESeverity:
       type: string
       enum:
-      - met
-      - active
-      - breached
-      - not_applicable
+      - critical
+      - high
+      - medium
+      - low
+      - unknown
       x-enum-varnames:
-      - SLAStatusMet
-      - SLAStatusActive
-      - SLAStatusBreached
-      - SLAStatusNotApplicable
+      - CveSeverityCritical
+      - CveSeverityHigh
+      - CveSeverityMedium
+      - CveSeverityLow
+      - CveSeverityUnknown
     Cursor:
       type: object
       properties:

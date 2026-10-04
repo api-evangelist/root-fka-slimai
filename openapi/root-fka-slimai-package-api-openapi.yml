@@ -245,42 +245,30 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    constants.EcosystemName:
+    PackageProvenanceFileResponse:
+      type: object
+      properties:
+        provenance_file_url:
+          type: string
+    v3.SLAStatus:
       type: string
       enum:
-      - debian
-      - ubuntu
-      - alpine
-      - amazon
-      - redhat
-      - rocky
-      - distroless
-      - fedora
-      - opensuse-leap
-      - pypi
-      - npm
-      - maven
-      - gobinary
-      - nuget
-      - composer
-      - binary
+      - met
+      - active
+      - breached
+      - not_applicable
       x-enum-varnames:
-      - EcosystemNameDebian
-      - EcosystemNameUbuntu
-      - EcosystemNameAlpine
-      - EcosystemNameAmazon
-      - EcosystemNameRedhat
-      - EcosystemNameRocky
-      - EcosystemNameDistroless
-      - EcosystemNameFedora
-      - EcosystemNameOpenSUSELeap
-      - EcosystemNamePypi
-      - EcosystemNameNpm
-      - EcosystemNameMaven
-      - EcosystemNameGoBinary
-      - EcosystemNameNuget
-      - EcosystemNameComposer
-      - EcosystemNameBinary
+      - SLAStatusMet
+      - SLAStatusActive
+      - SLAStatusBreached
+      - SLAStatusNotApplicable
+    PatchFilesResponse:
+      type: object
+      properties:
+        patch_files_urls:
+          type: array
+          items:
+            type: string
     ScanPackageResponse:
       type: object
       properties:
@@ -340,6 +328,42 @@ components:
           type: string
         version:
           type: string
+    constants.EcosystemName:
+      type: string
+      enum:
+      - debian
+      - ubuntu
+      - alpine
+      - amazon
+      - redhat
+      - rocky
+      - distroless
+      - fedora
+      - opensuse-leap
+      - pypi
+      - npm
+      - maven
+      - gobinary
+      - nuget
+      - composer
+      - binary
+      x-enum-varnames:
+      - EcosystemNameDebian
+      - EcosystemNameUbuntu
+      - EcosystemNameAlpine
+      - EcosystemNameAmazon
+      - EcosystemNameRedhat
+      - EcosystemNameRocky
+      - EcosystemNameDistroless
+      - EcosystemNameFedora
+      - EcosystemNameOpenSUSELeap
+      - EcosystemNamePypi
+      - EcosystemNameNpm
+      - EcosystemNameMaven
+      - EcosystemNameGoBinary
+      - EcosystemNameNuget
+      - EcosystemNameComposer
+      - EcosystemNameBinary
     v3.CVESeverity:
       type: string
       enum:
@@ -380,39 +404,6 @@ components:
       - ArchMIPS64
       - ArchMIPS64LE
       - ArchMIPSLE
-    PatchFilesResponse:
-      type: object
-      properties:
-        patch_files_urls:
-          type: array
-          items:
-            type: string
-    v3.SLAStatus:
-      type: string
-      enum:
-      - met
-      - active
-      - breached
-      - not_applicable
-      x-enum-varnames:
-      - SLAStatusMet
-      - SLAStatusActive
-      - SLAStatusBreached
-      - SLAStatusNotApplicable
-    PackageProvenanceFileResponse:
-      type: object
-      properties:
-        provenance_file_url:
-          type: string
-    ListPackagesPagedResponse:
-      type: object
-      properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScanPackageResponse'
     Cursor:
       type: object
       properties:
@@ -481,6 +472,15 @@ components:
           type: string
         updated_at:
           type: string
+    ListPackagesPagedResponse:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScanPackageResponse'
   securitySchemes:
     BasicAuth:
       type: http

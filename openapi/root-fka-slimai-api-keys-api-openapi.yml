@@ -165,68 +165,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    APIKeyCreatedBy:
-      type: object
-      properties:
-        account_id:
-          type: string
-        email:
-          type: string
-        name:
-          type: string
-        role:
-          $ref: '#/components/schemas/Role'
-    AccountBrief:
-      type: object
-      properties:
-        email:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        role:
-          $ref: '#/components/schemas/Role'
-    PatchAPIKeyRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          maxLength: 100
-          minLength: 1
-    Role:
+    AccountType:
       type: string
       enum:
-      - admin
-      - member
-      - readonly
+      - user
+      - service
       x-enum-varnames:
-      - RoleAdmin
-      - RoleMember
-      - RoleReadonly
-    CreateAPIKeyRequest:
-      type: object
-      properties:
-        expires_at:
-          type: string
-        name:
-          type: string
-          maxLength: 100
-        role:
-          enum:
-          - admin
-          - member
-          - readonly
-          allOf:
-          - $ref: '#/components/schemas/Role'
-        type:
-          enum:
-          - user
-          - service
-          allOf:
-          - $ref: '#/components/schemas/AccountType'
+      - AccountTypeUser
+      - AccountTypeService
     APIKeyResponse:
       type: object
       properties:
@@ -260,22 +206,45 @@ components:
           $ref: '#/components/schemas/AccountType'
         updated_at:
           type: string
-    OrganizationKind:
-      type: string
-      enum:
-      - public
-      - private
-      x-enum-varnames:
-      - OrganizationKindPublic
-      - OrganizationKindPrivate
-    AccountType:
-      type: string
-      enum:
-      - user
-      - service
-      x-enum-varnames:
-      - AccountTypeUser
-      - AccountTypeService
+    OrganizationBrief:
+      type: object
+      properties:
+        id:
+          type: string
+        kind:
+          $ref: '#/components/schemas/OrganizationKind'
+        name:
+          type: string
+    ListAPIKeysPagedResponse:
+      type: object
+      properties:
+        cursor:
+          $ref: '#/components/schemas/Cursor'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIKeyResponse'
+    CreateAPIKeyRequest:
+      type: object
+      properties:
+        expires_at:
+          type: string
+        name:
+          type: string
+          maxLength: 100
+        role:
+          enum:
+          - admin
+          - member
+          - readonly
+          allOf:
+          - $ref: '#/components/schemas/Role'
+        type:
+          enum:
+          - user
+          - service
+          allOf:
+          - $ref: '#/components/schemas/AccountType'
     Cursor:
       type: object
       properties:
@@ -288,24 +257,55 @@ components:
         total_count:
           description: TotalCount is the number of rows matching the list filters for endpoints that populate it (e.g. security findings list). Response-only.
           type: integer
-    ListAPIKeysPagedResponse:
+    OrganizationKind:
+      type: string
+      enum:
+      - public
+      - private
+      x-enum-varnames:
+      - OrganizationKindPublic
+      - OrganizationKindPrivate
+    Role:
+      type: string
+      enum:
+      - admin
+      - member
+      - readonly
+      x-enum-varnames:
+      - RoleAdmin
+      - RoleMember
+      - RoleReadonly
+    PatchAPIKeyRequest:
       type: object
+      required:
+      - name
       properties:
-        cursor:
-          $ref: '#/components/schemas/Cursor'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIKeyResponse'
-    OrganizationBrief:
-      type: object
-      properties:
-        id:
-          type: string
-        kind:
-          $ref: '#/components/schemas/OrganizationKind'
         name:
           type: string
+          maxLength: 100
+          minLength: 1
+    AccountBrief:
+      type: object
+      properties:
+        email:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
+    APIKeyCreatedBy:
+      type: object
+      properties:
+        account_id:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
   securitySchemes:
     BasicAuth:
       type: http
