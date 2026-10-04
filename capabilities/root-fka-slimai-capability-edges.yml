@@ -1,0 +1,124 @@
+slug: root-fka-slimai
+provider: Root (fka Slim.ai)
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 11
+edges:
+- tag: AVR
+  spec_file: root-fka-slimai-avr-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.9
+  evidence: GET /v3/avrs/{avr_id}/artifacts/sbom  Get SBOM file for an AVR; schema v3.RemediationStrategy,
+    v3.VulnerabilityCountsBreakdown, ImageRemediationDecision
+  reason: 'AVR = Agentic Vulnerability Remediation: the operations expose vulnerability counts, remediation
+    decisions and SBOM/VEX/provenance artefacts for container images — squarely vulnerability scanning
+    and remediation.'
+- tag: Core - Discovered Packages V3
+  spec_file: root-fka-slimai-core-discovered-packages-v3-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.85
+  evidence: GET /v3/discovered-packages  List discovered packages from artifact repositories; schemas
+    v3.CVE, v3.CVESeverity, v3.SLAStatus
+  reason: Enumerates software packages discovered in artifact repositories together with their CVEs and
+    remediation SLA status — vulnerability discovery and tracking.
+- tag: Discovery
+  spec_file: root-fka-slimai-discovery-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.85
+  evidence: POST /v3/discovery  Create discovered package with CVE; POST /v3/discovery/bulk  Bulk discover
+    packages with CVEs (async)
+  reason: Ingests discovered packages along with their CVEs — vulnerability identification across the
+    software inventory, the core of vulnerability management.
+- tag: Patches
+  spec_file: root-fka-slimai-patches-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.85
+  evidence: GET /v3/patches  List CVE tickets (patches); schemas patches.PatchStatus, patches.TicketWithStatus
+  reason: Tracks CVE remediation tickets and their patch status plus research artefacts — vulnerability
+    remediation workflow management.
+- tag: Remediation
+  spec_file: root-fka-slimai-remediation-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.85
+  evidence: POST /v3/analyze/npm 'Get NPM package remediation recommendations'; schemas analyze.PackagePatch,
+    analyze.UpgradeableOsPackage
+  reason: Operations analyse OS and language package manifests and return patch/upgrade recommendations
+    for vulnerable dependencies — this is vulnerability scanning and remediation guidance, squarely Vulnerability
+    Management under Cybersecurity, not product engineering.
+- tag: Security Findings
+  spec_file: root-fka-slimai-security-findings-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.85
+  evidence: GET /v3/security_findings/summary 'Get security findings summary (counts by status and severity)';
+    schemas v3.CVESeverity, RemediationVulnerabilityCountsResponse
+  reason: Listing and summarising CVE-based security findings by status and severity, with remediation
+    counts, is vulnerability identification, tracking and reporting — Vulnerability Management.
+- tag: CveFeed
+  spec_file: root-fka-slimai-cvefeed-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.8
+  evidence: GET /external/cve_feed  Get CVE feed data
+  reason: Publishes CVE vulnerability feed data; this is vulnerability intelligence feeding scanning and
+    remediation. No schemas given, so slightly lower confidence.
+- tag: OSVFeed
+  spec_file: root-fka-slimai-osvfeed-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.8
+  evidence: GET /external/osv/all.json  Get OSV feed index; schema osvfeed.OSVVulnerability
+  reason: Serves Open Source Vulnerability (OSV) records describing affected packages and version ranges
+    — vulnerability intelligence distribution supporting scanning and patching.
+- tag: PatchFeed
+  spec_file: root-fka-slimai-patchfeed-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.8
+  evidence: GET /external/patch_feed  Get patch feed data; schema v3.PatchFeedPackageSecFixes
+  reason: Feed of security fixes per distro package (SecFixes) — distribution of remediation/patch information
+    for known vulnerabilities.
+- tag: Webhooks
+  spec_file: root-fka-slimai-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.8
+  evidence: POST /v3/settings/webhooks 'Create webhook subscription'; 'Test tag-created webhook delivery';
+    schema v3.WebhookDeliveryAttemptStatus
+  reason: Lifecycle of outbound webhook subscriptions plus delivery testing/attempt status matches Webhook
+    & Event Subscription Management exactly; it is the one 'plumbing' area the frame explicitly models
+    as a capability.
+- tag: Package
+  spec_file: root-fka-slimai-package-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.75
+  evidence: GET /v3/packages/{pkg_id}/artifacts/patches  Get patch files for a package; schemas v3.CVESeverity,
+    v3.SLAStatus, CVEResponse
+  reason: Package inventory joined to CVE severity, remediation SLA and downloadable patch/provenance
+    artefacts — patching and remediation of vulnerable software components.

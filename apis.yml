@@ -336,6 +336,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/root-fka-slimai-capability-edges.yml
+  name: Root (fka Slim.ai) Business Capability Map
 - type: Overlay
   url: overlays/root-fka-slimai-openapi-overlay.yaml
 - type: AgenticAccess
