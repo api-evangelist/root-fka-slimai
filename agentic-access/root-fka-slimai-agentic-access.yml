@@ -1,94 +1,32 @@
-generated: '2026-07-21'
+generated: '2026-09-23'
 method: generated
-source: openapi/root-fka-slimai-openapi-original.json
+source: openapi/root-fka-slimai-accounts-api-openapi.yml, openapi/root-fka-slimai-api-keys-api-openapi.yml,
+  openapi/root-fka-slimai-authentication-api-openapi.yml, openapi/root-fka-slimai-avr-api-openapi.yml,
+  openapi/root-fka-slimai-billing-api-openapi.yml, openapi/root-fka-slimai-core-discovered-packages-v3-api-openapi.yml,
+  openapi/root-fka-slimai-cvefeed-api-openapi.yml, openapi/root-fka-slimai-discovery-api-openapi.yml,
+  openapi/root-fka-slimai-invitations-api-openapi.yml, openapi/root-fka-slimai-notifications-api-openapi.yml,
+  openapi/root-fka-slimai-organizations-api-openapi.yml, openapi/root-fka-slimai-osvfeed-api-openapi.yml,
+  openapi/root-fka-slimai-package-api-openapi.yml, openapi/root-fka-slimai-patches-api-openapi.yml,
+  openapi/root-fka-slimai-patchfeed-api-openapi.yml, openapi/root-fka-slimai-remediation-api-openapi.yml,
+  openapi/root-fka-slimai-security-findings-api-openapi.yml, openapi/root-fka-slimai-subscriptions-api-openapi.yml,
+  openapi/root-fka-slimai-system-matrix-api-openapi.yml, openapi/root-fka-slimai-webhooks-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 69
   by_action_class:
-    connected: 38
-    acting: 31
+    connected: 48
+    acting: 21
   by_consequence:
-    read: 38
-    write: 30
+    read: 48
+    write: 20
     physical: 1
   human_in_the_loop_required: 0
 operations:
-- path: /external/cve_feed
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /external/globals/sys_matrix
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /external/osv/all.json
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /external/osv/all.json
-  method: head
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /external/osv/all.zip
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /external/osv/{id}.json
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /external/osv/{id}.json
-  method: head
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /external/patch_feed
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /v3/accounts
   method: get
+  operationId: getV3Accounts
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -98,6 +36,7 @@ operations:
     audit: none
 - path: /v3/accounts/{account_id}
   method: delete
+  operationId: deleteV3AccountsByAccountId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -113,6 +52,7 @@ operations:
     audit: required
 - path: /v3/accounts/{account_id}
   method: patch
+  operationId: patchV3AccountsByAccountId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -126,143 +66,19 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v3/analyze/apk
-  method: post
+- path: /v3/me
+  method: get
+  operationId: getV3Me
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v3/analyze/apt
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v3/analyze/composer
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v3/analyze/golang
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v3/analyze/maven
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v3/analyze/npm
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v3/analyze/nuget
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v3/analyze/pypi
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v3/analyze/yum
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v3/api_keys
   method: get
+  operationId: getV3ApiKeys
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -272,6 +88,7 @@ operations:
     audit: none
 - path: /v3/api_keys
   method: post
+  operationId: postV3ApiKeys
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -287,6 +104,7 @@ operations:
     audit: required
 - path: /v3/api_keys/{api_key_id}
   method: get
+  operationId: getV3ApiKeysByApiKeyId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -296,6 +114,7 @@ operations:
     audit: none
 - path: /v3/api_keys/{api_key_id}
   method: delete
+  operationId: deleteV3ApiKeysByApiKeyId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -311,6 +130,7 @@ operations:
     audit: required
 - path: /v3/api_keys/{api_key_id}
   method: patch
+  operationId: patchV3ApiKeysByApiKeyId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -326,6 +146,7 @@ operations:
     audit: required
 - path: /v3/auth/direct
   method: post
+  operationId: postV3AuthDirect
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -341,6 +162,7 @@ operations:
     audit: required
 - path: /v3/avrs
   method: get
+  operationId: getV3Avrs
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -350,6 +172,7 @@ operations:
     audit: none
 - path: /v3/avrs
   method: post
+  operationId: postV3Avrs
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -365,6 +188,7 @@ operations:
     audit: required
 - path: /v3/avrs/{avr_id}
   method: get
+  operationId: getV3AvrsByAvrId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -374,6 +198,7 @@ operations:
     audit: none
 - path: /v3/avrs/{avr_id}/artifacts/dockerfile
   method: get
+  operationId: getV3AvrsByAvrIdArtifactsDockerfile
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -383,6 +208,7 @@ operations:
     audit: none
 - path: /v3/avrs/{avr_id}/artifacts/provenance
   method: get
+  operationId: getV3AvrsByAvrIdArtifactsProvenance
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -392,6 +218,7 @@ operations:
     audit: none
 - path: /v3/avrs/{avr_id}/artifacts/sbom
   method: get
+  operationId: getV3AvrsByAvrIdArtifactsSbom
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -401,6 +228,7 @@ operations:
     audit: none
 - path: /v3/avrs/{avr_id}/artifacts/vex
   method: get
+  operationId: getV3AvrsByAvrIdArtifactsVex
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -410,6 +238,7 @@ operations:
     audit: none
 - path: /v3/billing
   method: get
+  operationId: getV3Billing
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -419,6 +248,17 @@ operations:
     audit: none
 - path: /v3/discovered-packages
   method: get
+  operationId: getV3DiscoveredPackages
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /external/cve_feed
+  method: get
+  operationId: getExternalCveFeed
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -428,6 +268,7 @@ operations:
     audit: none
 - path: /v3/discovery
   method: post
+  operationId: postV3Discovery
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -443,6 +284,7 @@ operations:
     audit: required
 - path: /v3/discovery/bulk
   method: post
+  operationId: postV3DiscoveryBulk
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -458,6 +300,7 @@ operations:
     audit: required
 - path: /v3/invites
   method: get
+  operationId: getV3Invites
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -467,6 +310,7 @@ operations:
     audit: none
 - path: /v3/invites
   method: post
+  operationId: postV3Invites
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -482,6 +326,7 @@ operations:
     audit: required
 - path: /v3/invites/{inviteID}/accept
   method: post
+  operationId: postV3InvitesByInviteIDAccept
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -497,6 +342,7 @@ operations:
     audit: required
 - path: /v3/invites/{inviteID}/email
   method: post
+  operationId: postV3InvitesByInviteIDEmail
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -512,17 +358,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v3/me
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /v3/notifications
   method: get
+  operationId: getV3Notifications
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -532,6 +370,7 @@ operations:
     audit: none
 - path: /v3/notifications/read_all
   method: post
+  operationId: postV3NotificationsReadAll
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -547,6 +386,7 @@ operations:
     audit: required
 - path: /v3/notifications/unread-count
   method: get
+  operationId: getV3NotificationsUnreadCount
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -556,6 +396,7 @@ operations:
     audit: none
 - path: /v3/notifications/{notificationID}
   method: patch
+  operationId: patchV3NotificationsByNotificationID
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -571,6 +412,7 @@ operations:
     audit: required
 - path: /v3/orgs
   method: get
+  operationId: getV3Orgs
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -580,6 +422,7 @@ operations:
     audit: none
 - path: /v3/orgs
   method: post
+  operationId: postV3Orgs
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -593,8 +436,59 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /external/osv/all.json
+  method: get
+  operationId: getExternalOsvAllJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /external/osv/all.json
+  method: head
+  operationId: headExternalOsvAllJson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /external/osv/all.zip
+  method: get
+  operationId: getExternalOsvAllZip
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /external/osv/{id}.json
+  method: get
+  operationId: getExternalOsv{id}Json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /external/osv/{id}.json
+  method: head
+  operationId: headExternalOsv{id}Json
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /v3/packages
   method: get
+  operationId: getV3Packages
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -604,6 +498,7 @@ operations:
     audit: none
 - path: /v3/packages/{pkg_id}
   method: get
+  operationId: getV3PackagesByPkgId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -613,6 +508,7 @@ operations:
     audit: none
 - path: /v3/packages/{pkg_id}/artifacts/patches
   method: get
+  operationId: getV3PackagesByPkgIdArtifactsPatches
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -622,6 +518,7 @@ operations:
     audit: none
 - path: /v3/packages/{pkg_id}/artifacts/provenance
   method: get
+  operationId: getV3PackagesByPkgIdArtifactsProvenance
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -631,6 +528,7 @@ operations:
     audit: none
 - path: /v3/patches
   method: get
+  operationId: getV3Patches
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -640,6 +538,7 @@ operations:
     audit: none
 - path: /v3/patches/{ticketID}/artifacts
   method: get
+  operationId: getV3PatchesByTicketIDArtifacts
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -649,6 +548,107 @@ operations:
     audit: none
 - path: /v3/patches/{ticketID}/artifacts/{downloadKey}
   method: get
+  operationId: getV3PatchesByTicketIDArtifactsByDownloadKey
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /external/patch_feed
+  method: get
+  operationId: getExternalPatchFeed
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/analyze/apk
+  method: post
+  operationId: postV3AnalyzeApk
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/analyze/apt
+  method: post
+  operationId: postV3AnalyzeApt
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/analyze/composer
+  method: post
+  operationId: postV3AnalyzeComposer
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/analyze/golang
+  method: post
+  operationId: postV3AnalyzeGolang
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/analyze/maven
+  method: post
+  operationId: postV3AnalyzeMaven
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/analyze/npm
+  method: post
+  operationId: postV3AnalyzeNpm
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/analyze/nuget
+  method: post
+  operationId: postV3AnalyzeNuget
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/analyze/pypi
+  method: post
+  operationId: postV3AnalyzePypi
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/analyze/yum
+  method: post
+  operationId: postV3AnalyzeYum
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -658,21 +658,17 @@ operations:
     audit: none
 - path: /v3/remediate/pypi
   method: post
+  operationId: postV3RemediatePypi
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v3/security_findings
   method: get
+  operationId: getV3SecurityFindings
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -682,6 +678,7 @@ operations:
     audit: none
 - path: /v3/security_findings/remediation_counts
   method: post
+  operationId: postV3SecurityFindingsRemediationCounts
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -697,6 +694,7 @@ operations:
     audit: required
 - path: /v3/security_findings/summary
   method: get
+  operationId: getV3SecurityFindingsSummary
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -706,6 +704,7 @@ operations:
     audit: none
 - path: /v3/security_findings/summary/daily
   method: get
+  operationId: getV3SecurityFindingsSummaryDaily
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -713,62 +712,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v3/settings/webhooks
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v3/settings/webhooks
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v3/settings/webhooks/{webhookSubscriptionID}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v3/settings/webhooks/{webhookSubscriptionID}/test-tag-created
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /v3/subscriptions
   method: get
+  operationId: getV3Subscriptions
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -778,6 +724,7 @@ operations:
     audit: none
 - path: /v3/subscriptions
   method: post
+  operationId: postV3Subscriptions
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -793,6 +740,7 @@ operations:
     audit: required
 - path: /v3/subscriptions
   method: delete
+  operationId: deleteV3Subscriptions
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -808,6 +756,17 @@ operations:
     audit: required
 - path: /v3/subscriptions/{subscriptionID}
   method: get
+  operationId: getV3SubscriptionsBySubscriptionID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /external/globals/sys_matrix
+  method: get
+  operationId: getExternalGlobalsSysMatrix
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -817,6 +776,7 @@ operations:
     audit: none
 - path: /v3/sys_matrix
   method: get
+  operationId: getV3SysMatrix
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -824,3 +784,61 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /v3/settings/webhooks
+  method: get
+  operationId: getV3SettingsWebhooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/settings/webhooks
+  method: post
+  operationId: postV3SettingsWebhooks
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v3/settings/webhooks/{webhookSubscriptionID}
+  method: delete
+  operationId: deleteV3SettingsWebhooksByWebhookSubscriptionID
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v3/settings/webhooks/{webhookSubscriptionID}/test-tag-created
+  method: post
+  operationId: postV3SettingsWebhooksByWebhookSubscriptionIDTestTagCreated
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
